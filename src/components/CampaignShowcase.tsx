@@ -5,58 +5,44 @@ import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 
 const campaigns = [
     {
-        brand: 'ITC Limited – FMCG',
-        dealValue: '₹45 Cr',
-        channels: ['Print', 'OTT', 'Outdoor', 'Radio'],
-        objective: 'Nationwide reach & brand visibility across regional markets.',
-        impact: 'Sunfeast achieved massive recall lift in Tier 2 cities without cash outflow, proving structured barter delivers measurable brand equity.',
-        accentColor: '#3B82F6',
-        stats: [{ label: 'Markets Reached', value: '18 States' }, { label: 'Impressions', value: '420M+' }, { label: 'Cash Saved', value: '₹45 Cr' }],
-    },
-    {
-        brand: 'Godrej – Consumer Goods',
-        dealValue: '₹80 Cr',
-        channels: ['TV', 'Print', 'Outdoor', 'Digital'],
-        objective: 'Nationwide reach & brand visibility for new product lines.',
-        impact: 'Secured high-frequency ad spots leading to a 22% increase in brand search volume during the festive quarter.',
-        accentColor: '#00C2FF',
-        stats: [{ label: 'Media Channels', value: '4 Platforms' }, { label: 'Reach', value: '800M+' }, { label: 'Deal Value', value: '₹80 Cr' }],
-    },
-    {
-        brand: 'Titan – Lifestyle',
+        brand: 'Titan Company',
         dealValue: '₹350 Cr',
         channels: ['TV', 'Print', 'Outdoor', 'Digital'],
-        objective: 'Nationwide reach & prestige brand visibility for Tanishq.',
-        impact: "Pan-India brand presence secured across premium touchpoints, amplifying Titan's festive season dominance without liquidity pressure.",
-        accentColor: '#6366F1',
-        stats: [{ label: 'Markets', value: 'Pan-India' }, { label: 'Reach', value: '600M+' }, { label: 'Media Value', value: '₹350 Cr' }],
+        challenge: 'High seasonal inventory across regional retail networks leading to tied-up working capital.',
+        solution: 'Structured ₹350 Cr media allocation across 4 tier-1 networks in exchange for slow-moving stock.',
+        impact: 'National visibility secured across premium touchpoints without cash outflow, amplifying festive season dominance.',
+        accentColor: '#00C2FF',
+        stats: [{ label: 'Media Channels', value: '4 Platforms' }, { label: 'Reach', value: '600M+' }, { label: 'Working Capital Saved', value: '₹350 Cr' }],
     },
     {
-        brand: 'Bajaj – Automobiles',
+        brand: 'Bajaj Auto',
         dealValue: '₹75 Cr',
         channels: ['TV', 'Radio', 'Cinema', 'Outdoor'],
-        objective: 'Nationwide reach & launch visibility for new 2-wheelers.',
-        impact: 'Multi-platform deployment across 12 metros saw first-week sales exceed projections by 38% in structured launch markets.',
+        challenge: 'Aggressive marketing requirement for Pulsar NS series launch targeting South & West India met with localized budget constraints.',
+        solution: 'Engineered a highly targeted media barter deal focusing entirely on 12 key metropolitan zones.',
+        impact: 'First-week sales exceeded projections by 38% in structured launch markets with zero upfront media capital required.',
+        accentColor: '#6366F1',
+        stats: [{ label: 'Markets', value: '12 Metros' }, { label: 'Sales Lift', value: '+38%' }, { label: 'Media Value', value: '₹75 Cr' }],
+    },
+    {
+        brand: 'Havells India',
+        dealValue: '₹52 Cr',
+        channels: ['OTT', 'Digital', 'Print'],
+        challenge: 'Intense competition in the appliance category required sustained share-of-voice during the critical festive window.',
+        solution: 'Deployed a multi-quarter media agreement utilizing existing commercial SKUs to fund a pan-India OTT and Digital push.',
+        impact: 'Category market share expanded from 18% to 24% through coordinated cross-platform storytelling.',
         accentColor: '#10B981',
-        stats: [{ label: 'Markets', value: '12 Metros' }, { label: 'Sales Lift', value: '+38%' }, { label: 'Deal Value', value: '₹75 Cr' }],
+        stats: [{ label: 'Category Share', value: '+6 pts' }, { label: 'Platforms', value: 'OTT + Digital' }, { label: 'Capital Deployed', value: '₹52 Cr' }],
     },
     {
-        brand: 'VIP Industries – Luggage',
-        dealValue: '₹40 Cr',
-        channels: ['Print', 'Outdoor', 'Digital', 'OTT'],
-        objective: 'Nationwide reach & brand visibility during travel season.',
-        impact: 'Dominated airport and transit media nationwide, translating excess stock into powerful brand presence at critical traveler touchpoints.',
-        accentColor: '#F59E0B',
-        stats: [{ label: 'Transit Hubs', value: '45+' }, { label: 'Impressions', value: '150M+' }, { label: 'Cash Saved', value: '₹40 Cr' }],
-    },
-    {
-        brand: 'Himalaya – Wellness',
-        dealValue: '₹120 Cr',
-        channels: ['TV', 'Print', 'Radio', 'Digital'],
-        objective: 'Nationwide reach & brand visibility for personal care products.',
-        impact: 'Unprecedented rural and urban penetration using a mix of regional TV and local print, cementing category leadership.',
-        accentColor: '#EC4899',
-        stats: [{ label: 'Media Channels', value: '4 Platforms' }, { label: 'Reach', value: '900M+' }, { label: 'Media Value', value: '₹120 Cr' }],
+        brand: 'ITC – Sunfeast',
+        dealValue: '₹45 Cr',
+        channels: ['Print', 'OTT', 'Cinema', 'Radio'],
+        challenge: 'Required deep rural and tier-2 market penetration without disrupting the core marketing budget.',
+        solution: 'Structured a decentralized media acquisition strategy exchanging FMCG volume for localized media inventory.',
+        impact: 'Achieved double-digit recall lift in Tier-2 cities, proving structured barter delivers measurable brand equity at scale.',
+        accentColor: '#3B82F6',
+        stats: [{ label: 'Markets Reached', value: '18 States' }, { label: 'Impressions', value: '420M+' }, { label: 'Cash Saved', value: '₹45 Cr' }],
     },
 ];
 
@@ -126,13 +112,17 @@ const CampaignCard = ({ campaign, index, total, vw }: {
                         </span>
                     ))}
                 </div>
-                <div className="space-y-3">
+                <div className="space-y-4">
                     <div>
-                        <p className="text-[10px] font-mono uppercase tracking-widest text-white/25 mb-1">Objective</p>
-                        <p className="text-gray-300 text-sm md:text-[15px] leading-relaxed">{c.objective}</p>
+                        <p className="text-[10px] font-mono uppercase tracking-widest text-[#3B82F6] mb-1">Challenge</p>
+                        <p className="text-gray-300 text-sm md:text-[15px] leading-relaxed font-medium">{c.challenge}</p>
                     </div>
                     <div>
-                        <p className="text-[10px] font-mono uppercase tracking-widest text-white/25 mb-1">Impact</p>
+                        <p className="text-[10px] font-mono uppercase tracking-widest text-white/40 mb-1">Solution</p>
+                        <p className="text-white text-sm md:text-[15px] leading-relaxed font-medium">{c.solution}</p>
+                    </div>
+                    <div>
+                        <p className="text-[10px] font-mono uppercase tracking-widest text-[#10B981] mb-1">Impact</p>
                         <p className="text-gray-400 text-sm md:text-[15px] leading-relaxed">{c.impact}</p>
                     </div>
                 </div>

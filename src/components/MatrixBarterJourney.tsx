@@ -3,19 +3,24 @@ import { motion, useScroll, useTransform, useMotionValueEvent, useSpring, useMot
 
 const nodesArr = [
     {
-        title: "Step 1: Brand Offers Products",
-        content: "Brands unlock the value of their products and unsold inventory, using them as currency to fund large-scale advertising campaigns without direct cash outflow.",
+        title: "Inventory Assessment",
+        content: "The brand shares available product inventory. Matrix evaluates category strength, volume, and barter potential across media platforms.",
         buildingProps: { w: 40, h: 120, layers: 1 }
     },
     {
-        title: "Step 2: Media Matchmaking",
-        content: "We evaluate the inventory and strategically match it with premium media placements across our extensive network of Print, TV, OTT, Outdoor, and Radio platforms.",
+        title: "Media Value Structuring",
+        content: "Matrix converts product inventory into structured media value across Print, TV, OTT, Radio, Outdoor and Cinema using strategic partnerships.",
         buildingProps: { w: 50, h: 160, layers: 2 }
     },
     {
-        title: "Step 3: Nationwide Advertising",
-        content: "The brand receives high-impact, nationwide advertising campaigns that drive visibility, engagement, and growth—all funded through structured media barter.",
-        buildingProps: { w: 80, h: 150, layers: 3, horizontalStrips: true, maxGlow: true }
+        title: "Multi-Platform Deployment",
+        content: "Campaigns are executed across national and regional media networks ensuring maximum reach and visibility without direct cash outflow.",
+        buildingProps: { w: 80, h: 150, layers: 3, horizontalStrips: true }
+    },
+    {
+        title: "Growth Without Cash Burn",
+        content: "Brands increase market visibility, conserve working capital, and improve sales velocity while preserving liquidity.",
+        buildingProps: { w: 60, h: 220, layers: 1, maxGlow: true }
     }
 ];
 
@@ -261,7 +266,7 @@ const MatrixBarterJourney: React.FC = () => {
             const len = pathRef.current.getTotalLength();
             if (len > 0) {
                 // Strategic placements along the curve 
-                const fractions = [0.15, 0.50, 0.85];
+                const fractions = [0.1, 0.38, 0.66, 0.94];
                 setNodesPos(fractions.map(f => {
                     const pt = pathRef.current!.getPointAtLength(f * len);
                     return { x: pt.x, y: pt.y, fraction: f };
@@ -401,7 +406,7 @@ const MatrixBarterJourney: React.FC = () => {
                     </svg>
 
                     {/* Architectural Milestone Cards & Nodes */}
-                    {nodesPos.length === 3 && nodesPos.map((pos, i) => (
+                    {nodesPos.length === 4 && nodesPos.map((pos, i) => (
                         <MilestoneNode
                             key={i}
                             index={i}

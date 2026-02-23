@@ -1,13 +1,14 @@
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import AboutSection from './components/AboutSection';
+import WhyBarterSection from './components/WhyBarterSection';
 import MatrixEnergyNetwork from './components/MatrixEnergyNetwork';
+import ProcessSection from './components/ProcessSection';
 import MatrixBarterJourney from './components/MatrixBarterJourney';
-import ServicesSection from './components/ServicesSection';
-import IndustriesSection from './components/IndustriesSection';
 import OurClients from './components/OurClients';
 import CampaignShowcase from './components/CampaignShowcase';
-import ContactSection from './components/ContactSection';
+import ProductShowcase from './components/ProductShowcase';
+import CTASection from './components/CTASection';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -15,17 +16,15 @@ function App() {
       <Navbar />
       <main>
         <Hero />
-        <AboutSection />
+        <WhyBarterSection />
         <MatrixEnergyNetwork />
+        <ProcessSection />
         <MatrixBarterJourney />
-        <ServicesSection />
-        <IndustriesSection />
         <OurClients />
         <CampaignShowcase />
-        <ContactSection />
-
-        {/* Extra spacing for scroll feel */}
-        <div className="h-20"></div>
+        <ProductShowcase />
+        <CTASection />
+        <Footer />
       </main>
     </div>
   );

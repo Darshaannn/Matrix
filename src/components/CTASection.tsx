@@ -4,9 +4,10 @@ import { ArrowRight } from 'lucide-react';
 
 const CTASection: React.FC = () => {
     return (
-        <section className="w-full py-32 px-4 relative overflow-hidden bg-gradient-to-b from-white to-[#f0f1f3]">
+        <section className="w-full py-32 px-4 relative overflow-hidden bg-[#020617] border-t border-white/5">
             {/* Background Decoration (Subtle) */}
-            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+            <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blue-900/10 to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px] pointer-events-none opacity-20" />
 
             <motion.div
                 initial="hidden"
@@ -32,9 +33,10 @@ const CTASection: React.FC = () => {
                         hidden: { opacity: 0, y: 20 },
                         visible: { opacity: 1, y: 0 }
                     }}
-                    className="text-5xl md:text-7xl font-sans font-medium tracking-tight text-[#1d1d1f] mb-6 leading-tight"
+                    className="text-5xl md:text-7xl font-sans font-bold tracking-tight text-white mb-6 leading-[1.1]"
                 >
-                    Ready to move <span className="text-[#3b82f6]">faster?</span>
+                    Let's Structure Your <br />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-white">Media Allocation.</span>
                 </motion.h2>
 
                 {/* Subtext */}
@@ -43,9 +45,9 @@ const CTASection: React.FC = () => {
                         hidden: { opacity: 0, y: 20 },
                         visible: { opacity: 1, y: 0 }
                     }}
-                    className="text-xl md:text-2xl text-gray-500 mb-12 max-w-2xl font-light"
+                    className="text-xl md:text-xl text-slate-400 mb-12 max-w-2xl font-medium leading-relaxed"
                 >
-                    Join hundreds of suppliers and retailers already using our platform.
+                    Stop burning corporate cash. Start leveraging your inventory to command national visibility across top-tier networks.
                 </motion.p>
 
                 {/* Buttons */}
@@ -54,25 +56,17 @@ const CTASection: React.FC = () => {
                         hidden: { opacity: 0, scale: 0.95 },
                         visible: { opacity: 1, scale: 1 }
                     }}
-                    className="flex flex-col sm:flex-row items-center gap-4"
+                    className="flex flex-col sm:flex-row items-center gap-6"
                 >
                     {/* Primary Button */}
-                    <motion.button
-                        whileHover={{ scale: 1.05, boxShadow: "0 10px 30px -10px rgba(59, 130, 246, 0.4)" }}
-                        whileTap={{ scale: 0.95 }}
-                        className="bg-[#1d1d1f] text-white px-8 py-4 rounded-full font-medium text-lg flex items-center gap-2 shadow-xl hover:bg-[#000000] transition-colors"
-                    >
-                        Get started <ArrowRight size={20} />
-                    </motion.button>
+                    <button className="w-full sm:w-auto px-10 py-5 rounded-full bg-[#FFDC58] text-black font-semibold text-lg flex items-center justify-center gap-3 hover:bg-[#ffefa0] hover:scale-[1.02] transition-all shadow-[0_0_30px_rgba(255,220,88,0.15)]">
+                        Evaluate My Inventory <ArrowRight size={20} strokeWidth={2.5} />
+                    </button>
 
                     {/* Secondary Button */}
-                    <motion.button
-                        whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.8)" }}
-                        whileTap={{ scale: 0.95 }}
-                        className="px-8 py-4 rounded-full font-medium text-lg text-gray-600 hover:text-[#1d1d1f] transition-all bg-white border border-gray-200 shadow-sm hover:shadow-md"
-                    >
-                        Book a demo
-                    </motion.button>
+                    <button className="w-full sm:w-auto px-10 py-5 rounded-full bg-white/5 text-white font-semibold text-lg border border-white/10 flex items-center justify-center gap-3 hover:bg-white/10 transition-colors">
+                        See Category Cases
+                    </button>
                 </motion.div>
             </motion.div>
         </section>

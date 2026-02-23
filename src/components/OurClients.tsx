@@ -3,93 +3,100 @@ import { motion } from 'framer-motion';
 
 // ─── Brand Data ──────────────────────────────────────────────────────────────
 
-const rows: { category: string; brands: { name: string; deal?: string }[] }[] = [
+const rows: { category: string; brands: { name: string; deal?: string; struct?: string; flagship?: boolean }[] }[] = [
     {
         category: 'FMCG',
         brands: [
-            { name: 'ITC', deal: '₹45 Cr' },
-            { name: 'Marico', deal: '₹22 Cr' },
-            { name: 'Dabur', deal: '₹38 Cr' },
-            { name: 'Hindustan Unilever', deal: '₹60 Cr' },
-            { name: 'Godrej Consumer', deal: '₹29 Cr' },
-            { name: 'Emami', deal: '₹18 Cr' },
-            { name: 'Patanjali', deal: '₹31 Cr' },
-            { name: 'Nestle India', deal: '₹42 Cr' },
+            { name: 'ITC', deal: '₹45 Cr', struct: 'Print + OTT + Cinema', flagship: true },
+            { name: 'Marico', deal: '₹22 Cr', struct: 'TV + Digital' },
+            { name: 'Dabur', deal: '₹38 Cr', struct: 'Outdoor + Print' },
+            { name: 'Hindustan Unilever', deal: '₹60 Cr', struct: 'Pan-India Multi-channel', flagship: true },
+            { name: 'Godrej Consumer', deal: '₹29 Cr', struct: 'TV + OTT' },
+            { name: 'Emami', deal: '₹18 Cr', struct: 'Print + Radio' },
+            { name: 'Patanjali', deal: '₹31 Cr', struct: 'National TV' },
+            { name: 'Nestle India', deal: '₹42 Cr', struct: 'Digital + Cinema' },
         ],
     },
     {
         category: 'Consumer Durables',
         brands: [
-            { name: 'Bajaj Electricals', deal: '₹35 Cr' },
-            { name: 'Havells', deal: '₹52 Cr' },
-            { name: 'Voltas', deal: '₹47 Cr' },
-            { name: 'Blue Star', deal: '₹28 Cr' },
-            { name: 'Orient Electric', deal: '₹24 Cr' },
-            { name: 'Crompton', deal: '₹33 Cr' },
-            { name: 'V-Guard', deal: '₹19 Cr' },
-            { name: 'Whirlpool India', deal: '₹44 Cr' },
+            { name: 'Bajaj Electricals', deal: '₹35 Cr', struct: 'TV + Print' },
+            { name: 'Havells', deal: '₹52 Cr', struct: 'OTT + Outdoor', flagship: true },
+            { name: 'Voltas', deal: '₹47 Cr', struct: 'Print + Digital' },
+            { name: 'Blue Star', deal: '₹28 Cr', struct: 'OOH' },
+            { name: 'Orient Electric', deal: '₹24 Cr', struct: 'TV' },
+            { name: 'Crompton', deal: '₹33 Cr', struct: 'Print + OOH' },
+            { name: 'V-Guard', deal: '₹19 Cr', struct: 'Radio + Print' },
+            { name: 'Whirlpool India', deal: '₹44 Cr', struct: 'TV + Digital' },
         ],
     },
     {
         category: 'Lifestyle',
         brands: [
-            { name: 'Titan', deal: '₹350 Cr' },
-            { name: 'Manyavar', deal: '₹40 Cr' },
-            { name: 'Bata India', deal: '₹26 Cr' },
-            { name: 'Woodland', deal: '₹21 Cr' },
-            { name: 'Raymond', deal: '₹55 Cr' },
-            { name: 'Peter England', deal: '₹17 Cr' },
-            { name: 'Fabindia', deal: '₹15 Cr' },
-            { name: 'W for Woman', deal: '₹12 Cr' },
+            { name: 'Titan', deal: '₹350 Cr', struct: 'Print + OOH + Radio', flagship: true },
+            { name: 'Manyavar', deal: '₹40 Cr', struct: 'Cinema + Digital' },
+            { name: 'Bata India', deal: '₹26 Cr', struct: 'Print' },
+            { name: 'Woodland', deal: '₹21 Cr', struct: 'OOH + Digital' },
+            { name: 'Raymond', deal: '₹55 Cr', struct: 'TV + Print' },
+            { name: 'Peter England', deal: '₹17 Cr', struct: 'Cinema' },
+            { name: 'Fabindia', deal: '₹15 Cr', struct: 'Print + Radio' },
+            { name: 'W for Woman', deal: '₹12 Cr', struct: 'Digital' },
         ],
     },
     {
-        category: 'Automobile & Hospitality',
+        category: 'Auto & Hospitality',
         brands: [
-            { name: 'Bajaj Auto', deal: '₹75 Cr' },
-            { name: 'TVS Motor', deal: '₹62 Cr' },
-            { name: 'Hero MotoCorp', deal: '₹88 Cr' },
-            { name: 'Mahindra', deal: '₹95 Cr' },
-            { name: 'OYO Hotels', deal: '₹36 Cr' },
-            { name: 'Lemon Tree Hotels', deal: '₹22 Cr' },
-            { name: 'Treebo', deal: '₹14 Cr' },
-            { name: 'Airbnb India', deal: '₹18 Cr' },
+            { name: 'Bajaj Auto', deal: '₹75 Cr', struct: 'TV + Print' },
+            { name: 'TVS Motor', deal: '₹62 Cr', struct: 'OTT + Digital' },
+            { name: 'Hero MotoCorp', deal: '₹88 Cr', struct: 'Pan-India OOH', flagship: true },
+            { name: 'Mahindra', deal: '₹95 Cr', struct: 'TV + Cinema' },
+            { name: 'OYO Hotels', deal: '₹36 Cr', struct: 'Digital' },
+            { name: 'Lemon Tree', deal: '₹22 Cr', struct: 'Print + Radio' },
+            { name: 'Treebo', deal: '₹14 Cr', struct: 'OOH' },
+            { name: 'Airbnb India', deal: '₹18 Cr', struct: 'Digital + Print' },
         ],
     },
 ];
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
-const Tooltip = ({ name, deal, visible }: { name: string; deal?: string; visible: boolean }) => (
+const Tooltip = ({ name, deal, struct, visible }: { name: string; deal?: string; struct?: string; visible: boolean }) => (
     <motion.div
-        className="absolute -top-12 left-1/2 -translate-x-1/2 pointer-events-none z-50 whitespace-nowrap"
+        className="absolute -top-14 left-1/2 -translate-x-1/2 pointer-events-none z-50 whitespace-nowrap"
         initial={{ opacity: 0, y: 4 }}
         animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : 4 }}
         transition={{ duration: 0.15 }}
     >
-        <div className="bg-[#0F172A] border border-[#3B82F6]/40 px-3 py-1.5 rounded-lg shadow-[0_4px_20px_rgba(59,130,246,0.15)]">
-            <p className="text-white text-xs font-medium tracking-wide">{name}</p>
-            {deal && <p className="text-[#3B82F6] text-[10px] font-mono mt-0.5">{deal} deal</p>}
+        <div className="bg-[#0F172A] border border-[#3B82F6]/40 px-4 py-2 rounded-lg shadow-[0_4px_20px_rgba(59,130,246,0.15)] flex flex-col items-center">
+            <p className="text-white text-xs font-semibold tracking-wide mb-1">{name}</p>
+            {deal && struct && (
+                <p className="text-[#3B82F6] text-[10px] sm:text-xs font-mono">
+                    {deal} structured across <span className="text-white/80">{struct}</span>
+                </p>
+            )}
         </div>
         {/* Arrow */}
-        <div className="w-2 h-2 bg-[#0F172A] border-b border-r border-[#3B82F6]/40 rotate-45 mx-auto -mt-1" />
+        <div className="w-2.5 h-2.5 bg-[#0F172A] border-b border-r border-[#3B82F6]/40 rotate-45 mx-auto -mt-1.5" />
     </motion.div>
 );
 
-const LogoItem = ({ brand }: { brand: { name: string; deal?: string } }) => {
+const LogoItem = ({ brand }: { brand: { name: string; deal?: string; struct?: string; flagship?: boolean } }) => {
     const [hovered, setHovered] = useState(false);
 
     return (
         <div
-            className="relative flex-shrink-0 mx-8 cursor-default group"
+            className="relative flex-shrink-0 mx-8 md:mx-12 lg:mx-16 cursor-default group"
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
         >
-            <Tooltip name={brand.name} deal={brand.deal} visible={hovered} />
+            <Tooltip name={brand.name} deal={brand.deal} struct={brand.struct} visible={hovered} />
             <motion.div
-                className="text-white/60 font-semibold text-base md:text-lg tracking-widest uppercase font-mono select-none"
+                className={`font-mono uppercase select-none transition-colors duration-300 ${brand.flagship
+                    ? 'text-white/80 font-bold tracking-widest text-xl md:text-3xl'
+                    : 'text-white/40 font-semibold tracking-wider text-sm md:text-base'
+                    }`}
                 animate={{
-                    opacity: hovered ? 1 : 0.6,
+                    opacity: hovered ? 1 : (brand.flagship ? 0.9 : 0.5),
                     scale: hovered ? 1.05 : 1,
                     textShadow: hovered ? '0 0 20px rgba(59,130,246,0.8)' : '0 0 0px transparent',
                 }}
@@ -99,7 +106,7 @@ const LogoItem = ({ brand }: { brand: { name: string; deal?: string } }) => {
             </motion.div>
             {/* Bottom glow line on hover */}
             <motion.div
-                className="absolute -bottom-1 left-0 w-full h-[1px] bg-[#3B82F6] origin-left"
+                className="absolute -bottom-2 left-0 w-full h-[2px] bg-[#3B82F6] origin-left rounded-full"
                 animate={{ scaleX: hovered ? 1 : 0, opacity: hovered ? 1 : 0 }}
                 transition={{ duration: 0.2 }}
             />
@@ -113,7 +120,7 @@ const MarqueeRow = ({
     direction,
     speed,
 }: {
-    brands: { name: string; deal?: string }[];
+    brands: { name: string; deal?: string; struct?: string; flagship?: boolean }[];
     direction: 'left' | 'right';
     speed: number;
 }) => {
@@ -182,7 +189,7 @@ const OurClients: React.FC = () => {
                     </span>
                 </h2>
                 <p className="text-gray-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-                    500+ brands across FMCG, Consumer Durables, Lifestyle, Automotive & Hospitality trust Matrix to structure high-value media barter deals.
+                    250+ brands across FMCG, Consumer Durables, Lifestyle, Automotive & Hospitality trust Matrix to structure high-value media barter deals.
                 </p>
             </motion.div>
 
@@ -228,10 +235,10 @@ const OurClients: React.FC = () => {
             >
                 <div className="border border-white/5 rounded-2xl bg-white/[0.02] backdrop-blur-sm grid grid-cols-2 md:grid-cols-4 divide-x divide-white/5">
                     {[
-                        { value: '500+', label: 'Brands Served' },
-                        { value: '₹1000 Cr+', label: 'Barter Value' },
-                        { value: '100+', label: 'Cities Covered' },
-                        { value: '15+', label: 'Years Experience' },
+                        { value: '250+', label: 'Brand Partners' },
+                        { value: '₹2,000 Cr+', label: 'Deals Structured' },
+                        { value: '5', label: 'Industry Verticals' },
+                        { value: '15+', label: 'Years of Trust' },
                     ].map((stat) => (
                         <div key={stat.label} className="flex flex-col items-center justify-center py-8 px-6 text-center">
                             <span className="text-2xl md:text-3xl font-bold text-white mb-1 tracking-tight">
