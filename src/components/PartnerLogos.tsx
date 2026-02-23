@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import type { Variants } from 'framer-motion';
 
 const logos = [
     { name: "Shopify", color: "text-[#95BF47]" },
@@ -12,7 +13,7 @@ const logos = [
     { name: "Magento", color: "text-[#F46F25]" },
 ];
 
-const containerVariants = {
+const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
         opacity: 1,
@@ -22,15 +23,12 @@ const containerVariants = {
     }
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
         opacity: 1,
         y: 0,
-        transition: {
-            duration: 0.5,
-            ease: "easeOut"
-        }
+        transition: { type: "tween", duration: 0.5, ease: "easeOut" }
     }
 };
 

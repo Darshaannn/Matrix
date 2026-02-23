@@ -1,6 +1,5 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { MessageCircle, BarChart3, ShoppingCart, Database, ArrowUpRight } from 'lucide-react';
+import { MessageCircle, BarChart3, ShoppingCart, Database } from 'lucide-react';
 
 const benefits = [
     {

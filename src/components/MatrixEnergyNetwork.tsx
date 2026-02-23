@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring, MotionValue } from 'framer-motion';
 
 const BASE_RADIUS = 300; // General distance for the nodes
@@ -26,7 +26,6 @@ const generateOrthogonalPath = (startX: number, startY: number, endX: number, en
     // For a radial layout, going horizontally first then vertically works well for side nodes.
     // Let's use a simple L-shape or mirrored L-shape based on quadrant.
     const midX = startX + (dx * 0.5);
-    const midY = startY + (dy * 0.5);
 
     // If it's pure vertical (top/bottom), go straight
     if (Math.abs(dx) < 10) return `M ${startX} ${startY} L ${endX} ${endY}`;
@@ -111,7 +110,7 @@ const ChipNode = ({
     };
 
     return (
-        <React.Fragment>
+        <>
             {/* PCB Circuit Trace */}
             <svg className="absolute inset-0 w-full h-full pointer-events-none z-10" xmlns="http://www.w3.org/2000/svg">
                 <defs>
@@ -211,7 +210,7 @@ const ChipNode = ({
                     </div>
                 </motion.div>
             </motion.div>
-        </React.Fragment>
+        </>
     );
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Star, Quote, Sparkles } from 'lucide-react';
+import { Quote, Sparkles } from 'lucide-react';
 
 const BentoGrid: React.FC = () => {
     return (
