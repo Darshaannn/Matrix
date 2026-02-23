@@ -261,7 +261,7 @@ const MatrixBarterJourney: React.FC = () => {
             const len = pathRef.current.getTotalLength();
             if (len > 0) {
                 // Strategic placements along the curve 
-                const fractions = [0.1, 0.38, 0.66, 0.94];
+                const fractions = [0.15, 0.50, 0.85];
                 setNodesPos(fractions.map(f => {
                     const pt = pathRef.current!.getPointAtLength(f * len);
                     return { x: pt.x, y: pt.y, fraction: f };
@@ -401,7 +401,7 @@ const MatrixBarterJourney: React.FC = () => {
                     </svg>
 
                     {/* Architectural Milestone Cards & Nodes */}
-                    {nodesPos.length === 4 && nodesPos.map((pos, i) => (
+                    {nodesPos.length === 3 && nodesPos.map((pos, i) => (
                         <MilestoneNode
                             key={i}
                             index={i}
