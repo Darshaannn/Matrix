@@ -1,13 +1,13 @@
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import BentoGrid from './components/BentoGrid';
-import BenefitsSection from './components/BenefitsSection';
+import AboutSection from './components/AboutSection';
 import MatrixEnergyNetwork from './components/MatrixEnergyNetwork';
 import MatrixBarterJourney from './components/MatrixBarterJourney';
+import ServicesSection from './components/ServicesSection';
+import IndustriesSection from './components/IndustriesSection';
 import OurClients from './components/OurClients';
 import CampaignShowcase from './components/CampaignShowcase';
-import ProductShowcase from './components/ProductShowcase';
-import CTASection from './components/CTASection';
+import ContactSection from './components/ContactSection';
 
 function App() {
   return (
@@ -15,14 +15,14 @@ function App() {
       <Navbar />
       <main>
         <Hero />
-        <BentoGrid />
+        <AboutSection />
         <MatrixEnergyNetwork />
-        <BenefitsSection />
         <MatrixBarterJourney />
+        <ServicesSection />
+        <IndustriesSection />
         <OurClients />
         <CampaignShowcase />
-        <ProductShowcase />
-        <CTASection />
+        <ContactSection />
 
         {/* Extra spacing for scroll feel */}
         <div className="h-20"></div>

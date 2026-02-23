@@ -182,7 +182,7 @@ const OurClients: React.FC = () => {
                     </span>
                 </h2>
                 <p className="text-gray-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-                    250+ brands across FMCG, Consumer Durables, Lifestyle, Automotive & Hospitality trust Matrix to structure high-value media barter deals.
+                    500+ brands across FMCG, Consumer Durables, Lifestyle, Automotive & Hospitality trust Matrix to structure high-value media barter deals.
                 </p>
             </motion.div>
 
@@ -228,10 +228,10 @@ const OurClients: React.FC = () => {
             >
                 <div className="border border-white/5 rounded-2xl bg-white/[0.02] backdrop-blur-sm grid grid-cols-2 md:grid-cols-4 divide-x divide-white/5">
                     {[
-                        { value: '250+', label: 'Brand Partners' },
-                        { value: '₹2,000 Cr+', label: 'Deals Structured' },
-                        { value: '5', label: 'Industry Verticals' },
-                        { value: '15+', label: 'Years of Trust' },
+                        { value: '500+', label: 'Brands Served' },
+                        { value: '₹1000 Cr+', label: 'Barter Value' },
+                        { value: '100+', label: 'Cities Covered' },
+                        { value: '15+', label: 'Years Experience' },
                     ].map((stat) => (
                         <div key={stat.label} className="flex flex-col items-center justify-center py-8 px-6 text-center">
                             <span className="text-2xl md:text-3xl font-bold text-white mb-1 tracking-tight">

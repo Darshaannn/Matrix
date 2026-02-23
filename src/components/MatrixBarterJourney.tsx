@@ -3,24 +3,19 @@ import { motion, useScroll, useTransform, useMotionValueEvent, useSpring, useMot
 
 const nodesArr = [
     {
-        title: "Inventory Assessment",
-        content: "The brand shares available product inventory. Matrix evaluates category strength, volume, and barter potential across media platforms.",
+        title: "Step 1: Brand Offers Products",
+        content: "Brands unlock the value of their products and unsold inventory, using them as currency to fund large-scale advertising campaigns without direct cash outflow.",
         buildingProps: { w: 40, h: 120, layers: 1 }
     },
     {
-        title: "Media Value Structuring",
-        content: "Matrix converts product inventory into structured media value across Print, TV, OTT, Radio, Outdoor and Cinema using strategic partnerships.",
+        title: "Step 2: Media Matchmaking",
+        content: "We evaluate the inventory and strategically match it with premium media placements across our extensive network of Print, TV, OTT, Outdoor, and Radio platforms.",
         buildingProps: { w: 50, h: 160, layers: 2 }
     },
     {
-        title: "Multi-Platform Deployment",
-        content: "Campaigns are executed across national and regional media networks ensuring maximum reach and visibility without direct cash outflow.",
-        buildingProps: { w: 80, h: 150, layers: 3, horizontalStrips: true }
-    },
-    {
-        title: "Growth Without Cash Burn",
-        content: "Brands increase market visibility, conserve working capital, and improve sales velocity while preserving liquidity.",
-        buildingProps: { w: 60, h: 220, layers: 1, maxGlow: true }
+        title: "Step 3: Nationwide Advertising",
+        content: "The brand receives high-impact, nationwide advertising campaigns that drive visibility, engagement, and growth—all funded through structured media barter.",
+        buildingProps: { w: 80, h: 150, layers: 3, horizontalStrips: true, maxGlow: true }
     }
 ];
 
