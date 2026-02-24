@@ -63,7 +63,7 @@ const BenefitsSection: React.FC = () => {
                         <div className="flex-1 bg-white rounded-[2.5rem] p-12 shadow-sm flex items-start gap-8 border-r border-gray-50/50">
                             {/* Icon in Black Circle */}
                             <div className="flex-shrink-0 pt-2">
-                                <div className="w-14 h-14 rounded-full bg-black text-white flex items-center justify-center shadow-md">
+                                <div className="w-14 h-14 rounded-full bg-black text-slate-900 flex items-center justify-center shadow-md">
                                     <benefit.icon size={22} strokeWidth={1.5} />
                                 </div>
                             </div>

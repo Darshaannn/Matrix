@@ -32,7 +32,7 @@ const services = [
 
 const ServicesSection: React.FC = () => {
     return (
-        <section id="services" className="py-24 md:py-32 px-4 relative bg-[#0B1120] border-t border-white/5">
+        <section id="services" className="py-24 md:py-32 px-4 relative bg-[#FFFBEB] border-t border-slate-200/80">
             <div className="max-w-7xl mx-auto z-10 relative">
 
                 {/* Section Header */}
@@ -53,7 +53,7 @@ const ServicesSection: React.FC = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
-                        className="text-4xl md:text-5xl lg:text-5xl font-bold tracking-tight text-white leading-[1.1] mb-6 font-sans"
+                        className="text-4xl md:text-5xl lg:text-5xl font-bold tracking-tight text-slate-900 leading-[1.1] mb-6 font-sans"
                     >
                         Our Services
                     </motion.h2>
@@ -62,7 +62,7 @@ const ServicesSection: React.FC = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
                         transition={{ delay: 0.1 }}
-                        className="text-slate-400 text-lg max-w-2xl mx-auto font-medium"
+                        className="text-slate-600 text-lg max-w-2xl mx-auto font-medium"
                     >
                         Comprehensive media exchange solutions designed to turn your business assets into market-leading brand visibility.
                     </motion.p>
@@ -79,21 +79,21 @@ const ServicesSection: React.FC = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, margin: "-100px" }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className="group relative p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-amber-500/30 transition-all duration-300 overflow-hidden"
+                                className="group relative p-8 rounded-3xl bg-slate-900/5 border border-slate-200 hover:bg-slate-100 hover:border-amber-500/30 transition-all duration-300 overflow-hidden"
                             >
                                 {/* Hover Gradient Background */}
                                 <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
                                 {/* Icon Container */}
-                                <div className="w-14 h-14 rounded-full bg-slate-900 flex items-center justify-center border border-white/10 group-hover:border-amber-500/50 mb-6 transition-colors duration-300">
+                                <div className="w-14 h-14 rounded-full bg-slate-900 flex items-center justify-center border border-slate-200 group-hover:border-amber-500/50 mb-6 transition-colors duration-300">
                                     <Icon size={24} className="text-amber-500" strokeWidth={1.5} />
                                 </div>
 
                                 {/* Content */}
-                                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-amber-400 transition-colors duration-300">
+                                <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-amber-400 transition-colors duration-300">
                                     {service.title}
                                 </h3>
-                                <p className="text-slate-400 text-[15px] leading-relaxed font-medium">
+                                <p className="text-slate-600 text-[15px] leading-relaxed font-medium">
                                     {service.description}
                                 </p>
                             </motion.div>

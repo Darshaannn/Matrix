@@ -68,10 +68,10 @@ const Tooltip = ({ name, deal, struct, visible }: { name: string; deal?: string;
         transition={{ duration: 0.15 }}
     >
         <div className="bg-slate-900 border border-amber-500/30 px-4 py-2 rounded-lg shadow-2xl flex flex-col items-center">
-            <p className="text-white text-xs font-bold tracking-wide mb-1">{name}</p>
+            <p className="text-slate-900 text-xs font-bold tracking-wide mb-1">{name}</p>
             {deal && struct && (
                 <p className="text-amber-500 text-[10px] sm:text-xs font-mono font-bold">
-                    {deal} structured across <span className="text-slate-400">{struct}</span>
+                    {deal} structured across <span className="text-slate-600">{struct}</span>
                 </p>
             )}
         </div>
@@ -92,7 +92,7 @@ const LogoItem = ({ brand }: { brand: { name: string; deal?: string; struct?: st
             <Tooltip name={brand.name} deal={brand.deal} struct={brand.struct} visible={hovered} />
             <motion.div
                 className={`font-mono uppercase select-none transition-colors duration-300 ${brand.flagship
-                    ? 'text-white font-black tracking-tighter text-2xl md:text-4xl'
+                    ? 'text-slate-900 font-black tracking-tighter text-2xl md:text-4xl'
                     : 'text-slate-600 font-bold tracking-tight text-base md:text-xl'
                     }`}
                 animate={{
@@ -150,7 +150,7 @@ const OurClients: React.FC = () => {
     const speeds = [35, 28, 32, 25]; // Slightly different speeds per row for depth
 
     return (
-        <section id="trust" className="relative w-full bg-[#0B1120] overflow-hidden py-28 border-t border-white/5">
+        <section id="trust" className="relative w-full bg-[#FFFBEB] overflow-hidden py-28 border-t border-slate-200/80">
             {/* Background Grain */}
             <div
                 className="absolute inset-0 pointer-events-none opacity-[0.03] mix-blend-overlay"
@@ -164,10 +164,10 @@ const OurClients: React.FC = () => {
             <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(245,158,11,0.05)_0%,transparent_65%)]" />
 
             {/* Masks */}
-            <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#0B1120] to-transparent pointer-events-none z-10" />
-            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0B1120] to-transparent pointer-events-none z-10" />
-            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#0B1120] to-transparent pointer-events-none z-10" />
-            <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#0B1120] to-transparent pointer-events-none z-10" />
+            <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#FFFBEB] to-transparent pointer-events-none z-10" />
+            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#FFFBEB] to-transparent pointer-events-none z-10" />
+            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#FFFBEB] to-transparent pointer-events-none z-10" />
+            <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#FFFBEB] to-transparent pointer-events-none z-10" />
 
             {/* ── Heading ── */}
             <motion.div
@@ -183,13 +183,13 @@ const OurClients: React.FC = () => {
                     <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
                     <span className="text-[10px] font-mono font-bold tracking-[0.3em] text-amber-500 uppercase">Trusted by Leading Brands</span>
                 </motion.div>
-                <h2 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight leading-tight">
+                <h2 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight leading-tight">
                     Powering India's{' '}
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">
                         Top Enterprises
                     </span>
                 </h2>
-                <p className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-medium">
+                <p className="text-slate-600 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-medium">
                     We have successfully executed barter campaigns for India’s most trusted brands across all key industrial sectors.
                 </p>
             </motion.div>
@@ -205,7 +205,7 @@ const OurClients: React.FC = () => {
                 {rows.map((row, rowIndex) => (
                     <div key={row.category} className="flex items-center gap-6">
                         <div className="hidden lg:flex flex-shrink-0 w-48 justify-end pr-8">
-                            <span className="text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-slate-500 text-right leading-tight">
+                            <span className="text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-slate-600 text-right leading-tight">
                                 {row.category}
                             </span>
                         </div>
@@ -230,18 +230,18 @@ const OurClients: React.FC = () => {
                 transition={{ duration: 0.7, delay: 0.5 }}
             >
                 <div className="p-1 rounded-3xl bg-gradient-to-r from-amber-500/20 via-slate-800 to-amber-500/20">
-                    <div className="rounded-[22px] bg-[#0B1120] grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
+                    <div className="rounded-[22px] bg-[#FFFBEB] grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
                         {[
                             { value: '15+', label: 'Years of Experience' },
                             { value: '500+', label: 'Brands Served' },
                             { value: '₹1000+ Cr', label: 'Barter Value Executed' },
                             { value: '100+', label: 'Media Partners' },
                         ].map((stat) => (
-                            <div key={stat.label} className="flex flex-col items-center justify-center py-10 px-6 text-center group hover:bg-white/5 transition-colors">
+                            <div key={stat.label} className="flex flex-col items-center justify-center py-10 px-6 text-center group hover:bg-slate-900/5 transition-colors">
                                 <span className="text-3xl md:text-4xl font-black text-amber-500 mb-2 tracking-tighter group-hover:scale-110 transition-transform">
                                     {stat.value}
                                 </span>
-                                <span className="text-[10px] md:text-xs text-slate-400 font-bold font-mono uppercase tracking-[0.2em]">
+                                <span className="text-[10px] md:text-xs text-slate-600 font-bold font-mono uppercase tracking-[0.2em]">
                                     {stat.label}
                                 </span>
                             </div>

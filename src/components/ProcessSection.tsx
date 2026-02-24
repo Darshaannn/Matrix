@@ -22,7 +22,7 @@ const steps = [
 
 const WhatIsBarter: React.FC = () => {
     return (
-        <section id="what-is-barter" className="bg-[#0B1120] py-32 px-4 relative overflow-hidden">
+        <section id="what-is-barter" className="bg-[#FFFBEB] py-32 px-4 relative overflow-hidden">
 
             {/* Background elements - Cleaned for performance */}
             <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-amber-500/5 to-transparent pointer-events-none" />
@@ -45,10 +45,10 @@ const WhatIsBarter: React.FC = () => {
                                 </span>
                             </div>
 
-                            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white leading-[1.1] mb-6 font-sans">
+                            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 leading-[1.1] mb-6 font-sans">
                                 What is Barter <br /> Advertising?
                             </h2>
-                            <p className="text-slate-400 text-lg leading-relaxed mb-8">
+                            <p className="text-slate-600 text-lg leading-relaxed mb-8">
                                 Barter advertising allows brands to exchange products or services instead of cash to obtain premium advertising space across leading media platforms.
                             </p>
 
@@ -58,7 +58,7 @@ const WhatIsBarter: React.FC = () => {
                                 </p>
                             </div>
 
-                            <div className="mt-10 w-full h-px bg-white/10" />
+                            <div className="mt-10 w-full h-px bg-slate-100" />
                         </motion.div>
                     </div>
                 </div>
@@ -66,7 +66,7 @@ const WhatIsBarter: React.FC = () => {
                 {/* Right side: The 3 Steps */}
                 <div className="lg:w-2/3 relative">
                     {/* Vertical connecting line */}
-                    <div className="absolute left-6 md:left-10 top-0 bottom-0 w-px bg-white/10" />
+                    <div className="absolute left-6 md:left-10 top-0 bottom-0 w-px bg-slate-100" />
 
                     <div className="flex flex-col gap-12 md:gap-20">
                         {steps.map((step, index) => {
@@ -89,10 +89,10 @@ const WhatIsBarter: React.FC = () => {
                                         <span className="text-amber-500/50 font-mono text-xl md:text-2xl font-bold tracking-tighter mb-1">
                                             Step 0{index + 1}
                                         </span>
-                                        <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight group-hover:text-amber-500 transition-colors">
+                                        <h3 className="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight group-hover:text-amber-500 transition-colors">
                                             {step.title}
                                         </h3>
-                                        <p className="text-slate-400 text-base md:text-lg leading-relaxed mt-2 max-w-xl">
+                                        <p className="text-slate-600 text-base md:text-lg leading-relaxed mt-2 max-w-xl">
                                             {step.desc}
                                         </p>
                                     </div>

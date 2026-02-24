@@ -71,7 +71,7 @@ const AbstractBuilding = ({
                 {props.layers > 1 && (
                     <div className="absolute inset-0 flex justify-evenly pointer-events-none">
                         {Array.from({ length: props.layers - 1 }).map((_, i) => (
-                            <div key={i} className="w-[1px] h-full bg-white/10" />
+                            <div key={i} className="w-[1px] h-full bg-slate-100" />
                         ))}
                     </div>
                 )}
@@ -337,10 +337,10 @@ const MatrixBarterJourney: React.FC = () => {
                     className="absolute top-24 md:top-32 z-10 w-full max-w-4xl mx-auto text-center px-4"
                     style={{ opacity: titleOpacity, scale: titleScale, originY: 0 }}
                 >
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-100 mb-6 tracking-tight font-sans">
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-800 mb-6 tracking-tight font-sans">
                         How Matrix Converts Inventory into <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">Media Power</span>
                     </h2>
-                    <p className="text-xl md:text-2xl font-sans font-medium text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-xl md:text-2xl font-sans font-medium text-slate-600 max-w-2xl mx-auto leading-relaxed">
                         A precision-engineered platform to transform your business assets into market dominance.
                     </p>
                 </motion.div>

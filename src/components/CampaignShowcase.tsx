@@ -51,7 +51,7 @@ const campaigns = [
 const BrandVisual = ({ color, brand, index }: { color: string; brand: string; index: number }) => (
     <div className="relative w-full h-full rounded-3xl overflow-hidden flex items-center justify-center"
         style={{
-            background: `radial-gradient(ellipse at 50% 50%, ${color}15 0%, #0B1120 100%)`,
+            background: `radial-gradient(ellipse at 50% 50%, ${color}15 0%, #FFFBEB 100%)`,
             boxShadow: `0 30px 80px rgba(0,0,0,0.5), inset 0 0 80px ${color}05`,
             border: `1px solid ${color}20`,
         }}>
@@ -66,7 +66,7 @@ const BrandVisual = ({ color, brand, index }: { color: string; brand: string; in
             0{index + 1}
         </span>
         <div className="relative z-10 text-center px-6">
-            <p className="text-3xl md:text-4xl font-black text-white tracking-tight leading-tight mb-3"
+            <p className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight mb-3"
                 style={{ textShadow: `0 0 40px ${color}50` }}>
                 {brand.split(' – ')[0]}
             </p>
@@ -93,16 +93,16 @@ const CampaignCard = ({ campaign, index, total, vw }: {
 
             {/* Info */}
             <div className="flex flex-col gap-5">
-                <p className="text-slate-500 font-mono text-xs tracking-[0.3em] font-bold">
+                <p className="text-slate-600 font-mono text-xs tracking-[0.3em] font-bold">
                     CASE STUDY: {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
                 </p>
                 <div className="self-start px-4 py-2 rounded-full border border-amber-500/20 bg-amber-500/5 text-amber-500 font-bold text-xs tracking-wider">
                     {c.dealValue}
                 </div>
-                <h3 className="text-3xl md:text-6xl font-black text-white leading-tight tracking-tight">{c.brand}</h3>
+                <h3 className="text-3xl md:text-6xl font-black text-slate-900 leading-tight tracking-tight">{c.brand}</h3>
                 <div className="flex flex-wrap gap-2">
                     {c.channels.map(ch => (
-                        <span key={ch} className="text-[10px] font-mono tracking-widest uppercase px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-slate-300">
+                        <span key={ch} className="text-[10px] font-mono tracking-widest uppercase px-4 py-1.5 rounded-full border border-slate-200 bg-slate-900/5 text-slate-600">
                             {ch}
                         </span>
                     ))}
@@ -110,25 +110,25 @@ const CampaignCard = ({ campaign, index, total, vw }: {
                 <div className="space-y-6 mt-2">
                     <div className="border-l-2 border-amber-500/30 pl-4 py-1">
                         <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-amber-500 mb-2 font-bold">The Challenge</p>
-                        <p className="text-slate-400 text-sm md:text-base leading-relaxed font-medium">{c.challenge}</p>
+                        <p className="text-slate-600 text-sm md:text-base leading-relaxed font-medium">{c.challenge}</p>
                     </div>
                     <div>
-                        <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-slate-500 mb-2 font-bold">Strategy & Solution</p>
-                        <p className="text-white text-sm md:text-base leading-relaxed font-semibold">{c.solution}</p>
+                        <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-slate-600 mb-2 font-bold">Strategy & Solution</p>
+                        <p className="text-slate-900 text-sm md:text-base leading-relaxed font-semibold">{c.solution}</p>
                     </div>
                     <div className="bg-emerald-500/10 border border-emerald-500/20 p-4 rounded-2xl">
                         <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-emerald-400 mb-1 font-bold">Impact & Results</p>
                         <p className="text-emerald-50/90 text-sm md:text-base font-bold italic">"{c.impact}"</p>
                     </div>
                 </div>
-                <div className="grid grid-cols-3 gap-6 pt-6 border-t border-white/10">
+                <div className="grid grid-cols-3 gap-6 pt-6 border-t border-slate-200">
                     {c.stats.map(s => (
                         <div key={s.label} className="flex flex-col gap-1">
-                            <span className="text-xl md:text-3xl font-black text-white tracking-tight"
+                            <span className="text-xl md:text-3xl font-black text-slate-900 tracking-tight"
                                 style={{ color: c.accentColor }}>
                                 {s.value}
                             </span>
-                            <span className="text-[9px] font-mono uppercase tracking-[0.2em] text-slate-500 font-bold">{s.label}</span>
+                            <span className="text-[9px] font-mono uppercase tracking-[0.2em] text-slate-600 font-bold">{s.label}</span>
                         </div>
                     ))}
                 </div>
@@ -186,7 +186,7 @@ const CampaignShowcase: React.FC = () => {
 
     return (
         <React.Fragment>
-            <section ref={sectionRef} className="relative w-full bg-[#0B1120]"
+            <section ref={sectionRef} className="relative w-full bg-[#FFFBEB]"
                 style={{ height: `${campaigns.length * 100}vh` }}>
 
                 {/* ── Sticky viewport ── */}
@@ -212,7 +212,7 @@ const CampaignShowcase: React.FC = () => {
                             <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
                             <span className="text-[10px] font-mono font-bold tracking-[0.3em] text-amber-500 uppercase">Case Studies</span>
                         </motion.div>
-                        <h2 className="text-4xl md:text-6xl font-black text-white tracking-tight leading-tight">
+                        <h2 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight leading-tight">
                             Strategic Barter{' '}
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">
                                 Global Impact
@@ -223,8 +223,8 @@ const CampaignShowcase: React.FC = () => {
                     {/* Horizontal card strip */}
                     <div className="relative flex-1 overflow-hidden">
                         {/* Side masks */}
-                        <div className="absolute left-0 inset-y-0 w-24 bg-gradient-to-r from-[#0B1120] to-transparent z-20 pointer-events-none" />
-                        <div className="absolute right-0 inset-y-0 w-24 bg-gradient-to-l from-[#0B1120] to-transparent z-20 pointer-events-none" />
+                        <div className="absolute left-0 inset-y-0 w-24 bg-gradient-to-r from-[#FFFBEB] to-transparent z-20 pointer-events-none" />
+                        <div className="absolute right-0 inset-y-0 w-24 bg-gradient-to-l from-[#FFFBEB] to-transparent z-20 pointer-events-none" />
 
                         <motion.div
                             className="flex h-full"

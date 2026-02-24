@@ -32,7 +32,7 @@ const Navbar: React.FC = () => {
                 </div>
 
                 {/* Navigation Links */}
-                <div className="hidden lg:flex items-center gap-8 text-xs uppercase tracking-widest font-mono text-slate-500 px-4">
+                <div className="hidden lg:flex items-center gap-8 text-xs uppercase tracking-widest font-mono text-slate-600 px-4">
                     <a href="#home" className="hover:text-amber-700 transition-colors">Home</a>
                     <a href="#why-barter" className="hover:text-amber-700 transition-colors">Why Barter</a>
                     <a href="#capabilities" className="hover:text-amber-700 transition-colors">Capabilities</a>
@@ -42,7 +42,7 @@ const Navbar: React.FC = () => {
                 </div>
 
                 {/* CTA Button */}
-                <a href="#contact" className="bg-slate-900 text-white px-6 py-2.5 rounded-full text-xs uppercase tracking-wider font-bold hover:bg-slate-800 transition-colors ml-2 md:ml-4 whitespace-nowrap shadow-lg">
+                <a href="#contact" className="bg-slate-900 text-slate-900 px-6 py-2.5 rounded-full text-xs uppercase tracking-wider font-bold hover:bg-slate-800 transition-colors ml-2 md:ml-4 whitespace-nowrap shadow-lg">
                     Discuss a Barter Opportunity
                 </a>
             </div>

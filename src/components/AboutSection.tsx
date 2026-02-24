@@ -22,7 +22,7 @@ const valueProps = [
 
 const AboutSection: React.FC = () => {
     return (
-        <section id="about" className="bg-[#0B1120] py-24 md:py-32 px-4 relative overflow-hidden">
+        <section id="about" className="bg-[#FFFBEB] py-24 md:py-32 px-4 relative overflow-hidden">
             {/* Ambient background effect - Simplified */}
             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_10%_20%,rgba(245,158,11,0.02)_0%,transparent_50%)]" />
 
@@ -42,11 +42,11 @@ const AboutSection: React.FC = () => {
                                 <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
                                 <span className="text-[10px] font-mono font-bold tracking-[0.3em] text-amber-500 uppercase">About Matrix</span>
                             </motion.div>
-                            <h2 className="text-4xl md:text-6xl font-black text-white leading-tight tracking-tight mb-8">
+                            <h2 className="text-4xl md:text-6xl font-black text-slate-900 leading-tight tracking-tight mb-8">
                                 Our Story & <br />
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">Company Mission</span>
                             </h2>
-                            <div className="space-y-6 text-slate-400 text-lg leading-relaxed font-medium">
+                            <div className="space-y-6 text-slate-600 text-lg leading-relaxed font-medium">
                                 <p>
                                     Matrix was founded with a singular vision: to revolutionize how brands perceive and utilize their business assets. What started as a niche media solution has evolved into India's premier media barter powerhouse, structuring deals for the nation's largest conglomerates.
                                 </p>
@@ -64,10 +64,10 @@ const AboutSection: React.FC = () => {
                         viewport={{ once: true }}
                         className="relative"
                     >
-                        <div className="aspect-square rounded-[3rem] bg-gradient-to-br from-amber-500/20 via-slate-800 to-amber-500/10 border border-white/10 flex items-center justify-center relative overflow-hidden group">
+                        <div className="aspect-square rounded-[3rem] bg-gradient-to-br from-amber-500/20 via-slate-800 to-amber-500/10 border border-slate-200 flex items-center justify-center relative overflow-hidden group">
                             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(245,158,11,0.1),transparent)] group-hover:scale-125 transition-transform duration-1000" />
                             <div className="relative z-10 text-center space-y-4">
-                                <p className="text-7xl font-black text-white/10 group-hover:text-amber-500/20 transition-colors">MATRIX</p>
+                                <p className="text-7xl font-black text-slate-900/10 group-hover:text-amber-500/20 transition-colors">MATRIX</p>
                                 <p className="text-amber-500 text-sm font-mono tracking-[0.5em] font-bold">EST. 2010</p>
                             </div>
                         </div>
@@ -78,9 +78,9 @@ const AboutSection: React.FC = () => {
                 </div>
 
                 {/* Why Matrix - 3 column grid */}
-                <div className="pt-20 border-t border-white/5">
+                <div className="pt-20 border-t border-slate-200/80">
                     <div className="text-center mb-16">
-                        <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">Why Choose Matrix?</h3>
+                        <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">Why Choose Matrix?</h3>
                         <div className="w-16 h-1 bg-amber-500 mx-auto" />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -93,13 +93,13 @@ const AboutSection: React.FC = () => {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: index * 0.1 }}
-                                    className="p-8 rounded-3xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.05] transition-all"
+                                    className="p-8 rounded-3xl bg-slate-900/[0.03] border border-slate-200/80 hover:bg-slate-900/[0.05] transition-all"
                                 >
                                     <div className="w-14 h-14 rounded-2xl bg-amber-500/10 flex items-center justify-center mb-6">
                                         <Icon size={28} className="text-amber-500" />
                                     </div>
-                                    <h4 className="text-xl font-bold text-white mb-3">{prop.title}</h4>
-                                    <p className="text-slate-500 leading-relaxed font-medium">{prop.description}</p>
+                                    <h4 className="text-xl font-bold text-slate-900 mb-3">{prop.title}</h4>
+                                    <p className="text-slate-600 leading-relaxed font-medium">{prop.description}</p>
                                 </motion.div>
                             );
                         })}

@@ -16,7 +16,7 @@ import MediaNetworkSection from './components/MediaNetworkSection';
 
 function App() {
   return (
-    <div className="relative min-h-screen bg-[#0B1120] text-white font-sans antialiased selection:bg-amber-500/30 selection:text-white">
+    <div className="relative min-h-screen bg-[#FFFBEB] text-slate-900 font-sans antialiased selection:bg-amber-500/30 selection:text-white">
       {/* Global Ambient Background */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         {/* Soft Luxury Glow - Top Right */}
@@ -31,7 +31,7 @@ function App() {
         />
 
         {/* Base Background Fallback */}
-        <div className="absolute inset-0 bg-[#0B1120] -z-10" />
+        <div className="absolute inset-0 bg-[#FFFBEB] -z-10" />
       </div>
 
       <Navbar />

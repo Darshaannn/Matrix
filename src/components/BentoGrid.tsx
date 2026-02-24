@@ -20,13 +20,13 @@ const BentoGrid: React.FC = () => {
                         {/* Tag Cloud Layout - Manual Positioning based on screenshot */}
 
                         {/* Center/Top Black Tag */}
-                        <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-black text-white px-5 py-2 rounded-full text-sm font-medium z-10 shadow-lg">Web Design</div>
+                        <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-black text-slate-900 px-5 py-2 rounded-full text-sm font-medium z-10 shadow-lg">Web Design</div>
 
                         {/* Middle Left White Tag */}
                         <div className="absolute top-16 -left-2 border border-black/10 text-black px-4 py-2 rounded-full text-sm font-medium bg-white transform -rotate-3 z-0 shadow-sm">Social Media</div>
 
                         {/* Middle Right Black Tag */}
-                        <div className="absolute top-14 right-0 bg-black text-white px-5 py-2 rounded-full text-sm font-medium transform rotate-6 z-10 shadow-lg">Marketing</div>
+                        <div className="absolute top-14 right-0 bg-black text-slate-900 px-5 py-2 rounded-full text-sm font-medium transform rotate-6 z-10 shadow-lg">Marketing</div>
 
                         {/* Bottom Left White Tag with Star */}
                         <div className="absolute bottom-16 left-2 border border-black/10 text-black px-4 py-2 rounded-full text-sm font-medium bg-white flex items-center gap-1.5 transform rotate-2 z-10 shadow-sm">
@@ -37,7 +37,7 @@ const BentoGrid: React.FC = () => {
                         <div className="absolute bottom-12 right-2 border border-black/10 text-black px-4 py-2 rounded-full text-sm font-medium bg-white transform -rotate-3 shadow-sm">Branding</div>
 
                         {/* Very Bottom Center Black Tag */}
-                        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 bg-black text-white px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap z-20 shadow-lg transform rotate-1">Content Creation</div>
+                        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 bg-black text-slate-900 px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap z-20 shadow-lg transform rotate-1">Content Creation</div>
                     </div>
                 </motion.div>
 
@@ -49,7 +49,7 @@ const BentoGrid: React.FC = () => {
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.5, delay: 0.3 }}
                         viewport={{ once: true }}
-                        className="bg-black text-white rounded-[2.5rem] p-8 flex-1 flex flex-col justify-center shadow-lg relative overflow-hidden"
+                        className="bg-black text-slate-900 rounded-[2.5rem] p-8 flex-1 flex flex-col justify-center shadow-lg relative overflow-hidden"
                     >
                         <h2 className="text-5xl font-bold mb-3 tracking-tight">1.2M+</h2>
                         <p className="text-gray-400 text-sm font-medium leading-snug">
