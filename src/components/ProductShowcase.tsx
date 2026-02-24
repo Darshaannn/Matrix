@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const ProductShowcase: React.FC = () => {
     return (
-        <section className="w-full bg-[#f9fafb] py-32 px-4 flex flex-col items-center justify-center overflow-hidden">
+        <section className="w-full bg-transparent py-32 px-4 flex flex-col items-center justify-center overflow-hidden">
 
             {/* Header Content */}
             <motion.div
@@ -13,10 +13,10 @@ const ProductShowcase: React.FC = () => {
                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }} // Custom bezier for cinematic ease
                 className="text-center mb-16 max-w-2xl"
             >
-                <h2 className="text-sm font-semibold text-[#3b82f6] uppercase tracking-wider mb-3">
+                <h2 className="text-sm font-semibold text-amber-700 uppercase tracking-widest mb-3">
                     See it in action
                 </h2>
-                <p className="text-3xl md:text-5xl font-sans font-medium text-[#1d1d1f] leading-tight">
+                <p className="text-3xl md:text-5xl font-sans font-bold text-slate-900 leading-tight tracking-tight">
                     A single platform to manage your entire supply chain.
                 </p>
             </motion.div>

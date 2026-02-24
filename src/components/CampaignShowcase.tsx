@@ -51,8 +51,8 @@ const campaigns = [
 const BrandVisual = ({ color, brand, index }: { color: string; brand: string; index: number }) => (
     <div className="relative w-full h-full rounded-2xl overflow-hidden flex items-center justify-center"
         style={{
-            background: `radial-gradient(ellipse at 55% 40%, ${color}20 0%, #0B1220 70%)`,
-            boxShadow: `0 30px 80px rgba(0,0,0,0.7), inset 0 0 80px ${color}08`,
+            background: `radial-gradient(ellipse at 55% 40%, ${color}20 0%, #FDFBF6 70%)`,
+            boxShadow: `0 30px 80px rgba(0,0,0,0.05), inset 0 0 80px ${color}08`,
             border: `1px solid ${color}25`,
         }}>
         <svg className="absolute inset-0 w-full h-full opacity-[0.12]" viewBox="0 0 280 200" preserveAspectRatio="xMidYMid slice">
@@ -69,7 +69,7 @@ const BrandVisual = ({ color, brand, index }: { color: string; brand: string; in
             <div key={i} className={`absolute w-5 h-5 ${cls}`} style={{ borderColor: `${color}50` }} />
         ))}
         <div className="relative z-10 text-center px-6">
-            <p className="text-3xl md:text-4xl font-black text-white/90 tracking-tight leading-tight mb-3"
+            <p className="text-3xl md:text-4xl font-black text-slate-800 tracking-tight leading-tight mb-3"
                 style={{ textShadow: `0 0 50px ${color}70` }}>
                 {brand.split(' – ')[0]}
             </p>
@@ -96,14 +96,14 @@ const CampaignCard = ({ campaign, index, total, vw }: {
 
             {/* Info */}
             <div className="flex flex-col gap-4">
-                <p className="text-white/20 font-mono text-xs tracking-[0.2em]">
+                <p className="text-slate-400 font-mono text-xs tracking-[0.2em]">
                     {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
                 </p>
                 <span className="self-start text-xs font-mono px-4 py-1.5 rounded-full border font-semibold tracking-wider"
                     style={{ borderColor: `${c.accentColor}50`, color: c.accentColor, background: `${c.accentColor}15` }}>
                     {c.dealValue} Structured
                 </span>
-                <h3 className="text-3xl md:text-5xl font-bold text-white leading-tight tracking-tight">{c.brand}</h3>
+                <h3 className="text-3xl md:text-5xl font-bold text-slate-900 leading-tight tracking-tight">{c.brand}</h3>
                 <div className="flex flex-wrap gap-2">
                     {c.channels.map(ch => (
                         <span key={ch} className="text-[10px] font-mono tracking-widest uppercase px-3 py-1 rounded-full border"
@@ -114,26 +114,26 @@ const CampaignCard = ({ campaign, index, total, vw }: {
                 </div>
                 <div className="space-y-4">
                     <div>
-                        <p className="text-[10px] font-mono uppercase tracking-widest text-[#3B82F6] mb-1">Challenge</p>
-                        <p className="text-gray-300 text-sm md:text-[15px] leading-relaxed font-medium">{c.challenge}</p>
+                        <p className="text-[10px] font-mono uppercase tracking-widest text-blue-600 mb-1">Challenge</p>
+                        <p className="text-slate-600 text-sm md:text-[15px] leading-relaxed font-medium">{c.challenge}</p>
                     </div>
                     <div>
-                        <p className="text-[10px] font-mono uppercase tracking-widest text-white/40 mb-1">Solution</p>
-                        <p className="text-white text-sm md:text-[15px] leading-relaxed font-medium">{c.solution}</p>
+                        <p className="text-[10px] font-mono uppercase tracking-widest text-slate-400 mb-1">Solution</p>
+                        <p className="text-slate-800 text-sm md:text-[15px] leading-relaxed font-medium">{c.solution}</p>
                     </div>
                     <div>
-                        <p className="text-[10px] font-mono uppercase tracking-widest text-[#10B981] mb-1">Impact</p>
-                        <p className="text-gray-400 text-sm md:text-[15px] leading-relaxed">{c.impact}</p>
+                        <p className="text-[10px] font-mono uppercase tracking-widest text-emerald-600 mb-1">Impact</p>
+                        <p className="text-slate-500 text-sm md:text-[15px] leading-relaxed">{c.impact}</p>
                     </div>
                 </div>
                 <div className="grid grid-cols-3 gap-4 pt-3 border-t" style={{ borderColor: `${c.accentColor}20` }}>
                     {c.stats.map(s => (
                         <div key={s.label} className="flex flex-col gap-1">
-                            <span className="text-xl md:text-2xl font-bold text-white tracking-tight"
+                            <span className="text-xl md:text-2xl font-bold text-slate-900 tracking-tight"
                                 style={{ textShadow: `0 0 16px ${c.accentColor}60` }}>
                                 {s.value}
                             </span>
-                            <span className="text-[9px] font-mono uppercase tracking-widest text-white/30">{s.label}</span>
+                            <span className="text-[9px] font-mono uppercase tracking-widest text-slate-400">{s.label}</span>
                         </div>
                     ))}
                 </div>
@@ -151,7 +151,7 @@ const NavDots = ({ total, activeIndex }: { total: number; activeIndex: number })
                 style={{
                     width: i === activeIndex ? 24 : 8,
                     height: 8,
-                    background: i === activeIndex ? campaigns[i].accentColor : 'rgba(255,255,255,0.2)',
+                    background: i === activeIndex ? campaigns[i].accentColor : 'rgba(0,0,0,0.2)',
                 }} />
         ))}
     </div>
@@ -192,7 +192,7 @@ const CampaignShowcase: React.FC = () => {
 
     return (
         <React.Fragment>
-            <section ref={sectionRef} className="relative w-full bg-[#0B1220]"
+            <section ref={sectionRef} className="relative w-full bg-[#FDFBF6]"
                 style={{ height: `${campaigns.length * 100}vh` }}>
 
                 {/* ── Sticky viewport ── */}
@@ -210,14 +210,14 @@ const CampaignShowcase: React.FC = () => {
 
                     {/* Heading */}
                     <div className="relative z-20 text-center pt-10 pb-3 px-4 flex-shrink-0">
-                        <p className="text-[#3B82F6] font-mono text-[10px] uppercase tracking-[0.3em] mb-2">Campaign Showcase</p>
-                        <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight">
+                        <p className="text-blue-600 font-mono text-[10px] uppercase tracking-[0.3em] mb-2">Campaign Showcase</p>
+                        <h2 className="text-3xl md:text-5xl font-bold text-slate-900 tracking-tight leading-tight">
                             Campaigns That Reached{' '}
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3B82F6] to-[#00C2FF]">
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
                                 the Hearts
                             </span>
                         </h2>
-                        <p className="mt-2 text-gray-400 text-sm max-w-lg mx-auto">
+                        <p className="mt-2 text-slate-600 text-sm max-w-lg mx-auto">
                             Strategic barter campaigns that created visibility and lasting brand recall across India.
                         </p>
                     </div>
@@ -225,8 +225,8 @@ const CampaignShowcase: React.FC = () => {
                     {/* Horizontal card strip */}
                     <div className="relative flex-1 overflow-hidden">
                         {/* Left / right fade masks */}
-                        <div className="absolute left-0 inset-y-0 w-12 bg-gradient-to-r from-[#0B1220] to-transparent z-20 pointer-events-none" />
-                        <div className="absolute right-0 inset-y-0 w-12 bg-gradient-to-l from-[#0B1220] to-transparent z-20 pointer-events-none" />
+                        <div className="absolute left-0 inset-y-0 w-12 bg-gradient-to-r from-[#FDFBF6] to-transparent z-20 pointer-events-none" />
+                        <div className="absolute right-0 inset-y-0 w-12 bg-gradient-to-l from-[#FDFBF6] to-transparent z-20 pointer-events-none" />
 
                         <motion.div
                             className="flex h-full"
@@ -247,7 +247,7 @@ const CampaignShowcase: React.FC = () => {
             </section>
 
             {/* ── Metrics bar — outside the sticky section so it only appears AFTER the full scroll ── */}
-            <div className="relative z-10 bg-[#0B1220] border-t border-white/5 py-16 px-4">
+            <div className="relative z-10 bg-[#FDFBF6] border-t border-slate-200 py-16 px-4">
                 <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
                     {[
                         { value: '₹500+ Cr', label: 'Media Structured' },
@@ -255,15 +255,15 @@ const CampaignShowcase: React.FC = () => {
                         { value: 'Pan-India', label: 'Reach Delivered' },
                     ].map((m, i) => (
                         <motion.div key={m.label}
-                            className="flex flex-col items-center justify-center text-center py-10 rounded-2xl border border-white/5 bg-white/[0.02]"
+                            className="flex flex-col items-center justify-center text-center py-10 rounded-2xl border border-slate-200 bg-white"
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: i * 0.1 }}>
-                            <span className="text-3xl md:text-5xl font-bold text-white mb-2 tracking-tight drop-shadow-[0_0_20px_rgba(59,130,246,0.4)]">
+                            <span className="text-3xl md:text-5xl font-bold text-slate-900 mb-2 tracking-tight drop-shadow-[0_0_20px_rgba(59,130,246,0.1)]">
                                 {m.value}
                             </span>
-                            <span className="text-[10px] font-mono uppercase tracking-widest text-white/30">{m.label}</span>
+                            <span className="text-[10px] font-mono uppercase tracking-widest text-slate-400">{m.label}</span>
                         </motion.div>
                     ))}
                 </div>
