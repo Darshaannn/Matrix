@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { BarChart3, Globe2, ShieldCheck, ArrowRight } from 'lucide-react';
+import MagneticButton from './MagneticButton';
 
 const Hero = () => {
     return (
@@ -75,16 +76,19 @@ const Hero = () => {
                     transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
                     className="flex flex-col sm:flex-row items-center gap-5 w-full sm:w-auto"
                 >
-                    {/* Primary Button */}
-                    <button className="group w-full sm:w-auto px-10 py-5 rounded-full bg-slate-900 text-slate-900 font-bold text-lg shadow-[0_10px_30px_rgba(0,0,0,0.15)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.25)] hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2">
+                    {/* Primary Button — Magnetic */}
+                    <MagneticButton className="group w-full sm:w-auto px-10 py-5 rounded-full bg-slate-900 text-white font-bold text-lg shadow-[0_10px_30px_rgba(0,0,0,0.15)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.25)] flex items-center justify-center gap-2">
                         Request Barter Proposal
                         <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                    </button>
+                    </MagneticButton>
 
-                    {/* Secondary Button */}
-                    <a href="#campaigns" className="w-full sm:w-auto px-10 py-5 rounded-full bg-white text-slate-800 font-semibold text-lg border border-slate-200 flex items-center justify-center gap-3 hover:bg-amber-50 transition-all shadow-sm">
+                    {/* Secondary Button — Magnetic */}
+                    <MagneticButton
+                        className="w-full sm:w-auto px-10 py-5 rounded-full bg-white text-slate-800 font-semibold text-lg border border-slate-200 flex items-center justify-center gap-3 hover:bg-amber-50 shadow-sm"
+                        onClick={() => document.getElementById('campaigns')?.scrollIntoView({ behavior: 'smooth' })}
+                    >
                         View Case Studies
-                    </a>
+                    </MagneticButton>
                 </motion.div>
             </div>
 
