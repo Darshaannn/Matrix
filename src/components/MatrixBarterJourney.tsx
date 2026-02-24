@@ -311,18 +311,15 @@ const MatrixBarterJourney: React.FC = () => {
     const dotOpacity = useTransform(smoothProgress, [0, 0.02, 0.98, 1], [0, 1, 1, 0]);
 
     return (
-        <section ref={sectionRef} className="relative w-full h-[800vh] bg-neutral-50">
-            {/* Sticky Wrapper - Stays in viewport for the entire 500vh scroll map */}
+        <section ref={sectionRef} className="relative w-full h-[500vh] bg-transparent">
+            {/* Sticky Wrapper */}
             <div className="sticky top-0 w-full h-screen overflow-hidden flex flex-col items-center">
-
-                {/* Background Texture & Spotlight */}
-                <div className="absolute inset-0 pointer-events-none opacity-[0.06]" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cfilter id=\"noiseFilter\"%3E%3CfeTurbulence type=\"fractalNoise\" baseFrequency=\"0.65\" numOctaves=\"3\" stitchTiles=\"stitch\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23noiseFilter)\"/%3E%3C/svg%3E')" }}></div>
 
                 {/* Dynamically intensifying radial glow behind curve */}
                 <motion.div
-                    className="absolute inset-0 pointer-events-none filter blur-[200px]"
+                    className="absolute inset-0 pointer-events-none filter blur-[150px]"
                     style={{
-                        background: useTransform(glowIntensity, v => `radial-gradient(ellipse at center, rgba(245,158,11,${v * 0.4}) 0%, transparent 60%)`)
+                        background: useTransform(glowIntensity, v => `radial-gradient(ellipse at center, rgba(245,158,11,${v * 0.3}) 0%, transparent 60%)`)
                     }}
                 />
 
@@ -331,7 +328,7 @@ const MatrixBarterJourney: React.FC = () => {
                     className="absolute inset-0 pointer-events-none z-0"
                     style={{
                         opacity: vignetteOpacity,
-                        background: "radial-gradient(circle, transparent 30%, #000 120%)"
+                        background: "radial-gradient(circle, transparent 40%, #000 140%)"
                     }}
                 />
 
@@ -340,11 +337,11 @@ const MatrixBarterJourney: React.FC = () => {
                     className="absolute top-24 md:top-32 z-10 w-full max-w-4xl mx-auto text-center px-4"
                     style={{ opacity: titleOpacity, scale: titleScale, originY: 0 }}
                 >
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 tracking-tight font-sans">
-                        How Matrix Converts Inventory into <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-amber-900">Media Power</span>
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-100 mb-6 tracking-tight font-sans">
+                        How Matrix Converts Inventory into <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">Media Power</span>
                     </h2>
-                    <p className="text-3xl md:text-5xl font-sans font-bold text-slate-900 leading-tight tracking-tight">
-                        A single platform to manage your entire supply chain.
+                    <p className="text-xl md:text-2xl font-sans font-medium text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                        A precision-engineered platform to transform your business assets into market dominance.
                     </p>
                 </motion.div>
 
@@ -354,13 +351,8 @@ const MatrixBarterJourney: React.FC = () => {
                 >
                     <svg ref={svgRef} className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1305 2259" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                            <linearGradient id="ropeGrad" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stopColor="#ef4444" />
-                                <stop offset="50%" stopColor="#f87171" />
-                                <stop offset="100%" stopColor="#ef4444" />
-                            </linearGradient>
                             <filter id="glowBlur" x="-50%" y="-50%" width="200%" height="200%">
-                                <feGaussianBlur stdDeviation="6" result="coloredBlur" />
+                                <feGaussianBlur stdDeviation="4" result="coloredBlur" />
                                 <feMerge>
                                     <feMergeNode in="coloredBlur" />
                                     <feMergeNode in="SourceGraphic" />
@@ -368,30 +360,27 @@ const MatrixBarterJourney: React.FC = () => {
                             </filter>
                         </defs>
 
-                        {/* Layer 1: Base Path (Red & Faint) */}
+                        {/* Layer 1: Base Path (Faint) */}
                         {pathData && (
                             <path
                                 d={pathData}
-                                stroke="rgba(239, 68, 68, 0.2)"
-                                strokeWidth="12"
+                                stroke="rgba(245, 158, 11, 0.1)"
+                                strokeWidth="8"
                                 fill="none"
                             />
                         )}
 
-                        {/* Layer 2: Animated Red Line */}
+                        {/* Layer 2: Animated Amber Line */}
                         {pathData && (
                             <motion.path
                                 ref={pathRef}
                                 d={pathData}
-                                stroke="#ef4444"
-                                strokeWidth="8"
+                                stroke="#F59E0B"
+                                strokeWidth="4"
                                 fill="none"
                                 style={{ pathLength: smoothProgress }}
                             />
                         )}
-
-                        {/* Starting Circle */}
-                        <circle r="10" cy="2" cx="646" fill="#ef4444" />
                     </svg>
 
                     {/* Architectural Milestone Cards & Nodes */}
@@ -405,10 +394,10 @@ const MatrixBarterJourney: React.FC = () => {
                         />
                     ))}
 
-                    {/* Traveling Car Element */}
+                    {/* Traveling Element (Simplified) */}
                     {pathData && (
                         <motion.div
-                            className="absolute z-40 flex items-center justify-center p-4 bg-transparent"
+                            className="absolute z-40 flex items-center justify-center bg-transparent"
                             style={{
                                 left: dotX,
                                 top: dotY,
@@ -418,13 +407,9 @@ const MatrixBarterJourney: React.FC = () => {
                                 opacity: dotOpacity
                             }}
                         >
-                            <svg width="80" height="80" viewBox="0 0 20 20">
-                                <path
-                                    d="M 3.02008,-2.00446 A 0.384,0.384 0 0 0 2.99106,-1.85469 L 2.99789,-0.835296 2.98889,-0.837286 A 0.113,0.113 0 0 0 2.87613,-0.723255 L 2.88243,0.358786 A 0.113,0.113 0 0 0 2.99646,0.471542 L 3.00492,0.469969 3.01203,1.63073 A 0.384,0.384 0 0 0 3.39872,2.01296 L 8.65185,1.97994 C 8.80663,1.97929 8.93788,1.88712 8.99825,1.75528 9.02715,1.83055 9.09151,1.91021 9.23511,1.90987 L 12.491,1.88891 12.2534,2.32758 A 0.134,0.134 0 0 0 12.4886,2.45492 L 12.797,1.88816 14.2024,1.87929 C 14.7857,1.87543 15.2515,1.40414 15.2473,0.821764 L 15.2448,0.438872 A 0.113,0.113 0 0 0 15.4372,0.357561 L 15.4309,-0.72448 A 0.113,0.113 0 0 0 15.2373,-0.803744 L 15.2349,-1.18664 C 15.2319,-1.76949 14.7597,-2.23574 14.1774,-2.23146 L 12.5876,-2.22247 12.3653,-2.81052 A 0.133,0.133 0 0 0 12.1927,-2.88767 0.133,0.133 0 0 0 12.1143,-2.71463 L 12.3018,-2.22003 9.25118,-2.20155 C 9.08154,-2.20452 9.00514,-2.13533 8.9706,-2.05654 A 0.382,0.382 45 0 0 8.62474,-2.27078 L 3.37245,-2.23957 A 0.384,0.384 0 0 0 3.01965,-2.00355 Z"
-                                    fill="#1a1a1a"
-                                    transform="translate(0, 5)"
-                                />
-                            </svg>
+                            <div className="w-10 h-6 bg-amber-500 rounded-full shadow-[0_0_20px_rgba(245,158,11,0.6)] border-2 border-white/20 flex items-center justify-center">
+                                <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
+                            </div>
                         </motion.div>
                     )}
                 </motion.div>

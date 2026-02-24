@@ -7,11 +7,11 @@ const rows: { category: string; brands: { name: string; deal?: string; struct?: 
     {
         category: 'FMCG',
         brands: [
-            { name: 'ITC', deal: '₹45 Cr', struct: 'Print + OTT + Cinema', flagship: true },
+            { name: 'ITC', deal: '₹45 Cr', struct: 'Print + OTT + Radio', flagship: true },
             { name: 'Marico', deal: '₹22 Cr', struct: 'TV + Digital' },
             { name: 'Dabur', deal: '₹38 Cr', struct: 'Outdoor + Print' },
             { name: 'Hindustan Unilever', deal: '₹60 Cr', struct: 'Pan-India Multi-channel', flagship: true },
-            { name: 'Godrej Consumer', deal: '₹29 Cr', struct: 'TV + OTT' },
+            { name: 'Godrej Consumer', deal: '₹25 Cr', struct: 'Print + Digital' },
             { name: 'Emami', deal: '₹18 Cr', struct: 'Print + Radio' },
             { name: 'Patanjali', deal: '₹31 Cr', struct: 'National TV' },
             { name: 'Nestle India', deal: '₹42 Cr', struct: 'Digital + Cinema' },
@@ -33,7 +33,7 @@ const rows: { category: string; brands: { name: string; deal?: string; struct?: 
     {
         category: 'Lifestyle',
         brands: [
-            { name: 'Titan', deal: '₹350 Cr', struct: 'Print + OOH + Radio', flagship: true },
+            { name: 'Titan', deal: '₹350 Cr', struct: 'Print + Outdoor + Radio', flagship: true },
             { name: 'Manyavar', deal: '₹40 Cr', struct: 'Cinema + Digital' },
             { name: 'Bata India', deal: '₹26 Cr', struct: 'Print' },
             { name: 'Woodland', deal: '₹21 Cr', struct: 'OOH + Digital' },
@@ -67,16 +67,16 @@ const Tooltip = ({ name, deal, struct, visible }: { name: string; deal?: string;
         animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : 4 }}
         transition={{ duration: 0.15 }}
     >
-        <div className="bg-white border border-amber-200/50 px-4 py-2 rounded-lg shadow-xl flex flex-col items-center">
-            <p className="text-slate-900 text-xs font-semibold tracking-wide mb-1">{name}</p>
+        <div className="bg-slate-900 border border-amber-500/30 px-4 py-2 rounded-lg shadow-2xl flex flex-col items-center">
+            <p className="text-white text-xs font-bold tracking-wide mb-1">{name}</p>
             {deal && struct && (
-                <p className="text-amber-700 text-[10px] sm:text-xs font-mono">
-                    {deal} structured across <span className="text-slate-600">{struct}</span>
+                <p className="text-amber-500 text-[10px] sm:text-xs font-mono font-bold">
+                    {deal} structured across <span className="text-slate-400">{struct}</span>
                 </p>
             )}
         </div>
         {/* Arrow */}
-        <div className="w-2.5 h-2.5 bg-white border-b border-r border-amber-200/50 rotate-45 mx-auto -mt-1.5" />
+        <div className="w-2.5 h-2.5 bg-slate-900 border-b border-r border-amber-500/30 rotate-45 mx-auto -mt-1.5" />
     </motion.div>
 );
 
@@ -92,13 +92,13 @@ const LogoItem = ({ brand }: { brand: { name: string; deal?: string; struct?: st
             <Tooltip name={brand.name} deal={brand.deal} struct={brand.struct} visible={hovered} />
             <motion.div
                 className={`font-mono uppercase select-none transition-colors duration-300 ${brand.flagship
-                    ? 'text-slate-800 font-bold tracking-widest text-xl md:text-3xl'
-                    : 'text-slate-400 font-semibold tracking-wider text-sm md:text-base'
+                    ? 'text-white font-black tracking-tighter text-2xl md:text-4xl'
+                    : 'text-slate-600 font-bold tracking-tight text-base md:text-xl'
                     }`}
                 animate={{
-                    opacity: hovered ? 1 : (brand.flagship ? 0.9 : 0.5),
+                    opacity: hovered ? 1 : (brand.flagship ? 1 : 0.4),
                     scale: hovered ? 1.05 : 1,
-                    textShadow: hovered ? '0 0 20px rgba(59,130,246,0.8)' : '0 0 0px transparent',
+                    color: hovered ? '#F59E0B' : (brand.flagship ? '#FFFFFF' : '#475569'),
                 }}
                 transition={{ duration: 0.2 }}
             >
@@ -106,7 +106,7 @@ const LogoItem = ({ brand }: { brand: { name: string; deal?: string; struct?: st
             </motion.div>
             {/* Bottom glow line on hover */}
             <motion.div
-                className="absolute -bottom-2 left-0 w-full h-[2px] bg-[#3B82F6] origin-left rounded-full"
+                className="absolute -bottom-2 left-0 w-full h-[2px] bg-amber-500 origin-left rounded-full"
                 animate={{ scaleX: hovered ? 1 : 0, opacity: hovered ? 1 : 0 }}
                 transition={{ duration: 0.2 }}
             />
@@ -150,10 +150,10 @@ const OurClients: React.FC = () => {
     const speeds = [35, 28, 32, 25]; // Slightly different speeds per row for depth
 
     return (
-        <section className="relative w-full bg-transparent overflow-hidden py-28">
+        <section id="trust" className="relative w-full bg-[#0B1120] overflow-hidden py-28 border-t border-white/5">
             {/* Background Grain */}
             <div
-                className="absolute inset-0 pointer-events-none opacity-[0.04]"
+                className="absolute inset-0 pointer-events-none opacity-[0.03] mix-blend-overlay"
                 style={{
                     backgroundImage:
                         "url('data:image/svg+xml,%3Csvg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cfilter id=\"noiseFilter\"%3E%3CfeTurbulence type=\"fractalNoise\" baseFrequency=\"0.65\" numOctaves=\"3\" stitchTiles=\"stitch\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23noiseFilter)\"/%3E%3C/svg%3E')",
@@ -161,15 +161,13 @@ const OurClients: React.FC = () => {
             />
 
             {/* Radial Centre Glow */}
-            <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(212,175,55,0.08)_0%,transparent_65%)]" />
+            <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(245,158,11,0.05)_0%,transparent_65%)]" />
 
-            {/* Top + Bottom Fade Masks */}
-            <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#FFFBEB] to-transparent pointer-events-none z-10" />
-            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#FFFBEB] to-transparent pointer-events-none z-10" />
-
-            {/* Side Fade Masks (so logos don't hard-clip at edges) */}
-            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#FFFBEB] to-transparent pointer-events-none z-10" />
-            <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#FFFBEB] to-transparent pointer-events-none z-10" />
+            {/* Masks */}
+            <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#0B1120] to-transparent pointer-events-none z-10" />
+            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0B1120] to-transparent pointer-events-none z-10" />
+            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#0B1120] to-transparent pointer-events-none z-10" />
+            <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#0B1120] to-transparent pointer-events-none z-10" />
 
             {/* ── Heading ── */}
             <motion.div
@@ -179,23 +177,26 @@ const OurClients: React.FC = () => {
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.7, ease: 'easeOut' }}
             >
-                <p className="text-[#D4AF37] font-mono text-xs uppercase tracking-[0.25em] mb-5">
-                    Our Clients
-                </p>
-                <h2 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6 tracking-tight leading-tight">
-                    Trusted by India's{' '}
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#FFD700]">
-                        Leading Brands
+                <motion.div
+                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-amber-500/20 bg-amber-500/5 mb-6"
+                >
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+                    <span className="text-[10px] font-mono font-bold tracking-[0.3em] text-amber-500 uppercase">Trusted by Leading Brands</span>
+                </motion.div>
+                <h2 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight leading-tight">
+                    Powering India's{' '}
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">
+                        Top Enterprises
                     </span>
                 </h2>
-                <p className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-                    250+ brands across FMCG, Consumer Durables, Lifestyle, Automotive & Hospitality trust Matrix to structure high-value media barter deals.
+                <p className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-medium">
+                    We have successfully executed barter campaigns for India’s most trusted brands across all key industrial sectors.
                 </p>
             </motion.div>
 
             {/* ── Logo Rows ── */}
             <motion.div
-                className="relative z-20 flex flex-col gap-10"
+                className="relative z-20 flex flex-col gap-12"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: '-40px' }}
@@ -203,17 +204,12 @@ const OurClients: React.FC = () => {
             >
                 {rows.map((row, rowIndex) => (
                     <div key={row.category} className="flex items-center gap-6">
-                        {/* Category label — hidden on mobile */}
-                        <div className="hidden lg:flex flex-shrink-0 w-44 justify-end pr-6">
-                            <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-slate-400 text-right leading-tight">
+                        <div className="hidden lg:flex flex-shrink-0 w-48 justify-end pr-8">
+                            <span className="text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-slate-500 text-right leading-tight">
                                 {row.category}
                             </span>
                         </div>
-
-                        {/* Thin separator line */}
-                        <div className="hidden lg:block w-px h-6 bg-slate-200 flex-shrink-0" />
-
-                        {/* Marquee */}
+                        <div className="hidden lg:block w-[2px] h-8 bg-amber-500/20 flex-shrink-0" />
                         <div className="flex-1 min-w-0">
                             <MarqueeRow
                                 brands={row.brands}
@@ -227,28 +223,30 @@ const OurClients: React.FC = () => {
 
             {/* ── Bottom Stats Bar ── */}
             <motion.div
-                className="relative z-20 mt-20 max-w-5xl mx-auto px-4"
-                initial={{ opacity: 0, y: 20 }}
+                className="relative z-20 mt-24 max-w-6xl mx-auto px-4"
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.7, delay: 0.5 }}
             >
-                <div className="border border-slate-200 rounded-2xl bg-white/[0.5] backdrop-blur-sm grid grid-cols-2 md:grid-cols-4 divide-x divide-slate-200">
-                    {[
-                        { value: '250+', label: 'Brand Partners' },
-                        { value: '₹2,000 Cr+', label: 'Deals Structured' },
-                        { value: '5', label: 'Industry Verticals' },
-                        { value: '15+', label: 'Years of Trust' },
-                    ].map((stat) => (
-                        <div key={stat.label} className="flex flex-col items-center justify-center py-8 px-6 text-center">
-                            <span className="text-2xl md:text-3xl font-bold text-slate-900 mb-1 tracking-tight">
-                                {stat.value}
-                            </span>
-                            <span className="text-xs text-gray-500 font-mono uppercase tracking-widest">
-                                {stat.label}
-                            </span>
-                        </div>
-                    ))}
+                <div className="p-1 rounded-3xl bg-gradient-to-r from-amber-500/20 via-slate-800 to-amber-500/20">
+                    <div className="rounded-[22px] bg-[#0B1120] grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
+                        {[
+                            { value: '15+', label: 'Years of Experience' },
+                            { value: '500+', label: 'Brands Served' },
+                            { value: '₹1000+ Cr', label: 'Barter Value Executed' },
+                            { value: '100+', label: 'Media Partners' },
+                        ].map((stat) => (
+                            <div key={stat.label} className="flex flex-col items-center justify-center py-10 px-6 text-center group hover:bg-white/5 transition-colors">
+                                <span className="text-3xl md:text-4xl font-black text-amber-500 mb-2 tracking-tighter group-hover:scale-110 transition-transform">
+                                    {stat.value}
+                                </span>
+                                <span className="text-[10px] md:text-xs text-slate-400 font-bold font-mono uppercase tracking-[0.2em]">
+                                    {stat.label}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </motion.div>
         </section>

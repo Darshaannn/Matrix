@@ -1,26 +1,12 @@
 import { motion } from 'framer-motion';
-import { BarChart3, Globe2, ShieldCheck } from 'lucide-react';
+import { BarChart3, Globe2, ShieldCheck, ArrowRight } from 'lucide-react';
 
 const Hero = () => {
     return (
-        <section className="relative w-full min-h-[90vh] bg-[#FFFBEB] flex flex-col items-center justify-center pt-32 pb-20 px-4 md:px-8 overflow-hidden">
+        <section className="relative w-full min-h-[95vh] bg-[#0B1120] flex flex-col items-center justify-center pt-32 pb-20 px-4 md:px-8 overflow-hidden">
 
-            {/* ── Background Infrastructure Elements (Restrained) ── */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#FFFBEB] via-[#FFFBEB] to-[#FDE68A] opacity-40 pointer-events-none" />
-
-            {/* Subtle Light Beam (Luxury variant) */}
-            <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[1px] h-[120%] bg-gradient-to-b from-transparent via-amber-200/40 to-transparent rotate-[25deg] blur-[80px] scale-x-[600]" />
-            <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[1px] h-[120%] bg-gradient-to-b from-transparent via-amber-200/20 to-transparent rotate-[-15deg] blur-[60px] scale-x-[400]" />
-
-            {/* Soft Amber Spotlight */}
-            <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] pointer-events-none opacity-[0.2]"
-                style={{ background: 'radial-gradient(circle, #FDE68A 0%, transparent 70%)', filter: 'blur(80px)' }}
-            />
-
-            {/* Grain texture - much lower opacity as requested */}
-            <div className="absolute inset-0 pointer-events-none opacity-[0.015]"
-                style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cfilter id=\"n\"%3E%3CfeTurbulence type=\"fractalNoise\" baseFrequency=\"0.65\" numOctaves=\"3\" stitchTiles=\"stitch\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23n)\"/%3E%3C/svg%3E')" }}
-            />
+            {/* Subtle Amber Glows - Reduced for performance */}
+            <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[radial-gradient(circle,rgba(245,158,11,0.05)_0%,transparent_70%)] blur-[80px] pointer-events-none" />
 
 
             {/* ── Main Content ── */}
@@ -31,11 +17,11 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                    className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-amber-300/50 bg-amber-100/30 mb-8"
+                    className="flex items-center gap-2 px-4 py-2 rounded-full border border-amber-500/20 bg-amber-500/5 mb-8"
                 >
-                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(251,191,36,0.8)]" />
-                    <span className="text-[10px] sm:text-xs font-mono font-medium tracking-[0.2em] text-amber-700 uppercase">
-                        Strategic Media Infrastructure
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.8)]" />
+                    <span className="text-[10px] sm:text-xs font-mono font-bold tracking-[0.2em] text-amber-500 uppercase">
+                        Scale Your Brand with Barter
                     </span>
                 </motion.div>
 
@@ -44,11 +30,11 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                    className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 leading-[1.05] mb-6 font-sans relative z-10"
+                    className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white leading-[1] mb-8 font-sans"
                 >
-                    Convert Product Inventory into <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-amber-900">
-                        Media Visibility Without Cash Burn.
+                    Transform Your Products Into <br />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600">
+                        Powerful Advertising
                     </span>
                 </motion.h1>
 
@@ -57,25 +43,47 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                    className="text-slate-700 max-w-2xl mx-auto mb-10 text-lg md:text-xl font-medium leading-relaxed relative z-10"
+                    className="text-slate-400 max-w-3xl mx-auto mb-10 text-lg md:text-xl font-medium leading-relaxed"
                 >
-                    Structured barter media solutions for brands across Print, TV, Digital, Radio & Cinema.
+                    We are a leading Barter & Media Exchange Agency helping brands convert products and unsold inventory into nationwide advertising across Print, TV, OTT, Outdoor, Radio & Digital platforms.
                 </motion.p>
+
+                {/* Trust Points */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                    className="flex flex-wrap justify-center gap-6 mb-12"
+                >
+                    {[
+                        "500+ Brand Partnerships",
+                        "₹1000+ Cr Barter Value Executed",
+                        "Pan-India Media Network"
+                    ].map((point, i) => (
+                        <div key={i} className="flex items-center gap-2 text-slate-300 font-medium text-sm md:text-base">
+                            <div className="w-5 h-5 rounded-full bg-amber-500/10 flex items-center justify-center border border-amber-500/20">
+                                <span className="text-amber-500 text-xs">✔</span>
+                            </div>
+                            {point}
+                        </div>
+                    ))}
+                </motion.div>
 
                 {/* CTAs */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
                     className="flex flex-col sm:flex-row items-center gap-5 w-full sm:w-auto"
                 >
-                    {/* Primary barter deal CTA */}
-                    <button className="w-full sm:w-auto px-10 py-4 rounded-full bg-slate-900 text-white font-bold text-base shadow-[0_10px_30px_rgba(0,0,0,0.1)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.15)] hover:-translate-y-0.5 transition-all duration-300 relative z-10">
-                        Structure a Barter Deal
+                    {/* Primary Button */}
+                    <button className="group w-full sm:w-auto px-10 py-5 rounded-full bg-amber-500 text-neutral-950 font-bold text-lg shadow-[0_10px_30px_rgba(245,158,11,0.2)] hover:shadow-[0_15px_40px_rgba(245,158,11,0.3)] hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2">
+                        Request Barter Proposal
+                        <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                     </button>
 
-                    {/* Secondary exploration CTA */}
-                    <a href="#campaigns" className="w-full sm:w-auto px-8 py-4 rounded-full bg-white text-slate-900 font-semibold text-base border border-slate-200 flex items-center justify-center gap-3 hover:bg-slate-50 transition-colors shadow-sm relative z-10">
+                    {/* Secondary Button */}
+                    <a href="#campaigns" className="w-full sm:w-auto px-10 py-5 rounded-full bg-white/5 text-white font-semibold text-lg border border-white/10 flex items-center justify-center gap-3 hover:bg-white/10 transition-all">
                         View Case Studies
                     </a>
                 </motion.div>
@@ -90,19 +98,19 @@ const Hero = () => {
                 className="absolute bottom-10 left-0 w-full px-6 flex justify-center"
             >
                 <div className="flex flex-wrap justify-center gap-8 md:gap-16 items-center max-w-4xl border-t border-white/5 pt-8">
-                    <div className="flex items-center gap-3 opacity-60">
-                        <BarChart3 size={18} className="text-white" />
-                        <span className="text-sm font-medium text-white tracking-wide">₹1000+ Cr Media Structured</span>
+                    <div className="flex items-center gap-3 opacity-40 hover:opacity-100 transition-opacity">
+                        <BarChart3 size={18} className="text-amber-500" />
+                        <span className="text-sm font-bold text-white tracking-wide">₹1000+ Cr Executed</span>
                     </div>
-                    <div className="hidden md:block w-px h-4 bg-white/20" />
-                    <div className="flex items-center gap-3 opacity-60">
-                        <Globe2 size={18} className="text-white" />
-                        <span className="text-sm font-medium text-white tracking-wide">Pan-India Media Access</span>
+                    <div className="hidden md:block w-px h-4 bg-white/10" />
+                    <div className="flex items-center gap-3 opacity-40 hover:opacity-100 transition-opacity">
+                        <Globe2 size={18} className="text-amber-500" />
+                        <span className="text-sm font-bold text-white tracking-wide">Pan-India Network</span>
                     </div>
-                    <div className="hidden md:block w-px h-4 bg-white/20" />
-                    <div className="flex items-center gap-3 opacity-60">
-                        <ShieldCheck size={18} className="text-white" />
-                        <span className="text-sm font-medium text-white tracking-wide">250+ Brands Served</span>
+                    <div className="hidden md:block w-px h-4 bg-white/10" />
+                    <div className="flex items-center gap-3 opacity-40 hover:opacity-100 transition-opacity">
+                        <ShieldCheck size={18} className="text-amber-500" />
+                        <span className="text-sm font-bold text-white tracking-wide">500+ Brands Served</span>
                     </div>
                 </div>
             </motion.div>

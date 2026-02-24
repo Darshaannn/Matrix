@@ -244,11 +244,7 @@ const MatrixEnergyNetwork: React.FC = () => {
             {/* Sticky Frame */}
             <div className="sticky top-0 w-full h-screen overflow-hidden flex flex-col items-center justify-center">
 
-                {/* Motherboard Layout: Base Grain + Grid Pattern */}
-                <div className="absolute inset-0 pointer-events-none opacity-[0.02]" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cfilter id=\"noiseFilter\"%3E%3CfeTurbulence type=\"fractalNoise\" baseFrequency=\"0.65\" numOctaves=\"3\" stitchTiles=\"stitch\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23noiseFilter)\"/%3E%3C/svg%3E')" }}></div>
-                <div className="absolute inset-0 pointer-events-none opacity-10 bg-[linear-gradient(rgba(0,0,0,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.05)_1px,transparent_1px)] bg-[size:40px_40px]" />
-
-                {/* Section Header (Integrated into the network as the source) */}
+                {/* Section Header */}
                 <motion.div
                     className="absolute z-40 text-center px-4 w-full"
                     style={{

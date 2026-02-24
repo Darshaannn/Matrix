@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #F5F5F7;
-  --color-primary: #FFDC58;
+  --color-background: #0B1120;
+  --color-primary: #F59E0B;
+  --color-accent: #10B981;
   --font-sans: 'Outfit', sans-serif;
 }
 
@@ -10,5 +11,6 @@
   html {
     font-family: var(--font-sans);
     scroll-behavior: smooth;
+    background-color: var(--color-background);
   }
 }
