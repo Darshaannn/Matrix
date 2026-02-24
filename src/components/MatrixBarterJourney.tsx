@@ -1,264 +1,120 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, useMotionValueEvent, useSpring, useMotionValue, MotionValue } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring, useMotionValueEvent, useMotionValue } from 'framer-motion';
+import { Cloud, Search, BarChart3, TrendingUp } from 'lucide-react';
 
-const nodesArr = [
+const journeyNodes = [
     {
         title: "Inventory Assessment",
-        content: "The brand shares available product inventory. Matrix evaluates category strength, volume, and barter potential across media platforms.",
-        buildingProps: { w: 40, h: 120, layers: 1 }
+        content: "We analyze your stock levels and market demand to identify high-value barter opportunities.",
+        icon: <Search className="w-5 h-5 text-emerald-400" />
     },
     {
         title: "Media Value Structuring",
-        content: "Matrix converts product inventory into structured media value across Print, TV, OTT, Radio, Outdoor and Cinema using strategic partnerships.",
-        buildingProps: { w: 50, h: 160, layers: 2 }
+        content: "Our team converts your physical assets into a structured digital media credit system.",
+        icon: <BarChart3 className="w-5 h-5 text-sky-400" />
     },
     {
         title: "Multi-Platform Deployment",
-        content: "Campaigns are executed across national and regional media networks ensuring maximum reach and visibility without direct cash outflow.",
-        buildingProps: { w: 80, h: 150, layers: 3, horizontalStrips: true }
+        content: "Execute nationwide campaigns across TV, Print, OTT, and OOH without cash burn.",
+        icon: <Cloud className="w-5 h-5 text-blue-400" />
     },
     {
         title: "Growth Without Cash Burn",
-        content: "Brands increase market visibility, conserve working capital, and improve sales velocity while preserving liquidity.",
-        buildingProps: { w: 60, h: 220, layers: 1, maxGlow: true }
+        content: "Preserve your liquidity while scaling your brand reach to millions of consumers.",
+        icon: <TrendingUp className="w-5 h-5 text-emerald-300" />
     }
 ];
 
-const AbstractBuilding = ({
-    props,
-    heightProgress,
-    opacityProgress
+const MilestoneCard = ({
+    node,
+    index,
+    pos,
+    smoothProgress,
+    isMobile
 }: {
-    props: { w: number, h: number, layers: number, horizontalStrips?: boolean, maxGlow?: boolean },
-    heightProgress: MotionValue<number>,
-    opacityProgress: MotionValue<number>
+    node: typeof journeyNodes[0],
+    index: number,
+    pos: { x: number, y: number, fraction: number },
+    smoothProgress: any,
+    isMobile: boolean
 }) => {
+    const F = pos.fraction;
+    const scrollRevealStart = F - 0.08;
+    const scrollRevealEnd = F;
+
+    const opacity = useTransform(smoothProgress, [scrollRevealStart, scrollRevealEnd], [0, 1]);
+    const yOffset = useTransform(smoothProgress, [scrollRevealStart, scrollRevealEnd], [30, 0]);
+    const scale = useTransform(smoothProgress, [scrollRevealStart, scrollRevealEnd], [0.95, 1]);
+
+    const isLeft = index % 2 === 0;
+    const cardWidth = isMobile ? 280 : 380;
+    const xDist = isMobile ? 30 : 80;
+
     return (
         <motion.div
-            className="absolute bottom-0 flex flex-col items-center justify-end"
+            className="absolute z-30"
             style={{
-                width: props.w,
-                height: props.h,
-                opacity: opacityProgress,
+                left: isLeft ? 'auto' : pos.x + xDist,
+                right: isLeft ? (window.innerWidth - pos.x) + xDist : 'auto',
+                top: pos.y,
+                y: "-50%",
+                width: cardWidth,
+                opacity,
+                scale,
             }}
         >
-            {/* Base Structure (Grows from bottom) */}
             <motion.div
-                className="relative w-full overflow-hidden flex flex-col justify-end"
-                style={{
-                    height: useTransform(heightProgress, v => `${v * 100}%`),
-                    background: "rgba(0,0,0,0.01)",
-                    border: "1px solid rgba(0,0,0,0.06)",
-                    borderBottom: "none",
-                    boxShadow: props.maxGlow
-                        ? "inset 0 0 20px rgba(245,158,11,0.2), 0 0 40px rgba(245,158,11,0.1)"
-                        : "inset 0 0 10px rgba(245,158,11,0.05), 0 0 20px rgba(245,158,11,0.05)"
-                }}
+                className="bg-[#1C2430]/80 backdrop-blur-xl border border-white/5 p-6 rounded-2xl shadow-2xl relative overflow-hidden group"
+                style={{ y: yOffset }}
             >
-                {/* Internal Glow Fill */}
-                <motion.div
-                    className="absolute bottom-0 w-full"
-                    style={{
-                        height: "100%",
-                        background: props.maxGlow
-                            ? "linear-gradient(0deg, rgba(245,158,11,0.4) 0%, transparent 100%)"
-                            : "linear-gradient(0deg, rgba(245,158,11,0.2) 0%, transparent 100%)",
-                        opacity: useTransform(heightProgress, [0.5, 1], [0, 1])
-                    }}
-                />
+                {/* Subtle internal glow */}
+                <div className="absolute -top-10 -right-10 w-32 h-32 bg-sky-500/10 blur-3xl rounded-full group-hover:bg-sky-500/20 transition-colors" />
 
-                {/* Vertical Segment Lines */}
-                {props.layers > 1 && (
-                    <div className="absolute inset-0 flex justify-evenly pointer-events-none">
-                        {Array.from({ length: props.layers - 1 }).map((_, i) => (
-                            <div key={i} className="w-[1px] h-full bg-slate-100" />
-                        ))}
+                <div className="flex items-center gap-4 mb-3">
+                    <div className="p-2.5 rounded-xl bg-slate-800 border border-white/10">
+                        {node.icon}
                     </div>
-                )}
+                    <h3 className="text-xl font-bold text-slate-100">{node.title}</h3>
+                </div>
+                <p className="text-slate-400 text-sm leading-relaxed">
+                    {node.content}
+                </p>
 
-                {/* Horizontal Light Strips */}
-                {props.horizontalStrips && (
-                    <div className="absolute inset-0 flex flex-col justify-evenly pointer-events-none">
-                        <div className="w-full h-[1px] bg-amber-400/30 shadow-[0_0_8px_rgba(245,158,11,0.5)]" />
-                        <div className="w-full h-[1px] bg-amber-400/30 shadow-[0_0_8px_rgba(245,158,11,0.5)]" />
-                    </div>
-                )}
-
-                {/* Top Highlight cap */}
-                <div className="absolute top-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+                {/* Accent dot */}
+                <div className="absolute bottom-4 right-4 w-1.5 h-1.5 rounded-full bg-[#2DFF9B] shadow-[0_0_8px_#2DFF9B]" />
             </motion.div>
         </motion.div>
     );
 };
 
-const MilestoneNode = ({
-    index,
-    pos,
-    svgDims,
-    smoothProgress
-}: {
-    index: number,
-    pos: { x: number, y: number, fraction: number },
-    svgDims: { w: number, h: number },
-    smoothProgress: MotionValue<number>
-}) => {
-    const isLeftCard = index % 2 === 0;
-    const isMobile = svgDims.w < 768;
-    const dist = isMobile ? 30 : 60;
-
-    const F = pos.fraction;
-
-    // Core timings (Node arrives immediately before orb hits exact fraction)
-    const scale = useTransform(smoothProgress, [F - 0.08, F], [1, 1.4]);
-    const glowOpacity = useTransform(smoothProgress, [F - 0.08, F], [0, 1]);
-    const cardOpacity = useTransform(smoothProgress, [F - 0.05, F], [0, 1]);
-
-    // Building timings (Smooth ease effect growing)
-    const buildingHeightProgress = useTransform(smoothProgress, [F - 0.04, F + 0.02], [0, 1]);
-    const buildingScale = useTransform(smoothProgress, [F - 0.04, F + 0.02], [0.95, 1]);
-
-    // Slide in (-40px / +40px)
-    const slideDirection = isLeftCard ? -40 : 40;
-    const cardXOffset = useTransform(smoothProgress, [F - 0.05, F], [slideDirection, 0]);
-
-    // Micro Parallax (Local Y offsets mapping the overarching smooth progress around this node's timeline)
-    const cardParallaxY = useTransform(smoothProgress, [F - 0.1, F + 0.1], [10, -10]);
-    const buildingParallaxY = useTransform(smoothProgress, [F - 0.1, F + 0.1], [5, -5]);
-
-    const backgroundColor = useTransform(glowOpacity, [0, 1], ["#FFFBEB", "#F59E0B"]);
-    const boxShadow = useTransform(glowOpacity, (v) => `0 0 ${40 * v}px rgba(245,158,11,${0.6 * v})`);
-
-    // Width logic
-    const maxWidth = isLeftCard ? (pos.x - dist - 16) : (svgDims.w - pos.x - dist - 16);
-    const finalCardWidth = isMobile ? Math.min(maxWidth, 280) : 420;
-
-    return (
-        <React.Fragment>
-            {/* Card Connector line */}
-            <motion.div
-                className={`absolute h-[1px] bg-[rgba(245,158,11,0.3)] z-10 origin-${isLeftCard ? 'right' : 'left'}`}
-                style={{
-                    top: pos.y,
-                    [isLeftCard ? 'right' : 'left']: isLeftCard ? (svgDims.w - pos.x) : pos.x,
-                    width: dist,
-                    opacity: cardOpacity,
-                    scaleX: cardOpacity
-                }}
-            />
-
-            {/* Building Connector line */}
-            <motion.div
-                className={`absolute h-[1px] bg-[rgba(245,158,11,0.2)] z-10 origin-${isLeftCard ? 'left' : 'right'} hidden md:block`}
-                style={{
-                    top: pos.y,
-                    [isLeftCard ? 'left' : 'right']: isLeftCard ? pos.x : (svgDims.w - pos.x),
-                    width: dist,
-                    opacity: cardOpacity,
-                    scaleX: cardOpacity
-                }}
-            />
-
-            {/* Visual Node tightly locked on path */}
-            <motion.div
-                className="absolute w-[16px] h-[16px] rounded-full border-2 border-amber-500 z-20 origin-center"
-                style={{
-                    left: pos.x - 8,
-                    top: pos.y - 8,
-                    scale: scale,
-                    backgroundColor: backgroundColor,
-                    boxShadow: boxShadow
-                }}
-            >
-                {/* Pulse ring for active nodes */}
-                <motion.div
-                    className="absolute inset-0 rounded-full border border-amber-500"
-                    style={{ opacity: glowOpacity }}
-                    animate={{ scale: [1, 1.6, 1], opacity: [0.6, 0, 0.6] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                />
-            </motion.div>
-
-            {/* Architectural Building Structure (Only show above mobile) */}
-            <motion.div
-                className="absolute z-20 hidden md:flex"
-                style={{
-                    top: pos.y,
-                    [isLeftCard ? 'left' : 'right']: isLeftCard ? (pos.x + dist) : (svgDims.w - pos.x + dist),
-                    width: nodesArr[index].buildingProps.w,
-                    height: nodesArr[index].buildingProps.h,
-                    y: useTransform(buildingParallaxY, v => `calc(-100% + ${v}px)`), // Bottom aligns to the line
-                    scale: buildingScale,
-                    originY: 1
-                }}
-            >
-                <AbstractBuilding
-                    props={nodesArr[index].buildingProps}
-                    heightProgress={buildingHeightProgress}
-                    opacityProgress={cardOpacity}
-                />
-            </motion.div>
-
-            {/* Glassmorphism Card (Architectural Structure) */}
-            <motion.div
-                className={`absolute z-30 flex flex-col justify-center rounded-[20px] p-[24px] md:p-[32px] ${isLeftCard ? 'items-end text-right' : 'items-start text-left'}`}
-                style={{
-                    top: pos.y,
-                    width: finalCardWidth,
-                    [isLeftCard ? 'right' : 'left']: isLeftCard ? (svgDims.w - pos.x + dist) : (pos.x + dist),
-                    y: useTransform(cardParallaxY, v => `calc(-50% + ${v}px)`), // Center aligns to the line
-                    x: cardXOffset,
-                    opacity: cardOpacity,
-                    background: "rgba(255,255,255,0.95)",
-                    border: "1px solid rgba(0,0,0,0.05)",
-                    borderTop: "1px solid rgba(245,158,11,0.2)",
-                    boxShadow: "0 20px 60px rgba(0,0,0,0.05)",
-                    backdropFilter: "blur(12px)"
-                }}
-            >
-                <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-3 tracking-tight">{nodesArr[index].title}</h3>
-                <p className="text-slate-600 text-sm md:text-base leading-relaxed font-medium">{nodesArr[index].content}</p>
-            </motion.div>
-        </React.Fragment>
-    );
-};
-
 const MatrixBarterJourney: React.FC = () => {
     const sectionRef = useRef<HTMLDivElement>(null);
-    const svgRef = useRef<SVGSVGElement>(null);
     const pathRef = useRef<SVGPathElement>(null);
-    const [winDims, setWinDims] = useState({ w: 1000, h: 800 });
     const [pathData, setPathData] = useState("");
     const [nodesPos, setNodesPos] = useState<{ x: number, y: number, fraction: number }[]>([]);
-    const [carRotation, setCarRotation] = useState(0);
+    const [isMobile, setIsMobile] = useState(false);
 
-    const SVG_HEIGHT = 2259;
-    const SVG_WIDTH = 1305;
-    const PATH_DATA = "M646.725 2.07788C665.125 391.278 402.059 714.911 268.225 828.078C35.9314 1049.7 -90.7748 1642.58 268.225 1395.58C627.225 1148.58 882.226 1395.58 882.226 1395.58C994.893 1431.69 997.551 1585.64 1059.73 1733.33M1059.73 1733.33C1059.73 1733.33 1341.73 1862.58 1237.22 2071.08C1132.72 2279.58 762.725 2260.08 700.725 2013.08C638.725 1766.08 1059.73 1733.33 1059.73 1733.33Z";
-
-    useEffect(() => {
-        const updateDims = () => {
-            setWinDims({ w: window.innerWidth, h: window.innerHeight });
-        };
-        window.addEventListener('resize', updateDims);
-        updateDims();
-        return () => window.removeEventListener('resize', updateDims);
-    }, []);
+    const SVG_HEIGHT = 2200;
+    const SVG_WIDTH = 1200;
+    // Curved forward-moving path
+    const PATH_DATA = "M600 0 C600 400 200 600 200 1000 C200 1400 1000 1600 1000 2000 L1000 2200";
 
     useEffect(() => {
         setPathData(PATH_DATA);
+        const handleResize = () => setIsMobile(window.innerWidth < 768);
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
     }, []);
 
     useEffect(() => {
         if (pathRef.current && pathData) {
             const len = pathRef.current.getTotalLength();
-            if (len > 0) {
-                // Adjust fractions for the new path length
-                const fractions = [0.15, 0.4, 0.65, 0.9];
-                setNodesPos(fractions.map(f => {
-                    const pt = pathRef.current!.getPointAtLength(f * len);
-                    return { x: pt.x, y: pt.y, fraction: f };
-                }));
-            }
+            const fractions = [0.15, 0.45, 0.75, 0.92];
+            setNodesPos(fractions.map(f => {
+                const pt = pathRef.current!.getPointAtLength(f * len);
+                return { x: pt.x, y: pt.y, fraction: f };
+            }));
         }
     }, [pathData]);
 
@@ -268,153 +124,145 @@ const MatrixBarterJourney: React.FC = () => {
     });
 
     const smoothProgress = useSpring(scrollYProgress, {
-        stiffness: 40, damping: 30, restDelta: 0.001
+        stiffness: 45, damping: 25, restDelta: 0.001
     });
 
-    // Translate the giant SVG UP as the user scrolls DOWN, ensuring the section drawing acts as a controlled camera pan
-    const yPan = useTransform(smoothProgress, [0, 1], [0, -(SVG_HEIGHT - winDims.h)]);
+    const yPan = useTransform(smoothProgress, [0, 1], [0, -(SVG_HEIGHT - 600)]);
+    const pathRevealOpacity = useTransform(smoothProgress, [0, 0.05], [0, 1]);
 
-    // Title fade out so it gets out of the journey's way
-    const titleOpacity = useTransform(smoothProgress, [0, 0.08], [1, 0.1]);
-    const titleScale = useTransform(smoothProgress, [0, 0.08], [1, 0.96]);
-
-    // Progression Darkness (subtle vignette overlay gets darker at the bottom)
-    const vignetteOpacity = useTransform(smoothProgress, [0, 1], [0, 0.6]);
-    // Radial blue glow isolating the curve gets more intense
-    const glowIntensity = useTransform(smoothProgress, [0, 1], [0.15, 0.35]);
-
-    const dotX = useMotionValue(646.725);
-    const dotY = useMotionValue(2.07788);
+    const travelerX = useMotionValue(600);
+    const travelerY = useMotionValue(0);
 
     useMotionValueEvent(smoothProgress, "change", (latest) => {
-        if (pathRef.current && pathData) {
+        if (pathRef.current) {
             const len = pathRef.current.getTotalLength();
-            if (len > 0) {
-                const dist = latest * len;
-                const pt = pathRef.current.getPointAtLength(dist);
-                dotX.set(pt.x);
-                dotY.set(pt.y);
-
-                // Calculate Rotation
-                const offset = 2;
-                if (dist + offset <= len) {
-                    const ptAhead = pathRef.current.getPointAtLength(dist + offset);
-                    setCarRotation(Math.atan2(ptAhead.y - pt.y, ptAhead.x - pt.x) * (180 / Math.PI));
-                } else if (dist - offset >= 0) {
-                    const ptPrev = pathRef.current.getPointAtLength(dist - offset);
-                    setCarRotation(Math.atan2(pt.y - ptPrev.y, pt.x - ptPrev.x) * (180 / Math.PI));
-                }
-            }
+            const pt = pathRef.current.getPointAtLength(latest * len);
+            travelerX.set(pt.x);
+            travelerY.set(pt.y);
         }
     });
 
-    const dotOpacity = useTransform(smoothProgress, [0, 0.02, 0.98, 1], [0, 1, 1, 0]);
-
     return (
-        <section ref={sectionRef} className="relative w-full h-[500vh] bg-transparent">
-            {/* Sticky Wrapper */}
-            <div className="sticky top-0 w-full h-screen overflow-hidden flex flex-col items-center">
+        <section ref={sectionRef} className="relative w-full h-[600vh] bg-[#0B0F14] overflow-hidden">
+            <div className="sticky top-0 w-full h-screen overflow-hidden">
 
-                {/* Dynamically intensifying radial glow behind curve */}
-                <motion.div
-                    className="absolute inset-0 pointer-events-none filter blur-[150px]"
-                    style={{
-                        background: useTransform(glowIntensity, v => `radial-gradient(ellipse at center, rgba(245,158,11,${v * 0.3}) 0%, transparent 60%)`)
-                    }}
-                />
+                {/* ── Background Effects ── */}
+                {/* Fog Layer */}
+                <div className="absolute inset-0 opacity-40 pointer-events-none">
+                    <div className="absolute bottom-0 w-full h-1/2 bg-gradient-to-t from-sky-900/20 to-transparent blur-3xl animate-pulse" />
+                </div>
 
-                {/* Progression Vignette Darkening */}
-                <motion.div
-                    className="absolute inset-0 pointer-events-none z-0"
-                    style={{
-                        opacity: vignetteOpacity,
-                        background: "radial-gradient(circle, transparent 40%, #000 140%)"
-                    }}
-                />
+                {/* Street Lamp Ray Simulation */}
+                <div className="absolute top-[-10%] left-[20%] w-[400px] h-screen bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.05)_0%,transparent_70%)] -rotate-12 blur-3xl" />
+                <div className="absolute top-[-5%] right-[10%] w-[300px] h-screen bg-[radial-gradient(circle_at_top,rgba(0,179,255,0.03)_0%,transparent_70%)] rotate-6 blur-3xl" />
 
-                {/* Section Heading */}
+                {/* Heading */}
                 <motion.div
-                    className="absolute top-24 md:top-32 z-10 w-full max-w-4xl mx-auto text-center px-4"
-                    style={{ opacity: titleOpacity, scale: titleScale, originY: 0 }}
+                    className="absolute top-32 left-0 w-full text-center z-50 px-6"
+                    style={{ opacity: useTransform(smoothProgress, [0, 0.05], [1, 0]) }}
                 >
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-800 mb-6 tracking-tight font-sans">
-                        How Matrix Converts Inventory into <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">Media Power</span>
+                    <h2 className="text-4xl md:text-6xl font-black text-slate-100 mb-4 tracking-tight">
+                        Journey into <span className="text-[#00B3FF] drop-shadow-[0_0_15px_rgba(0,179,255,0.5)]">Media Power</span>
                     </h2>
-                    <p className="text-xl md:text-2xl font-sans font-medium text-slate-600 max-w-2xl mx-auto leading-relaxed">
-                        A precision-engineered platform to transform your business assets into market dominance.
+                    <p className="text-slate-400 max-w-xl mx-auto text-sm md:text-base font-medium">
+                        Scroll to traverse the path from inventory to market dominance.
                     </p>
                 </motion.div>
 
+                {/* ── Journey Path & Elements ── */}
                 <motion.div
-                    className="absolute top-0 left-1/2 -translate-x-1/2"
-                    style={{ height: SVG_HEIGHT, width: SVG_WIDTH, y: yPan }}
+                    className="absolute top-0 left-1/2"
+                    style={{
+                        width: SVG_WIDTH,
+                        height: SVG_HEIGHT,
+                        y: yPan,
+                        x: "-50%"
+                    }}
                 >
-                    <svg ref={svgRef} className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1305 2259" xmlns="http://www.w3.org/2000/svg">
+                    <svg className="absolute inset-0 w-full h-full overflow-visible" viewBox={`0 0 ${SVG_WIDTH} ${SVG_HEIGHT}`}>
                         <defs>
-                            <filter id="glowBlur" x="-50%" y="-50%" width="200%" height="200%">
-                                <feGaussianBlur stdDeviation="4" result="coloredBlur" />
-                                <feMerge>
-                                    <feMergeNode in="coloredBlur" />
-                                    <feMergeNode in="SourceGraphic" />
-                                </feMerge>
+                            <filter id="neonGlow" x="-50%" y="-50%" width="200%" height="200%">
+                                <feGaussianBlur stdDeviation="8" result="blur" />
+                                <feComposite in="SourceGraphic" in2="blur" operator="over" />
                             </filter>
                         </defs>
 
-                        {/* Layer 1: Base Path (Faint) */}
-                        {pathData && (
-                            <path
-                                d={pathData}
-                                stroke="rgba(245, 158, 11, 0.1)"
-                                strokeWidth="8"
-                                fill="none"
-                            />
-                        )}
+                        {/* Base path trace */}
+                        <path
+                            d={PATH_DATA}
+                            stroke="rgba(0, 179, 255, 0.05)"
+                            strokeWidth="12"
+                            fill="none"
+                        />
 
-                        {/* Layer 2: Animated Amber Line */}
-                        {pathData && (
-                            <motion.path
-                                ref={pathRef}
-                                d={pathData}
-                                stroke="#F59E0B"
-                                strokeWidth="4"
-                                fill="none"
-                                style={{ pathLength: smoothProgress }}
+                        {/* Animated Path */}
+                        <motion.path
+                            ref={pathRef}
+                            d={PATH_DATA}
+                            stroke="#00B3FF"
+                            strokeWidth="4"
+                            fill="none"
+                            filter="url(#neonGlow)"
+                            style={{
+                                pathLength: smoothProgress,
+                                opacity: pathRevealOpacity
+                            }}
+                        />
+
+                        {/* Path accent points */}
+                        {nodesPos.map((pos, i) => (
+                            <motion.circle
+                                key={i}
+                                cx={pos.x}
+                                cy={pos.y}
+                                r="4"
+                                fill="#2DFF9B"
+                                style={{
+                                    opacity: useTransform(smoothProgress, [pos.fraction - 0.05, pos.fraction], [0, 1]),
+                                    filter: 'drop-shadow(0 0 8px #2DFF9B)'
+                                }}
                             />
-                        )}
+                        ))}
                     </svg>
 
-                    {/* Architectural Milestone Cards & Nodes */}
-                    {nodesPos.length === 4 && nodesPos.map((pos, i) => (
-                        <MilestoneNode
+                    {/* Traveling Light/Orbin */}
+                    <motion.div
+                        className="absolute w-6 h-6 rounded-full bg-white z-40 shadow-[0_0_20px_#00B3FF,0_0_40px_rgba(0,179,255,0.5)]"
+                        style={{
+                            left: travelerX,
+                            top: travelerY,
+                            x: "-50%",
+                            y: "-50%",
+                            opacity: pathRevealOpacity
+                        }}
+                    >
+                        <div className="absolute inset-0 bg-white rounded-full animate-ping opacity-20" />
+                    </motion.div>
+
+                    {/* Milestone Cards */}
+                    {nodesPos.map((pos, i) => (
+                        <MilestoneCard
                             key={i}
                             index={i}
+                            node={journeyNodes[i]}
                             pos={pos}
-                            svgDims={{ w: winDims.w, h: SVG_HEIGHT }}
                             smoothProgress={smoothProgress}
+                            isMobile={isMobile}
                         />
                     ))}
-
-                    {/* Traveling Element (Simplified) */}
-                    {pathData && (
-                        <motion.div
-                            className="absolute z-40 flex items-center justify-center bg-transparent"
-                            style={{
-                                left: dotX,
-                                top: dotY,
-                                x: "-50%",
-                                y: "-50%",
-                                rotate: carRotation,
-                                opacity: dotOpacity
-                            }}
-                        >
-                            <div className="w-10 h-6 bg-amber-500 rounded-full shadow-[0_0_20px_rgba(245,158,11,0.6)] border-2 border-white/20 flex items-center justify-center">
-                                <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
-                            </div>
-                        </motion.div>
-                    )}
                 </motion.div>
+
+                {/* Progress Indicator (Bottom Right) */}
+                <div className="absolute bottom-10 right-10 z-50 flex items-center gap-4">
+                    <div className="text-right">
+                        <p className="text-[10px] font-mono text-slate-500 uppercase tracking-widest">Progress</p>
+                        <motion.p className="text-2xl font-black text-slate-200">
+                            {useTransform(smoothProgress, v => `${Math.round(v * 100)}%`)}
+                        </motion.p>
+                    </div>
+                </div>
             </div>
-        </section >
+        </section>
     );
 };
 

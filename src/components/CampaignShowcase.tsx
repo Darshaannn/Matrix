@@ -83,11 +83,11 @@ const CampaignCard = ({ campaign, index, total, vw }: {
 }) => {
     const c = campaign;
     return (
-        <div className="relative flex-shrink-0 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16 items-center px-6 md:px-24 py-8"
+        <div className="relative flex-shrink-0 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center px-6 md:px-20 py-4 md:py-6"
             style={{ width: vw, height: '100%' }}>
 
             {/* Brand Visual */}
-            <div className="w-full h-[250px] md:h-[420px]">
+            <div className="w-full h-[180px] md:h-[280px]">
                 <BrandVisual color={c.accentColor} brand={c.brand} index={index} />
             </div>
 
@@ -203,7 +203,7 @@ const CampaignShowcase: React.FC = () => {
                     />
 
                     {/* Heading */}
-                    <div className="relative z-20 text-center pt-16 pb-3 px-4 flex-shrink-0">
+                    <div className="relative z-20 text-center pt-8 pb-2 px-4 flex-shrink-0">
                         <motion.div
                             initial={{ opacity: 0, scale: 0.95 }}
                             whileInView={{ opacity: 1, scale: 1 }}
