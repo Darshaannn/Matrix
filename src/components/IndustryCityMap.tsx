@@ -2,26 +2,11 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, Zap, Target, TrendingUp } from 'lucide-react';
 
-const CustomPin = ({ color = "#2DFF9B" }: { color?: string }) => (
-    <div className="relative flex items-center justify-center group-hover/pin:scale-110 transition-transform duration-500">
-        {/* Outer glowing aura */}
-        <div
-            className="absolute -inset-4 rounded-full animate-pulse opacity-30 blur-md"
-            style={{ backgroundColor: color }}
-        />
-        {/* Custom 3D-feeling Pin */}
-        <svg width="34" height="46" viewBox="0 0 24 36" fill="none" className="relative z-10 drop-shadow-[0_15px_20px_rgba(0,0,0,0.8)]">
-            <path d="M12 0C5.373 0 0 5.373 0 12c0 7.5 12 24 12 24s12-16.5 12-24c0-6.627-5.373-12-12-12Z" fill={`url(#pin-grad-${color.replace('#', '')})`} />
-            <circle cx="12" cy="11" r="5" fill="#0F1620" />
-            <circle cx="12" cy="11" r="2.5" fill={color} className="animate-ping" style={{ animationDuration: '2s' }} />
-            <defs>
-                <linearGradient id={`pin-grad-${color.replace('#', '')}`} x1="12" y1="0" x2="12" y2="36" gradientUnits="userSpaceOnUse">
-                    <stop stopColor={color} />
-                    <stop offset="1" stopColor={color} stopOpacity="0.6" />
-                </linearGradient>
-            </defs>
-        </svg>
-    </div>
+const CustomPin = ({ color = "#E02424" }: { color?: string }) => (
+    <svg width="28" height="40" viewBox="0 0 24 36" fill="none">
+        <path d="M12 0C5.373 0 0 5.373 0 12c0 7.5 12 24 12 24s12-16.5 12-24c0-6.627-5.373-12-12-12Z" fill={color} />
+        <circle cx="12" cy="11" r="5" fill="white" />
+    </svg>
 );
 
 const industriesData = [
@@ -29,8 +14,8 @@ const industriesData = [
         id: "fmcg",
         name: "FMCG",
         route: "/industry/fmcg",
-        position: { top: "28%", left: "15%" },
-        hitbox: { w: "7%", h: "13%" },
+        position: { top: "20%", left: "24%" },
+        hitbox: { w: "6%", h: "10%" },
         pinColor: "#E02424",
         description: "Unlock fast-moving consumer goods advertising via trade deals.",
         barter: ["Beverages", "Personal care", "Packaged foods"],
@@ -41,8 +26,8 @@ const industriesData = [
         id: "automobile",
         name: "Automobile",
         route: "/industry/automobile",
-        position: { top: "16%", left: "42%" },
-        hitbox: { w: "7%", h: "12%" },
+        position: { top: "10%", left: "45%" },
+        hitbox: { w: "6%", h: "10%" },
         pinColor: "#E02424",
         description: "Drive visibility for bike, cycle, battery, and auto brands.",
         barter: ["Bikes", "Cycles", "Batteries", "Accessories"],
@@ -54,8 +39,8 @@ const industriesData = [
         name: "Consumer Durables",
         route: "/industry/consumer-durables",
         position: { top: "42%", left: "37%" },
-        hitbox: { w: "6%", h: "13%" },
-        pinColor: "#00FF33",
+        hitbox: { w: "6%", h: "10%" },
+        pinColor: "#E02424",
         description: "Launch and scale durable goods without heavy cash media spend.",
         barter: ["Kitchen appliances", "Electronics", "Home appliances"],
         media: ["TV", "Print", "Digital"],
@@ -65,8 +50,8 @@ const industriesData = [
         id: "lifestyle",
         name: "Lifestyle & Clothing",
         route: "/industry/lifestyle",
-        position: { top: "73%", left: "28%" },
-        hitbox: { w: "9%", h: "13%" },
+        position: { top: "16%", left: "64%" },
+        hitbox: { w: "6%", h: "10%" },
         pinColor: "#E02424",
         description: "Showcase fashion & lifestyle brands across diverse media channels.",
         barter: ["Apparel", "Footwear", "Accessories"],
@@ -77,8 +62,8 @@ const industriesData = [
         id: "hospitality",
         name: "Hospitality & Gaming",
         route: "/industry/hospitality",
-        position: { top: "72%", left: "77%" },
-        hitbox: { w: "12%", h: "15%" },
+        position: { top: "80%", left: "70%" },
+        hitbox: { w: "6%", h: "10%" },
         pinColor: "#E02424",
         description: "Monetize unused capacity through strategic brand partnerships.",
         barter: ["Hotel stays", "Restaurant vouchers", "Gaming credits"],
@@ -89,8 +74,8 @@ const industriesData = [
         id: "media",
         name: "Media Networks",
         route: "/industry/media",
-        position: { top: "59%", left: "68%" },
-        hitbox: { w: "7%", h: "12%" },
+        position: { top: "60%", left: "60%" },
+        hitbox: { w: "6%", h: "10%" },
         pinColor: "#E02424",
         description: "Trade advertising inventory for high-value corporate products.",
         barter: ["Advertising inventory", "Sponsorship space", "Subscriptions"],
@@ -116,19 +101,6 @@ const IndustryCityMap: React.FC = () => {
             onMouseMove={handleMouseMove}
             className="relative w-full min-h-[90vh] bg-[#0A111E] overflow-hidden py-24 border-y border-white/5 flex flex-col items-center"
         >
-            {/* Background Ambience */}
-            <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-sky-900/20 blur-[150px] mix-blend-screen rounded-full" />
-                <div className="absolute bottom-[-20%] right-[-10%] w-[800px] h-[800px] bg-emerald-900/20 blur-[150px] mix-blend-screen rounded-full" />
-                {/* Floating clouds / fog effect */}
-                <motion.div
-                    className="absolute inset-0 opacity-30"
-                    style={{
-                        backgroundImage: "radial-gradient(ellipse at center, transparent, #0A111E 80%)"
-                    }}
-                />
-            </div>
-
             <div className="relative z-10 w-full max-w-7xl px-4 md:px-8 mx-auto flex flex-col items-center">
 
                 {/* Header Text */}
@@ -141,45 +113,13 @@ const IndustryCityMap: React.FC = () => {
                     </p>
                 </div>
 
-                {/* Map Container - Resizes to match aspect ratio of image strictly */}
-                <div className="relative w-full rounded-3xl border border-white/10 shadow-2xl overflow-hidden group">
-                    <motion.div
-                        initial={{ scale: 1.05 }}
-                        animate={{ scale: 1 }}
-                        transition={{ duration: 1.5, ease: "easeOut" }}
-                        className="relative w-full transition-transform duration-[20s] ease-in-out group-hover:scale-105"
-                    >
+                {/* Map Container - Static Map without animations */}
+                <div className="relative w-full rounded-3xl border border-white/10 shadow-2xl overflow-hidden">
+                    <div className="relative w-full">
                         <img
                             src="/NewCityMap.png"
                             alt="City Map"
                             className="w-full h-auto block"
-                        />
-
-                        {/* Ambient City Animations over the map */}
-                        <div className="absolute inset-0 pointer-events-none overflow-hidden mix-blend-screen opacity-60 z-0">
-                            {/* Drifting light overlay */}
-                            <motion.div
-                                animate={{ x: ['-20%', '20%', '-20%'], y: ['-10%', '10%', '-10%'] }}
-                                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                                className="absolute top-1/4 left-1/4 w-[50%] h-[50%] bg-[#00B3FF]/10 blur-[100px] rounded-full"
-                            />
-                            {/* Moving Traffic lights effect */}
-                            <motion.div
-                                animate={{ x: ['10%', '150%'], y: ['20%', '100%'] }}
-                                transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                                className="absolute top-[40%] left-[20%] w-2 h-1 bg-yellow-400/80 blur-[1px] rounded-full shadow-[0_0_10px_yellow]"
-                            />
-                            <motion.div
-                                animate={{ x: ['150%', '-20%'], y: ['80%', '20%'] }}
-                                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                                className="absolute top-[40%] left-[60%] w-2 h-1 bg-red-500/80 blur-[1px] rounded-full shadow-[0_0_10px_red]"
-                            />
-                        </div>
-                        {/* Slow cloud shadow pass */}
-                        <motion.div
-                            animate={{ x: ['-50%', '150%'] }}
-                            transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-                            className="absolute inset-0 pointer-events-none z-0 w-[200%] h-full opacity-[0.1] bg-gradient-to-r from-transparent via-black to-transparent mix-blend-multiply"
                         />
 
                         <div className="absolute inset-0 pointer-events-none z-10">
@@ -190,7 +130,7 @@ const IndustryCityMap: React.FC = () => {
                                 return (
                                     <div
                                         key={ind.id}
-                                        className={`absolute z-20 pointer-events-auto flex flex-col items-center justify-start group/pin cursor-pointer transition-all duration-500 ${activeIndustry && activeIndustry !== ind.id ? 'opacity-40 grayscale saturate-0' : 'opacity-100'}`}
+                                        className="absolute z-20 pointer-events-auto flex flex-col items-center justify-start group/pin cursor-pointer"
                                         style={{
                                             top: ind.position.top,
                                             left: ind.position.left,
@@ -219,25 +159,14 @@ const IndustryCityMap: React.FC = () => {
                                         {/* (Removed old glowing footpring) */}
 
                                         {/* Floating UI Elements directly at Roof Base */}
-                                        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-[85%] flex flex-col items-center pointer-events-none">
-
-                                            {/* Fat Custom Map Pin matching reference exactly */}
-                                            <motion.div
-                                                className="relative z-10"
-                                                animate={{
-                                                    y: isActive ? -12 : -5,
-                                                    scale: isActive && typeof window !== 'undefined' && window.innerWidth < 768 ? 1.2 : 1
-                                                }}
-                                                transition={{ type: "spring", stiffness: 300, damping: 10 }}
-                                            >
+                                        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-none">
+                                            {/* Static Map Pin */}
+                                            <div className="relative z-10">
                                                 <CustomPin color={ind.pinColor} />
-                                            </motion.div>
-
-                                            {/* Pinging Ring tracking roof peak */}
-                                            <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-[#2DFF9B] shadow-[0_0_15px_#2DFF9B] ${isActive ? 'animate-none' : 'animate-ping opacity-60'}`} />
+                                            </div>
 
                                             {/* Small Label below pin */}
-                                            <div className={`mt-2 px-3 py-1.5 rounded-full border bg-[#0F1620]/80 backdrop-blur-md whitespace-nowrap transition-all duration-300 shadow-xl ${isActive ? 'border-[#2DFF9B] text-white' : 'border-white/10 text-slate-300 group-hover/pin:border-[#2DFF9B]/50'}`}>
+                                            <div className={`mt-2 px-3 py-1.5 rounded-full border bg-[#0F1620]/80 backdrop-blur-md whitespace-nowrap shadow-xl ${isActive ? 'border-[#2DFF9B] text-white' : 'border-white/10 text-slate-300'}`}>
                                                 <span className="text-[10px] md:text-xs font-bold tracking-widest font-mono uppercase">{ind.name}</span>
                                             </div>
                                         </div>
@@ -355,7 +284,7 @@ const IndustryCityMap: React.FC = () => {
                                 );
                             })}
                         </div>
-                    </motion.div>
+                    </div>
                 </div>
             </div>
         </section>
