@@ -1,5 +1,6 @@
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import IndustryCityMap from './components/IndustryCityMap';
 import MatrixEnergyNetwork from './components/MatrixEnergyNetwork';
 import WhatIsBarter from './components/ProcessSection';
 import MatrixBarterJourney from './components/MatrixBarterJourney';
@@ -44,6 +45,7 @@ function App() {
       <Navbar />
       <main className="relative z-10 flex flex-col gap-0">
         <div id="home"><Hero /></div>
+        <div id="industry-map" className="reveal"><IndustryCityMap /></div>
         <div id="about" className="reveal"><AboutSection /></div>
         <div id="what-is-barter" className="reveal"><WhatIsBarter /></div>
         <div id="capabilities">
