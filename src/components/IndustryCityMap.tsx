@@ -80,9 +80,21 @@ const industriesData = [
 
 const IndustryCityMap: React.FC = () => {
     const [activeIndustry, setActiveIndustry] = useState<string | null>(null);
+    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+        if (typeof window !== 'undefined' && window.innerWidth >= 768) {
+            const x = (e.clientX - window.innerWidth / 2) * 0.05;
+            const y = (e.clientY - window.innerHeight / 2) * 0.05;
+            setMousePos({ x, y });
+        }
+    };
 
     return (
-        <section className="relative w-full min-h-[90vh] bg-[#0A111E] overflow-hidden py-24 border-y border-white/5 flex flex-col items-center">
+        <section
+            onMouseMove={handleMouseMove}
+            className="relative w-full min-h-[90vh] bg-[#0A111E] overflow-hidden py-24 border-y border-white/5 flex flex-col items-center"
+        >
             {/* Background Ambience */}
             <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-sky-900/20 blur-[150px] mix-blend-screen rounded-full" />
@@ -101,22 +113,55 @@ const IndustryCityMap: React.FC = () => {
                 {/* Header Text */}
                 <div className="text-center mb-16 max-w-3xl">
                     <h2 className="text-4xl md:text-5xl font-black text-white mb-6 uppercase tracking-tight">
-                        Industry <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00B3FF] to-[#2DFF9B]">City Map</span>
+                        Explore Our Industry <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00B3FF] to-[#2DFF9B]">Barter City</span>
                     </h2>
                     <p className="text-slate-400 text-lg">
-                        Select an industry building to intuitively explore our specialized barter solutions.
+                        Hover or tap on a location to discover how barter works in each industry.
                     </p>
                 </div>
 
                 {/* Map Container - Resizes to match aspect ratio of image strictly */}
                 <div className="relative w-full rounded-3xl border border-white/10 shadow-2xl overflow-hidden group">
-                    <div className="relative w-full transition-transform duration-[20s] ease-in-out group-hover:scale-105">
+                    <motion.div
+                        initial={{ scale: 1.05 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 1.5, ease: "easeOut" }}
+                        className="relative w-full transition-transform duration-[20s] ease-in-out group-hover:scale-105"
+                    >
                         <img
                             src="/City-map-img.png"
                             alt="City Map"
                             className="w-full h-auto block"
                         />
-                        <div className="absolute inset-0 pointer-events-none">
+
+                        {/* Ambient City Animations over the map */}
+                        <div className="absolute inset-0 pointer-events-none overflow-hidden mix-blend-screen opacity-60 z-0">
+                            {/* Drifting light overlay */}
+                            <motion.div
+                                animate={{ x: ['-20%', '20%', '-20%'], y: ['-10%', '10%', '-10%'] }}
+                                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                                className="absolute top-1/4 left-1/4 w-[50%] h-[50%] bg-[#00B3FF]/10 blur-[100px] rounded-full"
+                            />
+                            {/* Moving Traffic lights effect */}
+                            <motion.div
+                                animate={{ x: ['10%', '150%'], y: ['20%', '100%'] }}
+                                transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                                className="absolute top-[40%] left-[20%] w-2 h-1 bg-yellow-400/80 blur-[1px] rounded-full shadow-[0_0_10px_yellow]"
+                            />
+                            <motion.div
+                                animate={{ x: ['150%', '-20%'], y: ['80%', '20%'] }}
+                                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                                className="absolute top-[40%] left-[60%] w-2 h-1 bg-red-500/80 blur-[1px] rounded-full shadow-[0_0_10px_red]"
+                            />
+                        </div>
+                        {/* Slow cloud shadow pass */}
+                        <motion.div
+                            animate={{ x: ['-50%', '150%'] }}
+                            transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+                            className="absolute inset-0 pointer-events-none z-0 w-[200%] h-full opacity-[0.1] bg-gradient-to-r from-transparent via-black to-transparent mix-blend-multiply"
+                        />
+
+                        <div className="absolute inset-0 pointer-events-none z-10">
                             {/* Render Pins / Buildings connected EXACTLY to image coordinates */}
                             {industriesData.map((ind) => {
                                 const isActive = activeIndustry === ind.id;
@@ -124,7 +169,7 @@ const IndustryCityMap: React.FC = () => {
                                 return (
                                     <div
                                         key={ind.id}
-                                        className="absolute z-20 pointer-events-auto flex flex-col items-center justify-start group/pin cursor-pointer"
+                                        className={`absolute z-20 pointer-events-auto flex flex-col items-center justify-start group/pin cursor-pointer transition-all duration-500 ${activeIndustry && activeIndustry !== ind.id ? 'opacity-40 grayscale saturate-0' : 'opacity-100'}`}
                                         style={{
                                             top: ind.position.top,
                                             left: ind.position.left,
@@ -132,8 +177,21 @@ const IndustryCityMap: React.FC = () => {
                                             height: ind.hitbox.h,
                                             transform: "translateX(-50%)"
                                         }}
-                                        onMouseEnter={() => setActiveIndustry(ind.id)}
-                                        onMouseLeave={() => setActiveIndustry(null)}
+                                        onClick={(e) => {
+                                            // Handle mobile tap to open modal
+                                            if (window.innerWidth < 768) {
+                                                if (activeIndustry !== ind.id) {
+                                                    e.preventDefault();
+                                                    setActiveIndustry(ind.id);
+                                                }
+                                            }
+                                        }}
+                                        onMouseEnter={() => {
+                                            if (window.innerWidth >= 768) setActiveIndustry(ind.id)
+                                        }}
+                                        onMouseLeave={() => {
+                                            if (window.innerWidth >= 768) setActiveIndustry(null)
+                                        }}
                                     >
                                         {/* Reference-Perfect Isometric Polygon Glow */}
                                         <svg
@@ -167,7 +225,10 @@ const IndustryCityMap: React.FC = () => {
                                             {/* Fat Custom Map Pin matching reference exactly */}
                                             <motion.div
                                                 className="relative z-10"
-                                                animate={{ y: isActive ? -12 : -5 }}
+                                                animate={{
+                                                    y: isActive ? -12 : -5,
+                                                    scale: isActive && typeof window !== 'undefined' && window.innerWidth < 768 ? 1.2 : 1
+                                                }}
                                                 transition={{ type: "spring", stiffness: 300, damping: 10 }}
                                             >
                                                 <CustomPin color={ind.pinColor} />
@@ -182,87 +243,116 @@ const IndustryCityMap: React.FC = () => {
                                             </div>
                                         </div>
 
-                                        {/* Hover Glassmorphic Details Card */}
+                                        {/* Hover Desktop / Modal Mobile Details Card */}
                                         <AnimatePresence>
                                             {isActive && (
-                                                <motion.div
-                                                    initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                                                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                                                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                                                    transition={{ duration: 0.25, ease: "easeOut" }}
-                                                    className="absolute bottom-full mb-6 left-1/2 -translate-x-1/2 w-80 md:w-96 p-6 rounded-2xl bg-[#0F1620]/95 backdrop-blur-2xl border border-white/10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8),0_0_30px_rgba(45,255,155,0.1)] z-50 pointer-events-auto cursor-default"
-                                                >
-                                                    {/* Card Header */}
-                                                    <div className="border-b border-white/10 pb-4 mb-4">
-                                                        <h3 className="text-xl font-bold text-white tracking-tight leading-tight">{ind.name}</h3>
-                                                        <p className="text-[#00B3FF] text-xs font-bold uppercase tracking-widest mt-1">Barter Solutions</p>
-                                                    </div>
+                                                <div className="fixed inset-0 z-[100] md:absolute md:inset-auto md:bottom-full md:left-1/2 md:-translate-x-1/2 flex items-center justify-center md:block pointer-events-none">
 
-                                                    {/* Content Grids */}
-                                                    <div className="space-y-4 mb-6">
-                                                        {/* We Barter Section */}
-                                                        <div className="bg-black/30 rounded-xl p-3 border border-white/5">
-                                                            <div className="flex items-center gap-2 mb-2 text-slate-300">
-                                                                <Zap className="w-4 h-4 text-emerald-400" />
-                                                                <span className="text-xs font-semibold uppercase tracking-wider">We Barter</span>
-                                                            </div>
-                                                            <div className="flex flex-wrap gap-1.5">
-                                                                {ind.barter.map((item, idx) => (
-                                                                    <span key={idx} className="text-[11px] px-2 py-0.5 rounded-full bg-white/5 text-slate-300 border border-white/10">
-                                                                        {item}
-                                                                    </span>
-                                                                ))}
-                                                            </div>
-                                                        </div>
-
-                                                        {/* Media Channels */}
-                                                        <div className="bg-black/30 rounded-xl p-3 border border-white/5">
-                                                            <div className="flex items-center gap-2 mb-2 text-slate-300">
-                                                                <Target className="w-4 h-4 text-sky-400" />
-                                                                <span className="text-xs font-semibold uppercase tracking-wider">Media Reach</span>
-                                                            </div>
-                                                            <div className="flex flex-wrap gap-1.5">
-                                                                {ind.media.map((item, idx) => (
-                                                                    <span key={idx} className="text-[11px] px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-200 border border-sky-500/20">
-                                                                        {item}
-                                                                    </span>
-                                                                ))}
-                                                            </div>
-                                                        </div>
-
-                                                        {/* Benefit */}
-                                                        <div>
-                                                            <p className="text-sm text-slate-400 leading-relaxed flex items-start gap-2">
-                                                                <TrendingUp className="w-4 h-4 mt-0.5 text-slate-500 shrink-0" />
-                                                                <span>{ind.benefit}</span>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-
-                                                    {/* Action Button */}
-                                                    <a
-                                                        href={ind.route}
-                                                        // Fallback onClick if they don't have routing, just for show
+                                                    {/* Mobile backdrop */}
+                                                    <motion.div
+                                                        initial={{ opacity: 0 }}
+                                                        animate={{ opacity: 1 }}
+                                                        exit={{ opacity: 0 }}
+                                                        className="absolute inset-0 bg-[#0A111E]/80 backdrop-blur-sm pointer-events-auto md:hidden"
                                                         onClick={(e) => {
-                                                            if (!window.location.pathname.includes('/industry')) {
-                                                                e.preventDefault();
-                                                                // Can hook to an alert or an internal smooth scroll
-                                                                alert(`Navigating to ${ind.name} dedicated page...`);
-                                                            }
+                                                            e.stopPropagation();
+                                                            setActiveIndustry(null);
                                                         }}
-                                                        className="w-full py-3 rounded-xl bg-gradient-to-r from-[#00B3FF] to-[#0082CC] text-white font-bold text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-opacity shadow-[0_0_20px_rgba(0,179,255,0.3)] hover:shadow-[0_0_25px_rgba(0,179,255,0.5)] group/btn"
+                                                    />
+
+                                                    {/* Card Body */}
+                                                    <motion.div
+                                                        initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                                                        animate={{
+                                                            opacity: 1,
+                                                            scale: 1,
+                                                            x: typeof window !== 'undefined' && window.innerWidth >= 768 ? mousePos.x : 0,
+                                                            y: typeof window !== 'undefined' && window.innerWidth >= 768 ? mousePos.y : 0
+                                                        }}
+                                                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                                                        transition={{ duration: 0.25, ease: "easeOut" }}
+                                                        className="relative w-[85vw] md:w-96 p-6 md:mb-6 rounded-2xl bg-[#0F1620]/95 backdrop-blur-2xl border border-white/10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8),0_0_30px_rgba(45,255,155,0.1)] pointer-events-auto cursor-default z-10"
                                                     >
-                                                        Explore Industry
-                                                        <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-                                                    </a>
-                                                </motion.div>
+                                                        {/* Card Header */}
+                                                        <div className="border-b border-white/10 pb-4 mb-4 flex justify-between items-start">
+                                                            <div>
+                                                                <h3 className="text-xl font-bold text-white tracking-tight leading-tight">{ind.name}</h3>
+                                                                <p className="text-[#00B3FF] text-[10px] font-bold uppercase tracking-widest mt-1">Barter Solutions</p>
+                                                            </div>
+                                                            <button
+                                                                className="md:hidden w-8 h-8 flex items-center justify-center rounded-full bg-white/10 text-white"
+                                                                onClick={(e) => {
+                                                                    e.stopPropagation();
+                                                                    setActiveIndustry(null);
+                                                                }}
+                                                            >
+                                                                ✕
+                                                            </button>
+                                                        </div>
+
+                                                        {/* Content Grids */}
+                                                        <div className="space-y-4 mb-6">
+                                                            {/* We Barter Section */}
+                                                            <div className="bg-black/30 rounded-xl p-3 border border-white/5">
+                                                                <div className="flex items-center gap-2 mb-2 text-slate-300">
+                                                                    <Zap className="w-4 h-4 text-emerald-400" />
+                                                                    <span className="text-xs font-semibold uppercase tracking-wider">We Barter</span>
+                                                                </div>
+                                                                <div className="flex flex-wrap gap-1.5">
+                                                                    {ind.barter.map((item, idx) => (
+                                                                        <span key={idx} className="text-[11px] px-2 py-0.5 rounded-full bg-white/5 text-slate-300 border border-white/10">
+                                                                            {item}
+                                                                        </span>
+                                                                    ))}
+                                                                </div>
+                                                            </div>
+
+                                                            {/* Media Channels */}
+                                                            <div className="bg-black/30 rounded-xl p-3 border border-white/5">
+                                                                <div className="flex items-center gap-2 mb-2 text-slate-300">
+                                                                    <Target className="w-4 h-4 text-sky-400" />
+                                                                    <span className="text-xs font-semibold uppercase tracking-wider">Media Reach</span>
+                                                                </div>
+                                                                <div className="flex flex-wrap gap-1.5">
+                                                                    {ind.media.map((item, idx) => (
+                                                                        <span key={idx} className="text-[11px] px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-200 border border-sky-500/20">
+                                                                            {item}
+                                                                        </span>
+                                                                    ))}
+                                                                </div>
+                                                            </div>
+
+                                                            {/* Benefit */}
+                                                            <div>
+                                                                <p className="text-sm text-slate-400 leading-relaxed flex items-start gap-2">
+                                                                    <TrendingUp className="w-4 h-4 mt-0.5 text-slate-500 shrink-0" />
+                                                                    <span>{ind.benefit}</span>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+
+                                                        <a
+                                                            href={ind.route}
+                                                            onClick={(e) => {
+                                                                if (!window.location.pathname.includes('/industry')) {
+                                                                    e.preventDefault();
+                                                                    alert(`Navigating to ${ind.name} dedicated page...`);
+                                                                }
+                                                            }}
+                                                            className="w-full py-3 rounded-xl bg-gradient-to-r from-[#00B3FF] to-[#0082CC] text-white font-bold text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-opacity shadow-[0_0_20px_rgba(0,179,255,0.3)] hover:shadow-[0_0_25px_rgba(0,179,255,0.5)] group/btn"
+                                                        >
+                                                            Explore Industry
+                                                            <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                                                        </a>
+                                                    </motion.div>
+                                                </div>
                                             )}
                                         </AnimatePresence>
                                     </div>
                                 );
                             })}
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </section>
