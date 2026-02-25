@@ -117,7 +117,7 @@ const IndustryCityMap: React.FC = () => {
                 <div className="relative w-full rounded-3xl border border-white/10 shadow-2xl overflow-hidden">
                     <div className="relative w-full">
                         <img
-                            src="/NewCityMap.png"
+                            src="/NewCityMap2.png"
                             alt="City Map"
                             className="w-full h-auto block"
                         />
