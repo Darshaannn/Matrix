@@ -2,11 +2,26 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, Zap, Target, TrendingUp } from 'lucide-react';
 
-const CustomPin = ({ color = "#E02424" }: { color?: string }) => (
-    <svg width="28" height="40" viewBox="0 0 24 36" fill="none" className="drop-shadow-[0_8px_12px_rgba(0,0,0,0.5)]">
-        <path d="M12 0C5.373 0 0 5.373 0 12c0 7.5 12 24 12 24s12-16.5 12-24c0-6.627-5.373-12-12-12Z" fill={color} />
-        <circle cx="12" cy="12" r="5" fill="white" />
-    </svg>
+const CustomPin = ({ color = "#2DFF9B" }: { color?: string }) => (
+    <div className="relative flex items-center justify-center group-hover/pin:scale-110 transition-transform duration-500">
+        {/* Outer glowing aura */}
+        <div
+            className="absolute -inset-4 rounded-full animate-pulse opacity-30 blur-md"
+            style={{ backgroundColor: color }}
+        />
+        {/* Custom 3D-feeling Pin */}
+        <svg width="34" height="46" viewBox="0 0 24 36" fill="none" className="relative z-10 drop-shadow-[0_15px_20px_rgba(0,0,0,0.8)]">
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 7.5 12 24 12 24s12-16.5 12-24c0-6.627-5.373-12-12-12Z" fill={`url(#pin-grad-${color.replace('#', '')})`} />
+            <circle cx="12" cy="11" r="5" fill="#0F1620" />
+            <circle cx="12" cy="11" r="2.5" fill={color} className="animate-ping" style={{ animationDuration: '2s' }} />
+            <defs>
+                <linearGradient id={`pin-grad-${color.replace('#', '')}`} x1="12" y1="0" x2="12" y2="36" gradientUnits="userSpaceOnUse">
+                    <stop stopColor={color} />
+                    <stop offset="1" stopColor={color} stopOpacity="0.6" />
+                </linearGradient>
+            </defs>
+        </svg>
+    </div>
 );
 
 const industriesData = [
@@ -135,7 +150,7 @@ const IndustryCityMap: React.FC = () => {
                         className="relative w-full transition-transform duration-[20s] ease-in-out group-hover:scale-105"
                     >
                         <img
-                            src="/City-map-img.png"
+                            src="/NewCityMap.png"
                             alt="City Map"
                             className="w-full h-auto block"
                         />
@@ -199,29 +214,7 @@ const IndustryCityMap: React.FC = () => {
                                             if (window.innerWidth >= 768) setActiveIndustry(null)
                                         }}
                                     >
-                                        {/* Reference-Perfect Isometric Polygon Glow */}
-                                        <svg
-                                            className="absolute inset-x-[-15%] inset-y-[-10%] w-[130%] h-[120%] overflow-visible pointer-events-none transition-all duration-300 z-10"
-                                            viewBox="0 0 100 100"
-                                            preserveAspectRatio="none"
-                                        >
-                                            {/* Fill & Outline */}
-                                            <motion.polygon
-                                                points="50,0 100,18 100,82 50,100 0,82 0,18"
-                                                fill={isActive ? 'rgba(0, 255, 51, 0.15)' : 'rgba(0, 255, 51, 0.05)'}
-                                                stroke={isActive ? '#00FF33' : 'rgba(0,255,51,0.5)'}
-                                                strokeWidth={isActive ? "4" : "2"}
-                                                strokeLinejoin="round"
-                                                style={{
-                                                    filter: isActive ? 'drop-shadow(0px 0px 15px rgba(0,255,51,1)) drop-shadow(0px 0px 30px rgba(0,255,51,0.6))' : 'drop-shadow(0px 0px 5px rgba(0,255,51,0.8))'
-                                                }}
-                                            />
-                                            {/* Vertical Corner Edge */}
-                                            <motion.line x1="50" y1="0" x2="50" y2="100" stroke="#00FF33" strokeWidth={isActive ? "2" : "1"} style={{ opacity: isActive ? 0.3 : 0.1 }} />
-                                            {/* Top Roof Edges */}
-                                            <motion.line x1="0" y1="18" x2="50" y2="0" stroke="#00FF33" strokeWidth={isActive ? "2" : "1"} style={{ opacity: isActive ? 0.3 : 0 }} />
-                                            <motion.line x1="100" y1="18" x2="50" y2="0" stroke="#00FF33" strokeWidth={isActive ? "2" : "1"} style={{ opacity: isActive ? 0.3 : 0 }} />
-                                        </svg>
+                                        {/* Glow removed - map already has green borders */}
 
                                         {/* (Removed old glowing footpring) */}
 
