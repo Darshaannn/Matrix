@@ -14,53 +14,58 @@ const industriesData = [
         id: "fmcg",
         name: "FMCG",
         route: "/industry/fmcg",
-        position: { top: "22%", left: "24%" }, // Red/Brown building on the left
-        hitbox: { w: "6%", h: "14%" },
+        position: { top: "28%", left: "15%" },
+        hitbox: { w: "7%", h: "13%" },
         pinColor: "#E02424",
-        barter: ["Food & beverages", "Personal care products", "Home care products"],
-        media: ["Print", "OTT", "Outdoor", "Radio"],
-        benefit: "Convert fast-moving inventory into mass visibility campaigns."
+        description: "Unlock fast-moving consumer goods advertising via trade deals.",
+        barter: ["Beverages", "Personal care", "Packaged foods"],
+        media: ["Print", "Radio", "OTT", "Outdoor"],
+        benefit: "Convert inventory into high-impact media reach."
     },
     {
         id: "automobile",
         name: "Automobile",
         route: "/industry/automobile",
-        position: { top: "16%", left: "52%" }, // Blue/grey building upper-center
-        hitbox: { w: "6%", h: "14%" },
+        position: { top: "16%", left: "42%" },
+        hitbox: { w: "7%", h: "12%" },
         pinColor: "#E02424",
-        barter: ["Cycles", "Bikes", "E-bikes", "Batteries"],
-        media: ["Print", "Digital", "Outdoor"],
-        benefit: "Drive brand visibility and dealership footfall using product-led advertising."
+        description: "Drive visibility for bike, cycle, battery, and auto brands.",
+        barter: ["Bikes", "Cycles", "Batteries", "Accessories"],
+        media: ["Print", "Digital", "TV", "Outdoor"],
+        benefit: "Increase brand recall and dealership traffic."
     },
     {
         id: "consumer-durables",
         name: "Consumer Durables",
         route: "/industry/consumer-durables",
-        position: { top: "50%", left: "32%" }, // Tiered yellow/green roof building left-middle
-        hitbox: { w: "6%", h: "14%" },
-        pinColor: "#00FF33", // Green exactly matching the user image
+        position: { top: "42%", left: "37%" },
+        hitbox: { w: "6%", h: "13%" },
+        pinColor: "#00FF33",
+        description: "Launch and scale durable goods without heavy cash media spend.",
         barter: ["Kitchen appliances", "Electronics", "Home appliances"],
         media: ["TV", "Print", "Digital"],
-        benefit: "Launch and scale products without heavy cash media spend."
+        benefit: "Build household brand presence efficiently."
     },
     {
         id: "lifestyle",
         name: "Lifestyle & Clothing",
         route: "/industry/lifestyle",
-        position: { top: "28%", left: "75%" },
-        hitbox: { w: "6%", h: "15%" },
+        position: { top: "24%", left: "67%" },
+        hitbox: { w: "7%", h: "16%" },
         pinColor: "#E02424",
-        barter: ["Footwear", "Apparel", "Watches", "Accessories"],
-        media: ["Print", "Outdoor", "Digital"],
-        benefit: "Build fashion visibility using barter-based campaigns."
+        description: "Showcase fashion & lifestyle brands across diverse media channels.",
+        barter: ["Apparel", "Footwear", "Accessories"],
+        media: ["Print", "Digital", "Outdoor"],
+        benefit: "Build brand presence without heavy cash spend."
     },
     {
         id: "hospitality",
         name: "Hospitality & Gaming",
         route: "/industry/hospitality",
-        position: { top: "77%", left: "64%" }, // Green roof building next to orange building
-        hitbox: { w: "6%", h: "10%" },
+        position: { top: "72%", left: "77%" },
+        hitbox: { w: "12%", h: "15%" },
         pinColor: "#E02424",
+        description: "Monetize unused capacity through strategic brand partnerships.",
         barter: ["Hotel stays", "Restaurant vouchers", "Gaming credits"],
         media: ["Digital", "OTT", "Outdoor"],
         benefit: "Fill unused capacity with high-impact promotional reach."
@@ -69,11 +74,12 @@ const industriesData = [
         id: "media",
         name: "Media Networks",
         route: "/industry/media",
-        position: { top: "46%", left: "75%" }, // Glass blue/green grid building right
-        hitbox: { w: "8%", h: "16%" },
+        position: { top: "59%", left: "68%" },
+        hitbox: { w: "7%", h: "12%" },
         pinColor: "#E02424",
-        barter: ["Advertising inventory", "Sponsorship space", "Subscription drives"],
-        media: ["Newspapers", "TV channels", "OTT platforms", "Digital networks"],
+        description: "Trade advertising inventory for high-value corporate products.",
+        barter: ["Advertising inventory", "Sponsorship space", "Subscriptions"],
+        media: ["Newspapers", "TV channels", "OTT", "Digital networks"],
         benefit: "Convert media space into valuable products for promotions."
     }
 ];
@@ -290,6 +296,10 @@ const IndustryCityMap: React.FC = () => {
                                                             </button>
                                                         </div>
 
+                                                        <p className="text-sm text-slate-300 mb-5 leading-relaxed">
+                                                            {ind.description}
+                                                        </p>
+
                                                         {/* Content Grids */}
                                                         <div className="space-y-4 mb-6">
                                                             {/* We Barter Section */}
@@ -341,7 +351,7 @@ const IndustryCityMap: React.FC = () => {
                                                             }}
                                                             className="w-full py-3 rounded-xl bg-gradient-to-r from-[#00B3FF] to-[#0082CC] text-white font-bold text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-opacity shadow-[0_0_20px_rgba(0,179,255,0.3)] hover:shadow-[0_0_25px_rgba(0,179,255,0.5)] group/btn"
                                                         >
-                                                            Explore Industry
+                                                            Explore Industry Page
                                                             <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
                                                         </a>
                                                     </motion.div>
