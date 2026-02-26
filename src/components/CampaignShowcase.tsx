@@ -212,12 +212,7 @@ const CampaignShowcase: React.FC = () => {
                             <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
                             <span className="text-[10px] font-mono font-bold tracking-[0.3em] text-amber-500 uppercase">Case Studies</span>
                         </motion.div>
-                        <h2 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight leading-tight">
-                            Strategic Barter{' '}
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">
-                                Global Impact
-                            </span>
-                        </h2>
+
                     </div>
 
                     {/* Horizontal card strip */}

@@ -1,0 +1,104 @@
+/* Media Network Section - Architectural Revamp */
+
+.media-network-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 2rem;
+    height: 100%;
+}
+
+.media-network-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 0, 0, 0.2);
+    box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.08);
+}
+
+.media-card-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.media-icon-wrapper {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: #000;
+    display: flex;
+    items-center: center;
+    justify-content: center;
+    color: #fff;
+    transition: all 0.5s ease;
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.2);
+}
+
+.media-network-card:hover .media-icon-wrapper {
+    transform: scale(1.1) rotate(5deg);
+    background: #ff0000;
+    box-shadow: 0 15px 30px -5px rgba(255, 0, 0, 0.3);
+}
+
+.media-title {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+
+.media-desc {
+    font-size: 1rem;
+    color: #444;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+/* Background Blob Glow Effect */
+.media-card-blob {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150px;
+    height: 150px;
+    background: #ff0000;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0;
+    z-index: 1;
+    transition: all 0.8s ease;
+    transform: translate(-50%, -50%) scale(0.5);
+    pointer-events: none;
+}
+
+.media-network-card:hover .media-card-blob {
+    opacity: 0.15;
+    transform: translate(-50%, -50%) scale(1.5);
+}
+
+/* Animation for the blob inside the card */
+@keyframes blob-float {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        transform: translate(-45%, -55%) scale(1.1);
+    }
+}
+
+.media-network-card:hover .media-card-blob {
+    animation: blob-float 4s infinite ease-in-out;
+}

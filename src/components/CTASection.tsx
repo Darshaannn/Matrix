@@ -21,10 +21,7 @@ const CTASection: React.FC = () => {
                         <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
                         <span className="text-[10px] font-mono font-bold tracking-[0.3em] text-amber-500 uppercase">Get in Touch</span>
                     </motion.div>
-                    <h2 className="text-4xl md:text-6xl font-black text-slate-900 leading-tight mb-8">
-                        Request a <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">Barter Proposal</span>
-                    </h2>
+
                     <p className="text-slate-600 text-lg mb-12 max-w-lg font-medium leading-relaxed">
                         Ready to leverage your inventory for national media dominance? Fill out the form and our strategic team will structure a custom proposal.
                     </p>

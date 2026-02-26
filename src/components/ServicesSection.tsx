@@ -1,104 +1,154 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Repeat, Share2, Smartphone, Monitor, Layout } from 'lucide-react';
+import {
+    BarChart3,
+    Repeat,
+    Target,
+    Zap,
+    TrendingUp,
+    PieChart
+} from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
+import './ServicesSection.css';
 
-const services = [
+interface Service {
+    title: string;
+    description: string;
+    icon: LucideIcon;
+}
+
+const services: Service[] = [
     {
-        title: "Barter Advertising",
-        description: "Convert your products into strategic advertising across major media channels.",
+        title: "Barter Media Planning",
+        description: "Design tailored barter strategies to align products with effective media channels.",
+        icon: BarChart3,
+    },
+    {
+        title: "Brand-to-Media Exchange",
+        description: "Facilitate barter deals where products become premium advertising placements.",
         icon: Repeat,
     },
     {
-        title: "Media Exchange",
-        description: "Trade inventory with top media partners for optimized reach and frequency.",
-        icon: Share2,
+        title: "Industry-Specific Campaigns",
+        description: "Custom barter campaigns for Auto, FMCG, Lifestyle, Electronics, Hospitality & Media.",
+        icon: Target,
     },
     {
-        title: "OTT & Digital Campaigns",
-        description: "High-impact campaigns on Zee5, Hotstar, MX Player, YouTube, and programmatic platforms.",
-        icon: Smartphone,
+        title: "Campaign Execution & Management",
+        description: "End-to-end campaign planning, execution and delivery with performance monitoring.",
+        icon: Zap,
     },
     {
-        title: "Print, TV & Outdoor Media",
-        description: "Access to leading newspapers, TV networks, and outdoor inventory across India.",
-        icon: Monitor,
+        title: "Media Inventory Optimization",
+        description: "Monetize unsold media inventory through structured barter agreements.",
+        icon: TrendingUp,
     },
     {
-        title: "Product-to-Media Planning",
-        description: "We design custom barter strategies based on your product value and brand goals.",
-        icon: Layout,
+        title: "Performance Tracking & Reporting",
+        description: "Transparent insights and analytics on campaign impact and barter value.",
+        icon: PieChart,
     }
 ];
 
+const ServiceCard: React.FC<{ service: Service; index: number }> = ({ service, index }) => {
+    const Icon = service.icon;
+    const cardRef = useRef<HTMLDivElement>(null);
+
+    const handleRipple = (e: React.MouseEvent<HTMLDivElement>) => {
+        const card = cardRef.current;
+        if (!card) return;
+
+        const ripple = document.createElement('span');
+        const rect = card.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+
+        ripple.style.width = ripple.style.height = `${size}px`;
+        ripple.style.left = `${x}px`;
+        ripple.style.top = `${y}px`;
+        ripple.classList.add('ripple');
+
+        const existingRipple = card.querySelector('.ripple');
+        if (existingRipple) {
+            existingRipple.remove();
+        }
+
+        card.appendChild(ripple);
+    };
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+            whileTap={{ scale: 0.98 }}
+            className="service-card-container"
+            onClick={handleRipple}
+        >
+            <div ref={cardRef} className="service-card group">
+                <div>
+                    <div className="service-icon-wrapper">
+                        <Icon size={28} strokeWidth={1.5} />
+                    </div>
+                    <h3 className="service-title">{service.title}</h3>
+                    <p className="service-description">{service.description}</p>
+                </div>
+
+                {/* Palette Accent Stripe */}
+                <div className="service-card-palette">
+                    <div className="palette-color"></div>
+                    <div className="palette-color"></div>
+                    <div className="palette-color"></div>
+                    <div className="palette-color"></div>
+                    <div className="palette-color"></div>
+                </div>
+            </div>
+        </motion.div>
+    );
+};
+
 const ServicesSection: React.FC = () => {
     return (
-        <section id="services" className="py-24 md:py-32 px-4 relative bg-[#FFFBEB] border-t border-slate-200/80">
-            <div className="max-w-7xl mx-auto z-10 relative">
-
+        <section id="services" className="services-section">
+            <div className="max-w-7xl mx-auto">
                 {/* Section Header */}
-                <div className="text-center mb-20">
+                <div className="text-center mb-16">
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
+                        initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-amber-500/20 bg-amber-500/5 mb-6"
+                        viewport={{ once: true }}
+                        className="section-kicker mx-auto"
                     >
-                        <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.8)]" />
-                        <span className="text-[10px] sm:text-xs font-mono font-medium tracking-[0.2em] text-amber-500 uppercase">
-                            Our Expertise
-                        </span>
+                        <span>Our Expertise</span>
                     </motion.div>
 
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="text-4xl md:text-5xl lg:text-5xl font-bold tracking-tight text-slate-900 leading-[1.1] mb-6 font-sans"
+                        viewport={{ once: true }}
+                        className="section-title"
                     >
-                        Our Services
+                        What We Do
                     </motion.h2>
+
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
+                        viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-slate-600 text-lg max-w-2xl mx-auto font-medium"
+                        className="section-subheading"
                     >
-                        Comprehensive media exchange solutions designed to turn your business assets into market-leading brand visibility.
+                        Strategic Barter Solutions for Brands & Media
                     </motion.p>
                 </div>
 
                 {/* Services Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {services.map((service, index) => {
-                        const Icon = service.icon;
-                        return (
-                            <motion.div
-                                key={service.title}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-100px" }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className="group relative p-8 rounded-3xl bg-slate-900/5 border border-slate-200 hover:bg-slate-100 hover:border-amber-500/30 transition-all duration-300 overflow-hidden"
-                            >
-                                {/* Hover Gradient Background */}
-                                <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-
-                                {/* Icon Container */}
-                                <div className="w-14 h-14 rounded-full bg-slate-900 flex items-center justify-center border border-slate-200 group-hover:border-amber-500/50 mb-6 transition-colors duration-300">
-                                    <Icon size={24} className="text-amber-500" strokeWidth={1.5} />
-                                </div>
-
-                                {/* Content */}
-                                <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-amber-400 transition-colors duration-300">
-                                    {service.title}
-                                </h3>
-                                <p className="text-slate-600 text-[15px] leading-relaxed font-medium">
-                                    {service.description}
-                                </p>
-                            </motion.div>
-                        );
-                    })}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {services.map((service, index) => (
+                        <ServiceCard key={service.title} service={service} index={index} />
+                    ))}
                 </div>
             </div>
         </section>

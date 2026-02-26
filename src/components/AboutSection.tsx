@@ -1,8 +1,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ShieldCheck, Zap, Globe } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
+import './AboutSection.css';
 
-const valueProps = [
+interface ValueProp {
+    title: string;
+    description: string;
+    icon: LucideIcon;
+}
+
+const valueProps: ValueProp[] = [
     {
         title: "Strategic Valuation",
         description: "Scientific appraisal of your inventory against real-time media market rates.",
@@ -19,6 +27,35 @@ const valueProps = [
         icon: Globe,
     }
 ];
+
+const ValueCard: React.FC<{ prop: ValueProp; index: number }> = ({ prop, index }) => {
+    const Icon = prop.icon;
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.1, duration: 0.6 }}
+            className="value-card-container noselect"
+        >
+            <div className="value-card-canvas">
+                {[...Array(25)].map((_, i) => (
+                    <div key={i} className={`tracker tr-${i + 1}`}></div>
+                ))}
+                <div id="value-card">
+                    <div className="blob"></div>
+                    <div className="card-inner-bg">
+                        <div className="value-card-icon">
+                            <Icon size={32} />
+                        </div>
+                        <h4 className="value-card-title">{prop.title}</h4>
+                        <p className="value-card-description">{prop.description}</p>
+                    </div>
+                </div>
+            </div>
+        </motion.div>
+    );
+};
 
 const AboutSection: React.FC = () => {
     return (
@@ -84,25 +121,9 @@ const AboutSection: React.FC = () => {
                         <div className="w-16 h-1 bg-amber-500 mx-auto" />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-                        {valueProps.map((prop, index) => {
-                            const Icon = prop.icon;
-                            return (
-                                <motion.div
-                                    key={prop.title}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: index * 0.1 }}
-                                    className="p-8 rounded-3xl bg-slate-900/[0.03] border border-slate-200/80 hover:bg-slate-900/[0.05] transition-all"
-                                >
-                                    <div className="w-14 h-14 rounded-2xl bg-amber-500/10 flex items-center justify-center mb-6">
-                                        <Icon size={28} className="text-amber-500" />
-                                    </div>
-                                    <h4 className="text-xl font-bold text-slate-900 mb-3">{prop.title}</h4>
-                                    <p className="text-slate-600 leading-relaxed font-medium">{prop.description}</p>
-                                </motion.div>
-                            );
-                        })}
+                        {valueProps.map((prop, index) => (
+                            <ValueCard key={prop.title} prop={prop} index={index} />
+                        ))}
                     </div>
                 </div>
             </div>

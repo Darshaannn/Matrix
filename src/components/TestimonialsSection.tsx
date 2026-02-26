@@ -34,15 +34,7 @@ const TestimonialsSection: React.FC = () => {
                     >
                         Market Validation
                     </motion.p>
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ delay: 0.1 }}
-                        className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mb-6 font-sans"
-                    >
-                        Trusted by Corporate Leadership.
-                    </motion.h2>
+
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

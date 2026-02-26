@@ -1,25 +1,44 @@
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import IndustryCityMap from './components/IndustryCityMap';
-import MatrixEnergyNetwork from './components/MatrixEnergyNetwork';
 import WhatIsBarter from './components/ProcessSection';
-import MatrixBarterJourney from './components/MatrixBarterJourney';
+import CampaignsEditorial from './components/CampaignsEditorial';
 import OurClients from './components/OurClients';
-import CampaignShowcase from './components/CampaignShowcase';
-import CTASection from './components/CTASection';
 import Footer from './components/Footer';
-import ServicesSection from './components/ServicesSection';
-import TestimonialsSection from './components/TestimonialsSection';
 import AboutSection from './components/AboutSection';
-import IndustriesSection from './components/IndustriesSection';
-import MediaNetworkSection from './components/MediaNetworkSection';
+import ServicesSection from './components/ServicesSection';
 import CustomCursor from './components/CustomCursor';
 import './components/cursor.css';
 import useReveal from './hooks/useReveal';
 
-function App() {
+import IndustryDetailPage from './components/IndustryDetailPage';
+import PrototypeLanding from './components/prototype/PrototypeLanding';
+import DashboardApp from './components/prototype/DashboardApp';
+import { Routes, Route } from 'react-router-dom';
+
+function HomePage() {
   useReveal();
 
+  return (
+    <>
+      <Navbar />
+      <div className="relative z-10 bg-[#FFFBEB]">
+        <main className="relative flex flex-col gap-0">
+          <div id="home"><Hero /></div>
+          <div id="about" className="reveal"><AboutSection /></div>
+          <div id="services" className="reveal"><ServicesSection /></div>
+          <div id="what-is-barter" className="reveal"><WhatIsBarter /></div>
+          <div id="industry-map" className="reveal"><IndustryCityMap /></div>
+          <div id="campaigns"><CampaignsEditorial /></div>
+          <div id="clients" className="reveal"><OurClients /></div>
+        </main>
+      </div>
+      <Footer />
+    </>
+  );
+}
+
+function App() {
   return (
     <div className="relative min-h-screen bg-[#FFFBEB] text-slate-900 font-sans antialiased selection:bg-amber-500/30 selection:text-slate-900">
       {/* Custom Cursor */}
@@ -42,27 +61,12 @@ function App() {
         <div className="absolute inset-0 bg-[#FFFBEB] -z-10" />
       </div>
 
-      <Navbar />
-      <main className="relative z-10 flex flex-col gap-0">
-        <div id="home"><Hero /></div>
-        <div id="industry-map" className="reveal"><IndustryCityMap /></div>
-        <div id="about" className="reveal"><AboutSection /></div>
-        <div id="what-is-barter" className="reveal"><WhatIsBarter /></div>
-        <div id="capabilities">
-          <div className="reveal"><MatrixEnergyNetwork /></div>
-          <div className="reveal"><ServicesSection /></div>
-          <MatrixBarterJourney />
-        </div>
-        <div id="industries" className="reveal"><IndustriesSection /></div>
-        <div id="media-network" className="reveal"><MediaNetworkSection /></div>
-        <div id="clients">
-          <div className="reveal"><TestimonialsSection /></div>
-          <div className="reveal"><OurClients /></div>
-        </div>
-        <div id="campaigns" className="reveal"><CampaignShowcase /></div>
-        <div id="contact" className="reveal"><CTASection /></div>
-        <Footer />
-      </main>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/industry/:id" element={<IndustryDetailPage />} />
+        <Route path="/prototype" element={<PrototypeLanding />} />
+        <Route path="/dashboard" element={<DashboardApp />} />
+      </Routes>
     </div>
   );
 }

@@ -1,0 +1,261 @@
+/* 3D Interactive Cards for "Why Choose Matrix?" */
+
+.value-card-container {
+    position: relative;
+    width: 100%;
+    height: 380px;
+    /* Slightly taller for Matrix content */
+    transition: 200ms;
+}
+
+.value-card-container:active {
+    transform: scale(0.98);
+}
+
+#value-card {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-radius: 24px;
+    transition: 700ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: #ffffff;
+    box-shadow: 20px 20px 60px #e2e8f0, -20px -20px 60px #ffffff;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+/* The animated blob background */
+.blob {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: var(--color-amber-600, #ff0000);
+    opacity: 0.15;
+    filter: blur(30px);
+    animation: blob-bounce 8s infinite ease-in-out;
+}
+
+@keyframes blob-bounce {
+    0% {
+        transform: translate(-100%, -100%) translate3d(0, 0, 0);
+    }
+
+    25% {
+        transform: translate(-100%, -100%) translate3d(100%, 0, 0);
+    }
+
+    50% {
+        transform: translate(-100%, -100%) translate3d(100%, 100%, 0);
+    }
+
+    75% {
+        transform: translate(-100%, -100%) translate3d(0, 100%, 0);
+    }
+
+    100% {
+        transform: translate(-100%, -100%) translate3d(0, 0, 0);
+    }
+}
+
+/* Inner card layer with glass effect */
+.card-inner-bg {
+    position: absolute;
+    inset: 8px;
+    /* Offset for the glass look */
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-radius: 18px;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: hidden;
+    border: 2px solid white;
+}
+
+.value-card-container:hover #value-card {
+    border-color: rgba(245, 158, 11, 0.4);
+    box-shadow: 25px 25px 70px rgba(0, 0, 0, 0.1), -20px -20px 60px #ffffff;
+}
+
+/* Icon Container */
+.value-card-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: rgba(15, 23, 42, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    color: var(--color-primary);
+    transition: 500ms ease;
+    z-index: 10;
+}
+
+.tracker:hover~#value-card .value-card-icon {
+    transform: translateZ(40px);
+    background: rgba(15, 23, 42, 0.1);
+}
+
+/* Text Content */
+.value-card-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #0f172a;
+    /* Darker Slate for the new light-mode look */
+    margin-bottom: 1rem;
+    transition: 400ms ease;
+    transform: translateZ(30px);
+    z-index: 10;
+}
+
+.value-card-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #475569;
+    font-weight: 500;
+    transition: 400ms ease;
+    transform: translateZ(20px);
+    z-index: 10;
+}
+
+.tracker:hover~#value-card .value-card-title {
+    color: #000;
+}
+
+/* 3D Tracker System */
+.value-card-canvas {
+    perspective: 1200px;
+    inset: 0;
+    z-index: 200;
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+}
+
+.tracker {
+    position: relative;
+    z-index: 201;
+    width: 100%;
+    height: 100%;
+}
+
+/* Rotation Mappings */
+.tr-1:hover~#value-card {
+    transform: rotateX(20deg) rotateY(-15deg);
+}
+
+.tr-2:hover~#value-card {
+    transform: rotateX(20deg) rotateY(-7deg);
+}
+
+.tr-3:hover~#value-card {
+    transform: rotateX(20deg) rotateY(0deg);
+}
+
+.tr-4:hover~#value-card {
+    transform: rotateX(20deg) rotateY(7deg);
+}
+
+.tr-5:hover~#value-card {
+    transform: rotateX(20deg) rotateY(15deg);
+}
+
+.tr-6:hover~#value-card {
+    transform: rotateX(10deg) rotateY(-15deg);
+}
+
+.tr-7:hover~#value-card {
+    transform: rotateX(10deg) rotateY(-7deg);
+}
+
+.tr-8:hover~#value-card {
+    transform: rotateX(10deg) rotateY(0deg);
+}
+
+.tr-9:hover~#value-card {
+    transform: rotateX(10deg) rotateY(7deg);
+}
+
+.tr-10:hover~#value-card {
+    transform: rotateX(10deg) rotateY(15deg);
+}
+
+.tr-11:hover~#value-card {
+    transform: rotateX(0deg) rotateY(-15deg);
+}
+
+.tr-12:hover~#value-card {
+    transform: rotateX(0deg) rotateY(-7deg);
+}
+
+.tr-13:hover~#value-card {
+    transform: rotateX(0deg) rotateY(0deg);
+}
+
+.tr-14:hover~#value-card {
+    transform: rotateX(0deg) rotateY(7deg);
+}
+
+.tr-15:hover~#value-card {
+    transform: rotateX(0deg) rotateY(15deg);
+}
+
+.tr-16:hover~#value-card {
+    transform: rotateX(-10deg) rotateY(-15deg);
+}
+
+.tr-17:hover~#value-card {
+    transform: rotateX(-10deg) rotateY(-7deg);
+}
+
+.tr-18:hover~#value-card {
+    transform: rotateX(-10deg) rotateY(0deg);
+}
+
+.tr-19:hover~#value-card {
+    transform: rotateX(-10deg) rotateY(7deg);
+}
+
+.tr-20:hover~#value-card {
+    transform: rotateX(-10deg) rotateY(15deg);
+}
+
+.tr-21:hover~#value-card {
+    transform: rotateX(-20deg) rotateY(-15deg);
+}
+
+.tr-22:hover~#value-card {
+    transform: rotateX(-20deg) rotateY(-7deg);
+}
+
+.tr-23:hover~#value-card {
+    transform: rotateX(-20deg) rotateY(0deg);
+}
+
+.tr-24:hover~#value-card {
+    transform: rotateX(-20deg) rotateY(7deg);
+}
+
+.tr-25:hover~#value-card {
+    transform: rotateX(-20deg) rotateY(15deg);
+}
+
+/* Prevent text selection during interaction */
+.noselect {
+    user-select: none;
+    -webkit-user-select: none;
+}

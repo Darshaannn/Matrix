@@ -3,6 +3,7 @@
 @theme {
   --color-background: #FFFBEB;
   --color-primary: #F59E0B;
+  --color-amber-600: #ff0000;
   --color-accent: #10B981;
   --font-sans: 'Outfit', sans-serif;
 }
