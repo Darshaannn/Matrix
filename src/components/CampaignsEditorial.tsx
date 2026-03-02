@@ -286,7 +286,7 @@ const CampaignsEditorial: React.FC = () => {
     );
 
     return (
-        <section className="py-24 md:py-32 bg-[#000000] text-white min-h-screen font-sans">
+        <section id="campaigns-section" className="py-24 md:py-32 bg-[#000000] text-white min-h-screen font-sans">
             <div className="max-w-[1400px] mx-auto px-6">
 
                 {/* --- HEADER --- */}

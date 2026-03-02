@@ -74,10 +74,10 @@ const AboutSection: React.FC = () => {
                     >
                         <div>
                             <motion.div
-                                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-amber-500/20 bg-amber-500/5 mb-6"
+                                className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-amber-500/30 bg-amber-500/10 mb-6"
                             >
-                                <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
-                                <span className="text-[10px] font-mono font-bold tracking-[0.3em] text-amber-500 uppercase">About Matrix</span>
+                                <span className="w-2 h-2 rounded-full bg-amber-500" />
+                                <span className="text-[12px] font-mono font-bold tracking-[0.3em] text-amber-500 uppercase">About Matrix</span>
                             </motion.div>
                             <h2 className="text-4xl md:text-6xl font-black text-slate-900 leading-tight tracking-tight mb-8">
                                 Our Story & <br />
@@ -105,7 +105,6 @@ const AboutSection: React.FC = () => {
                             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(245,158,11,0.1),transparent)] group-hover:scale-125 transition-transform duration-1000" />
                             <div className="relative z-10 text-center space-y-4">
                                 <p className="text-7xl font-black text-slate-900/10 group-hover:text-amber-500/20 transition-colors">MATRIX</p>
-                                <p className="text-amber-500 text-sm font-mono tracking-[0.5em] font-bold">EST. 2010</p>
                             </div>
                         </div>
                         {/* decorative dots */}

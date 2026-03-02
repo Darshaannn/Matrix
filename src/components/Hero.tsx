@@ -21,7 +21,7 @@ const Hero = () => {
     }, []);
 
     return (
-        <section className="relative w-full min-h-screen flex flex-col items-center justify-center pt-16 pb-16 px-4 md:px-8 overflow-hidden bg-slate-900">
+        <section id="hero-section" className="relative w-full min-h-screen flex flex-col items-center justify-center pt-16 pb-16 px-4 md:px-8 overflow-hidden bg-slate-900">
 
             {/* ── Background Slider ── */}
             <div className="absolute inset-0 z-0 overflow-hidden">
@@ -88,7 +88,7 @@ const Hero = () => {
                     transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
                     className="text-slate-200 max-w-3xl mx-auto mb-6 text-lg md:text-xl font-medium leading-relaxed"
                 >
-                    We are a leading Barter &amp; Media Exchange Agency helping brands convert products and unsold inventory into nationwide advertising across Print, TV, OTT, Outdoor, Radio &amp; Digital platforms.
+                    We are a leading Barter &amp; Media Exchange Agency helping brands convert products and unsold inventory into nationwide advertising across Print, TV, OTT, Outdoor, Cinema, Radio &amp; Digital platforms.
                 </motion.p>
 
                 {/* Trust Points */}
@@ -120,7 +120,10 @@ const Hero = () => {
                     className="flex flex-col sm:flex-row items-center gap-5 w-full sm:w-auto"
                 >
                     {/* Primary Button — Magnetic */}
-                    <MagneticButton className="group w-full sm:w-auto px-10 py-4 rounded-full bg-amber-500 text-slate-900 font-bold text-lg shadow-[0_10px_30px_rgba(245,158,11,0.3)] hover:shadow-[0_15px_40px_rgba(245,158,11,0.5)] flex items-center justify-center gap-2 transition-all">
+                    <MagneticButton
+                        className="group w-full sm:w-auto px-10 py-4 rounded-full bg-amber-500 text-slate-900 font-bold text-lg shadow-[0_10px_30px_rgba(245,158,11,0.3)] hover:shadow-[0_15px_40px_rgba(245,158,11,0.5)] flex items-center justify-center gap-2 transition-all"
+                        onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                    >
                         Request Barter Proposal
                         <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                     </MagneticButton>

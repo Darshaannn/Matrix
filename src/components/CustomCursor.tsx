@@ -5,6 +5,7 @@ export default function CustomCursor() {
     const [dotPos, setDotPos] = useState({ x: -100, y: -100 });
     const [active, setActive] = useState(false);
     const [clicking, setClicking] = useState(false);
+    const [inverted, setInverted] = useState(false);
     const posRef = useRef({ x: -100, y: -100 });
     const rafRef = useRef<number>(0);
 
@@ -34,6 +35,13 @@ export default function CustomCursor() {
             document.querySelectorAll("a, button").forEach(el => {
                 el.addEventListener("mouseenter", () => setActive(true));
                 el.addEventListener("mouseleave", () => setActive(false));
+            });
+
+            // Handle inversion for dark sections like Hero, Campaigns, Contact, Footer and Nav
+            const darkSections = document.querySelectorAll("#hero-section, #campaigns-section, #contact-section, .footer, nav");
+            darkSections.forEach(section => {
+                section.addEventListener("mouseenter", () => setInverted(true));
+                section.addEventListener("mouseleave", () => setInverted(false));
             });
         };
 
@@ -65,8 +73,9 @@ export default function CustomCursor() {
                     top: pos.y,
                     width: active ? 44 : clicking ? 24 : 32,
                     height: active ? 44 : clicking ? 24 : 32,
-                    borderColor: active ? "#F59E0B" : "rgba(15,23,42,0.6)",
+                    borderColor: active ? "#F59E0B" : inverted ? "rgba(255,255,255,0.6)" : "rgba(15,23,42,0.6)",
                     backgroundColor: active ? "rgba(245,158,11,0.08)" : "transparent",
+                    mixBlendMode: inverted ? 'difference' : 'multiply'
                 }}
             />
             {/* Inner dot — instant */}
@@ -75,7 +84,7 @@ export default function CustomCursor() {
                 style={{
                     left: dotPos.x,
                     top: dotPos.y,
-                    backgroundColor: active ? "#F59E0B" : "#0f172a",
+                    backgroundColor: active ? "#F59E0B" : inverted ? "#ffffff" : "#0f172a",
                     transform: `translate(-50%, -50%) scale(${clicking ? 0.5 : 1})`,
                 }}
             />
