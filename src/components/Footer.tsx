@@ -127,7 +127,7 @@ const Footer: React.FC = () => {
         <div className="footer-wrapper">
           {/* Brand & Summary */}
           <section className="footer-section footer-branding">
-            <span className="brand-name">MATRIX</span>
+            <span className="brand-name bg-clip-text text-transparent bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600">MATRIX</span>
             <p className="brand-tagline">
               India's leading media barter infrastructure holding company. We convert corporate inventory into national media power.
             </p>

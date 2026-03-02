@@ -21,7 +21,7 @@ const Hero = () => {
     }, []);
 
     return (
-        <section className="relative w-full min-h-screen flex flex-col items-center justify-center pt-24 pb-16 px-4 md:px-8 overflow-hidden bg-slate-900">
+        <section className="relative w-full min-h-screen flex flex-col items-center justify-center pt-16 pb-16 px-4 md:px-8 overflow-hidden bg-slate-900">
 
             {/* ── Background Slider ── */}
             <div className="absolute inset-0 z-0 overflow-hidden">
@@ -86,7 +86,7 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                    className="text-slate-200 max-w-3xl mx-auto mb-8 text-lg md:text-xl font-medium leading-relaxed"
+                    className="text-slate-200 max-w-3xl mx-auto mb-6 text-lg md:text-xl font-medium leading-relaxed"
                 >
                     We are a leading Barter &amp; Media Exchange Agency helping brands convert products and unsold inventory into nationwide advertising across Print, TV, OTT, Outdoor, Radio &amp; Digital platforms.
                 </motion.p>
@@ -96,7 +96,7 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                    className="flex flex-wrap justify-center gap-6 mb-8"
+                    className="flex flex-wrap justify-center gap-6 mb-6"
                 >
                     {[
                         "500+ Brand Partnerships",

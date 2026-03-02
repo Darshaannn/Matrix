@@ -74,7 +74,7 @@ const IndustryCityMap: React.FC = () => {
                         <span className="text-[10px] font-mono font-bold tracking-[0.3em] text-[#00B3FF] uppercase">Interactive Ecosystem</span>
                     </div>
                     <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6 uppercase tracking-tight">
-                        Explore Our Industry <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00B3FF] to-[#ff0000]">Barter City</span>
+                        Explore Our Industry <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600">Barter City</span>
                     </h2>
                     <p className="text-slate-600 text-lg font-medium leading-relaxed">
                         Hover or tap on a location to discover how barter works in each industry.

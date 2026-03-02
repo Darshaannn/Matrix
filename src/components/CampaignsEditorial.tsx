@@ -99,7 +99,7 @@ const campaignData = [
         brand: 'Star Sports',
         industry: 'Media Networks',
         description: 'Trade association for grand sporting event coverage, utilizing existing equipment bandwidth.',
-        image: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?auto=format&fit=crop&q=80&w=1200&h=800',
+        image: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97c?auto=format&fit=crop&q=80&w=1200&h=800',
     },
     {
         id: 12,
@@ -139,7 +139,7 @@ const campaignData = [
         brand: 'Netflix',
         industry: 'Media Networks',
         description: 'Partnering with terrestrial networks for cross-promotion of original content through inventory swaps.',
-        image: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?auto=format&fit=crop&q=80&w=1200&h=800',
+        image: 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?auto=format&fit=crop&q=80&w=1200&h=800',
     },
     {
         id: 17,
@@ -155,7 +155,7 @@ const campaignData = [
         brand: 'Marriott',
         industry: 'Hospitality & Gaming',
         description: 'National print campaign targeting business travelers in exchange for untapped room inventory.',
-        image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=1200&h=800',
+        image: 'https://images.unsplash.com/photo-1551882547-ff43c6365b24?auto=format&fit=crop&q=80&w=1200&h=800',
     }
 ];
 
@@ -216,7 +216,7 @@ const CollageSection = ({ title, description, buttonText, items, reverse = false
         <div className={`flex flex-col ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-16 items-center mb-24 md:mb-40`}>
             {/* Text Side */}
             <div className={`lg:w-[48%] flex flex-col items-start gap-6 ${reverse ? 'lg:pl-12' : ''}`}>
-                <h2 className={`text-4xl lg:text-[4.2rem] font-black uppercase tracking-tight leading-[1.05] ${useGradient ? 'text-transparent bg-clip-text bg-gradient-to-r from-[#00B3FF] to-[#ff0000]' : ''}`} style={!useGradient ? { color: titleColor } : {}}>
+                <h2 className={`text-4xl lg:text-[4.2rem] font-black uppercase tracking-tight leading-[1.05] ${useGradient ? 'text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600' : ''}`} style={!useGradient ? { color: titleColor } : {}}>
                     {title.split(' ').map((word: string, i: number) => (
                         <React.Fragment key={i}>{word} {i === 0 ? <br /> : ''}</React.Fragment>
                     ))}
@@ -295,7 +295,7 @@ const CampaignsEditorial: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                    className="text-2xl md:text-3xl font-black tracking-[0.3em] uppercase mb-16 text-[#0066FF]"
+                    className="text-2xl md:text-3xl font-black tracking-[0.3em] uppercase mb-16 text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600"
                 >
                     OUR CAMPAIGNS
                 </motion.h2>

@@ -33,7 +33,7 @@ const Navbar: React.FC = () => {
                 </Link>
 
                 {/* Navigation Links */}
-                <div className="hidden lg:flex items-center gap-10 text-[11px] uppercase tracking-[0.2em] font-bold text-slate-300 px-10">
+                <div className="hidden lg:flex items-center gap-10 text-[11px] uppercase tracking-[0.2em] font-bold text-slate-300 px-10 whitespace-nowrap">
                     <Link to="/#home" className="hover:text-white transition-colors relative group/link">
                         Home
                         <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-amber-500 transition-all duration-300 group-hover/link:w-full shadow-[0_0_8px_rgba(245,158,11,0.8)]"></span>
