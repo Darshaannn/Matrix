@@ -10,6 +10,7 @@ import ServicesSection from './components/ServicesSection';
 import CustomCursor from './components/CustomCursor';
 import './components/cursor.css';
 import useReveal from './hooks/useReveal';
+import NotFound from './components/NotFound';
 
 import IndustryDetailPage from './components/IndustryDetailPage';
 import PrototypeLanding from './components/prototype/PrototypeLanding';
@@ -66,6 +67,7 @@ function App() {
         <Route path="/industry/:id" element={<IndustryDetailPage />} />
         <Route path="/prototype" element={<PrototypeLanding />} />
         <Route path="/dashboard" element={<DashboardApp />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
