@@ -16,57 +16,47 @@ const Hero = () => {
     useEffect(() => {
         const timer = setInterval(() => {
             setCurrentIndex((prev) => (prev + 1) % HERO_IMAGES.length);
-        }, 6000); // Change image every 6 seconds
+        }, 8000); // Change image every 8 seconds
         return () => clearInterval(timer);
     }, []);
 
     return (
         <section id="hero-section" className="relative w-full min-h-screen flex flex-col items-center justify-center pt-16 pb-16 px-4 md:px-8 overflow-hidden bg-slate-900">
 
-            {/* ── Background Slider ── */}
-            <div className="absolute inset-0 z-0 overflow-hidden">
-                <AnimatePresence>
+            {/* ── Background Slider (Cross-fade + Ken Burns) ── */}
+            <div className="absolute inset-0 z-0 overflow-hidden bg-slate-950">
+                <AnimatePresence mode='popLayout'>
                     <motion.div
                         key={currentIndex}
-                        initial={{ x: '100%', scale: 1.1, opacity: 0 }}
-                        animate={{ x: 0, scale: 1, opacity: 1 }}
-                        exit={{ x: '-30%', scale: 0.95, opacity: 0 }}
+                        initial={{ opacity: 0, scale: 1.1 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 1.05 }}
                         transition={{
-                            duration: 1.6,
-                            ease: [0.65, 0, 0.35, 1]
+                            duration: 4,
+                            ease: [0.4, 0, 0.2, 1]
                         }}
                         className="absolute inset-0 w-full h-full"
-                        style={{ zIndex: 1 }}
                     >
                         <img
                             src={HERO_IMAGES[currentIndex]}
                             alt={`Matrix Hero ${currentIndex + 1}`}
                             className="w-full h-full object-cover"
                         />
-                        {/* Overlay to ensure text readability */}
-                        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/70 via-slate-900/50 to-slate-900/80 z-[2]" />
+                        {/* Multi-layered Overlay for Premium Depth */}
+                        <div className="absolute inset-0 bg-slate-950/40 z-[1]" />
+                        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-transparent to-slate-950/90 z-[2]" />
+                        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/60 via-transparent to-transparent z-[2]" />
                     </motion.div>
                 </AnimatePresence>
             </div>
+
+
 
             {/* Subtle Amber Glows - Repositioned on top of slider */}
             <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[radial-gradient(circle,rgba(245,158,11,0.15)_0%,transparent_70%)] blur-[80px] pointer-events-none z-[1]" />
 
             {/* ── Main Content ── */}
-            <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center text-center">
-
-                {/* Kicker Tag */}
-                <motion.div
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                    className="flex items-center gap-2 px-4 py-2 rounded-full border border-amber-500/30 bg-amber-500/10 mb-6 backdrop-blur-sm"
-                >
-                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.8)]" />
-                    <span className="text-[10px] sm:text-xs font-mono font-bold tracking-[0.2em] text-amber-500 uppercase">
-                        Scale Your Brand with Barter
-                    </span>
-                </motion.div>
+            <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center text-center mt-20">
 
                 {/* Headline */}
                 <motion.h1

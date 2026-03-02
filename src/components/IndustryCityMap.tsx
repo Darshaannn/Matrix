@@ -47,7 +47,7 @@ const industriesData = [
         description: "Media houses collaborate through barter by exchanging advertising inventory with brands, optimizing unsold space and increasing cross-promotional opportunities.",
         barterIncludes: ["Ad slots", "Print inventory", "Outdoor media"],
         mediaUtilized: ["Television", "Print", "Digital"],
-        position: { top: "80%", left: "67%" }
+        position: { top: "68%", left: "67%" }
     },
     {
         id: "hospitality",
@@ -98,7 +98,8 @@ const IndustryCityMap: React.FC = () => {
                                     className="absolute flex flex-col items-center justify-start translate-x-[-50%] translate-y-[-50%]"
                                     style={{
                                         top: ind.position.top,
-                                        left: ind.position.left
+                                        left: ind.position.left,
+                                        zIndex: activeIndustry === ind.id ? 50 : 20
                                     }}
                                     onMouseEnter={() => setActiveIndustry(ind.id)}
                                     onMouseLeave={() => setActiveIndustry(null)}

@@ -59,10 +59,9 @@ const ContactSection = () => {
                                     <div>
                                         <p className="text-xs font-black text-slate-500 uppercase tracking-widest mb-1">Office Address</p>
                                         <p className="text-sm font-bold text-white leading-relaxed">Office No. O- 501, 502, 503 Boulevard Towers, <br />Opp To Vijay Sales, Sadhu vaswani Chowk, <br />Pune-411001</p>
-                                        <p className="text-[10px] text-amber-500/50 mt-1 font-mono uppercase">GST: 27AASCM1770E1Z9</p>
                                     </div>
                                     <div>
-                                        <p className="text-xs font-black text-slate-500 uppercase tracking-widest mb-1">Delivery Address</p>
+                                        <p className="text-xs font-black text-slate-500 uppercase tracking-widest mb-1">Warehouse Address</p>
                                         <p className="text-sm font-bold text-white/70 leading-relaxed italic">GAT NO-825, saswad road, Wadki, <br />Pune, Maharashtra, 412308</p>
                                     </div>
                                 </div>
